@@ -17,9 +17,11 @@ namespace CapstoneBack.Models
 
         public string Description { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string Author { get; set; }
+        [ForeignKey("Author")]
+        public int AuthorId { get; set; }
+        public Author Author { get; set; }
+
+        public string CoverImagePath { get; set; }
 
         public DateTime PublicationDate { get; set; }
 

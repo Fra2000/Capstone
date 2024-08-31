@@ -4,6 +4,7 @@ using CapstoneBack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CapstoneBack.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240829213537_ModelliMigliorati")]
+    partial class ModelliMigliorati
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,41 +24,6 @@ namespace CapstoneBack.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CapstoneBack.Models.Author", b =>
-                {
-                    b.Property<int>("AuthorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuthorId"));
-
-                    b.Property<string>("Bio")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("AuthorId");
-
-                    b.ToTable("Authors");
-                });
 
             modelBuilder.Entity("CapstoneBack.Models.Book", b =>
                 {
@@ -65,12 +33,10 @@ namespace CapstoneBack.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CoverImagePath")
+                    b.Property<string>("Author")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -91,8 +57,6 @@ namespace CapstoneBack.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("BookId");
-
-                    b.HasIndex("AuthorId");
 
                     b.ToTable("Books");
                 });
@@ -341,17 +305,6 @@ namespace CapstoneBack.Migrations
                     b.ToTable("UserLoyaltyCards");
                 });
 
-            modelBuilder.Entity("CapstoneBack.Models.Book", b =>
-                {
-                    b.HasOne("CapstoneBack.Models.Author", "Author")
-                        .WithMany("Books")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-                });
-
             modelBuilder.Entity("CapstoneBack.Models.BookGenre", b =>
                 {
                     b.HasOne("CapstoneBack.Models.Book", "Book")
@@ -445,11 +398,6 @@ namespace CapstoneBack.Migrations
                     b.Navigation("LoyaltyCardType");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CapstoneBack.Models.Author", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("CapstoneBack.Models.Book", b =>
