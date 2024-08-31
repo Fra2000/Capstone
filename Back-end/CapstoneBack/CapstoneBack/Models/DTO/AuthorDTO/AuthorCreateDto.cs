@@ -6,6 +6,6 @@
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Bio { get; set; }
-        public string ImagePath { get; set; }
+        
     }
 }

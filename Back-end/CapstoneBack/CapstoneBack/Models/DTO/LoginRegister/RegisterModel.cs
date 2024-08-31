@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CapstoneBack.Models.DTO
+namespace CapstoneBack.Models.DTO.LoginRegister
 {
     public class RegisterModel
     {

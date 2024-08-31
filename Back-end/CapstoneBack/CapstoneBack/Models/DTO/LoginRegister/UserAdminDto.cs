@@ -1,6 +1,4 @@
-﻿using CapstoneBack.Models.DTO;
-
-namespace CapstoneBack.Models.DTO
+﻿namespace CapstoneBack.Models.DTO.LoginRegister
 {
     public class UserAdminDto
     {

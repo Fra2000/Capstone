@@ -15,10 +15,12 @@ namespace CapstoneBack.Controllers
     public class AuthorController : ControllerBase
     {
         private readonly IAuthorService _authorService;
+        private readonly ApplicationDbContext _context;
 
-        public AuthorController(IAuthorService authorService)
+        public AuthorController(IAuthorService authorService, ApplicationDbContext context)
         {
             _authorService = authorService;
+            _context = context;
         }
 
         // GET: api/Author
@@ -34,7 +36,6 @@ namespace CapstoneBack.Controllers
                 FirstName = author.FirstName,
                 LastName = author.LastName,
                 DateOfBirth = author.DateOfBirth,
-                Bio = author.Bio,
                 ImagePath = author.ImagePath,
                 Books = new List<string>()  // Manteniamo una lista vuota per i libri
             }).ToList();
@@ -55,7 +56,7 @@ namespace CapstoneBack.Controllers
                 return NotFound();
             }
 
-            // Assicurati che la lista Books non sia null
+            // Assicurati che la lista Books non sia null e mappa correttamente i titoli dei libri
             var books = author.Books ?? new List<Book>();
 
             var authorDto = new AuthorReadDto
@@ -66,7 +67,7 @@ namespace CapstoneBack.Controllers
                 DateOfBirth = author.DateOfBirth,
                 Bio = author.Bio,
                 ImagePath = author.ImagePath,
-                Books = books.Select(b => b.Name).ToList()
+                Books = books.Select(b => b.Name).ToList() // Mappa i nomi dei libri
             };
 
             return Ok(authorDto);
@@ -74,9 +75,10 @@ namespace CapstoneBack.Controllers
 
 
 
+
         // POST: api/Author
         [HttpPost]
-        public async Task<ActionResult<AuthorReadDto>> CreateAuthor([FromBody] AuthorCreateDto authorDto)
+        public async Task<ActionResult<AuthorReadDto>> CreateAuthor([FromForm] AuthorCreateDto authorDto, IFormFile? imageFile)
         {
             if (!ModelState.IsValid)
             {
@@ -88,11 +90,11 @@ namespace CapstoneBack.Controllers
                 FirstName = authorDto.FirstName,
                 LastName = authorDto.LastName,
                 DateOfBirth = authorDto.DateOfBirth,
-                Bio = authorDto.Bio,
-                ImagePath = authorDto.ImagePath
+                Bio = authorDto.Bio
             };
 
-            var createdAuthor = await _authorService.CreateAuthorAsync(author);
+            var createdAuthor = await _authorService.CreateAuthorAsync(author, imageFile);
+
             var authorReadDto = new AuthorReadDto
             {
                 AuthorId = createdAuthor.AuthorId,
@@ -107,43 +109,42 @@ namespace CapstoneBack.Controllers
             return CreatedAtAction(nameof(GetAuthorById), new { id = createdAuthor.AuthorId }, authorReadDto);
         }
 
+
         // PUT: api/Author/{id}
-       [HttpPut("{id}")]
-public async Task<IActionResult> UpdateAuthor(int id, [FromBody] AuthorCreateDto authorDto)
-{
-    if (!ModelState.IsValid)
-    {
-        return BadRequest(ModelState);
-    }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAuthor(int id, [FromForm] AuthorCreateDto authorDto, IFormFile? imageFile)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-    // Trova l'autore esistente
-    var existingAuthor = await _authorService.GetAuthorByIdAsync(id);
-    if (existingAuthor == null)
-    {
-        return NotFound();
-    }
+            var author = new Author
+            {
+                FirstName = authorDto.FirstName,
+                LastName = authorDto.LastName,
+                DateOfBirth = authorDto.DateOfBirth,
+                Bio = authorDto.Bio
+            };
 
-    // Aggiorna i campi dell'autore esistente
-    existingAuthor.FirstName = authorDto.FirstName;
-    existingAuthor.LastName = authorDto.LastName;
-    existingAuthor.DateOfBirth = authorDto.DateOfBirth;
-    existingAuthor.Bio = authorDto.Bio;
-    existingAuthor.ImagePath = authorDto.ImagePath;
+            var updatedAuthor = await _authorService.UpdateAuthorAsync(id, author, imageFile);
 
-    // Salva le modifiche
-    var updatedAuthor = await _authorService.UpdateAuthorAsync(id, existingAuthor);
+            if (updatedAuthor == null)
+            {
+                return NotFound();
+            }
 
-    // Restituisce una risposta OK con i dati dell'autore aggiornato, senza i libri
-    return Ok(new 
-    {
-        updatedAuthor.AuthorId,
-        updatedAuthor.FirstName,
-        updatedAuthor.LastName,
-        updatedAuthor.DateOfBirth,
-        updatedAuthor.Bio,
-        updatedAuthor.ImagePath
-    });
-}
+            return Ok(new
+            {
+                updatedAuthor.AuthorId,
+                updatedAuthor.FirstName,
+                updatedAuthor.LastName,
+                updatedAuthor.DateOfBirth,
+                updatedAuthor.Bio,
+                updatedAuthor.ImagePath
+            });
+        }
+
 
 
 
@@ -151,24 +152,19 @@ public async Task<IActionResult> UpdateAuthor(int id, [FromBody] AuthorCreateDto
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthor(int id)
         {
-            // Verifica se l'autore esiste
-            var author = await _authorService.GetAuthorByIdAsync(id);
-            if (author == null)
-            {
-                return NotFound();
-            }
-
-            // Elimina l'autore
             var result = await _authorService.DeleteAuthorAsync(id);
 
             if (!result)
             {
-                return StatusCode(500, "A problem occurred while deleting the author.");
+                return NotFound();
             }
 
-            // Restituisce NoContent se l'eliminazione è avvenuta con successo
             return NoContent();
         }
+
+
+
+
 
     }
 }

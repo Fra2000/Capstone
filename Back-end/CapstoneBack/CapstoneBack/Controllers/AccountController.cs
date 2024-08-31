@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using CapstoneBack.Services.Interfaces;
 using CapstoneBack.Models.DTO;
+using CapstoneBack.Models.DTO.LoginRegister;
 
 namespace CapstoneBack.Controllers
 {
