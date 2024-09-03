@@ -9,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CapstoneBack.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
+    [Authorize(Roles = "Admin, SuperAdmin")]
     [ApiController]
     [Route("api/[controller]")]
     public class BookController : ControllerBase

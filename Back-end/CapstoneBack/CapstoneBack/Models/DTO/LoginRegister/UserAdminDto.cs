@@ -8,6 +8,7 @@
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
+        public string ImagePath { get; set; }
         public RoleDto Role { get; set; }
     }
 }

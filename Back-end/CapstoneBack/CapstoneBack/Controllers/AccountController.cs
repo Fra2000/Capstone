@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using CapstoneBack.Services.Interfaces;
-using CapstoneBack.Models.DTO;
 using CapstoneBack.Models.DTO.LoginRegister;
 
 namespace CapstoneBack.Controllers
@@ -50,7 +50,7 @@ namespace CapstoneBack.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register([FromForm] RegisterModel model, IFormFile? imageFile)
         {
             var userExists = await _accountService.AuthenticateAsync(model.Email, model.Password);
             if (userExists != null)
@@ -62,56 +62,76 @@ namespace CapstoneBack.Controllers
                 model.Username,
                 model.Email,
                 model.Password,
-                model.RoleId);
+                imageFile);
 
-            // Controlla il ruolo e restituisci il DTO appropriato
-            if (user.RoleId == 1) // Admin
+            var userDto = new UserDto
             {
-                var adminDto = new UserAdminDto
+                UserId = user.UserId,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PasswordHash = user.PasswordHash,
+                Role = new RoleDto
                 {
-                    UserId = user.UserId,
-                    UserName = user.UserName,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email,
-                    PasswordHash = user.PasswordHash,
-                    Role = new RoleDto
-                    {
-                        RoleId = user.Role.RoleId,
-                        RoleName = user.Role.RoleName
-                    }
-                };
-                return Ok(new { message = "Registration successful", user = adminDto });
-            }
-            else // Utente normale
-            {
-                var userDto = new UserDto
-                {
-                    UserId = user.UserId,
-                    UserName = user.UserName,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email,
-                    PasswordHash = user.PasswordHash,
-                    Role = new RoleDto
-                    {
-                        RoleId = user.Role.RoleId,
-                        RoleName = user.Role.RoleName
-                    },
-                    UserBooks = user.UserBooks,
-                    UserBookStatuses = user.UserBookStatuses,
-                    UserLoyaltyCards = user.UserLoyaltyCards
-                };
-                return Ok(new { message = "Registration successful", user = userDto });
-            }
+                    RoleId = user.Role.RoleId,
+                    RoleName = user.Role.RoleName
+                },
+                ImagePath = user.ImagePath, // Aggiungi l'immagine nel DTO
+                UserBooks = user.UserBooks,
+                UserBookStatuses = user.UserBookStatuses,
+                UserLoyaltyCards = user.UserLoyaltyCards
+            };
+
+            return Ok(new { message = "Registration successful", user = userDto });
         }
 
 
+        // Nuovo endpoint per registrare un admin
+        [HttpPost("register-admin")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
+        public async Task<IActionResult> RegisterAdmin([FromForm] RegisterModel model, IFormFile? imageFile)
+        {
+            var userExists = await _accountService.AuthenticateAsync(model.Email, model.Password);
+            if (userExists != null)
+                return BadRequest(new { message = "Admin user already exists" });
+
+            var admin = await _accountService.RegisterAdminAsync(
+                model.FirstName,
+                model.LastName,
+                model.Username,
+                model.Email,
+                model.Password,
+                imageFile);
+
+            var adminDto = new UserAdminDto
+            {
+                UserId = admin.UserId,
+                UserName = admin.UserName,
+                FirstName = admin.FirstName,
+                LastName = admin.LastName,
+                Email = admin.Email,
+                PasswordHash = admin.PasswordHash,
+                Role = new RoleDto
+                {
+                    RoleId = admin.Role.RoleId,
+                    RoleName = admin.Role.RoleName
+                },
+                ImagePath = admin.ImagePath // Aggiungi l'immagine nel DTO
+            };
+
+            return Ok(new { message = "Admin registration successful", user = adminDto });
+        }
 
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
+            // Esegui il logout dell'utente autenticato
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Puoi anche cancellare i cookie di autenticazione se necessario
+            HttpContext.Response.Cookies.Delete(".AspNetCore.Cookies");
+
             return Ok(new { message = "Logout successful" });
         }
     }

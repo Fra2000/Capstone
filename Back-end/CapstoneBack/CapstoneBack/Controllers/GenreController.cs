@@ -8,7 +8,7 @@ using CapstoneBack.Models.DTO.BookDTO; // Importa il DTO corretto
 
 namespace CapstoneBack.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     [ApiController]
     [Route("api/[controller]")]
     public class GenreController : ControllerBase

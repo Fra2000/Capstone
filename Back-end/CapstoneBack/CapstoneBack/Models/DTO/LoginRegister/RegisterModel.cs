@@ -22,6 +22,5 @@ namespace CapstoneBack.Models.DTO.LoginRegister
 
         [Required]
         public string Password { get; set; }
-        public int RoleId { get; set; }
     }
 }

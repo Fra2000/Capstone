@@ -32,6 +32,7 @@ namespace CapstoneBack.Models
         [ForeignKey("Role")]
         public int RoleId { get; set; }
         public Role Role { get; set; }
+        public string ImagePath { get; set; }
         public ICollection<UserBook> UserBooks { get; set; }
         public ICollection<UserBookStatus> UserBookStatuses { get; set; }
         public ICollection<UserLoyaltyCard> UserLoyaltyCards { get; set; }

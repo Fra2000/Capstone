@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/fwcWr8a4PklvN2oX/Ik53mTq9eqO6pM9ac1nHVMyCg=",
+  "Hash": "Y9GqDF/ss8KWSmGW727qFA0LmUYU4tCFLwZ9SV88rhA=",
   "Source": "CapstoneBack",
   "BasePath": "_content/CapstoneBack",
   "Mode": "Default",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\bho.jpeg",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Account/bho.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Account\\bho.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\default.jpg",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Account/default.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Account\\default.jpg"
+    },
     {
       "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\cane.jpeg",
       "SourceId": "CapstoneBack",

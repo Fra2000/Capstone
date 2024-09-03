@@ -1,5 +1,6 @@
 ﻿using CapstoneBack.Models;
 using Microsoft.EntityFrameworkCore;
+using BCrypt.Net;
 
 namespace CapstoneBack
 {
@@ -85,6 +86,27 @@ namespace CapstoneBack
                 .HasOne(b => b.Author)
                 .WithMany(a => a.Books)
                 .HasForeignKey(b => b.AuthorId);
+
+            modelBuilder.Entity<Role>().HasData(
+              new Role { RoleId = 1, RoleName = "Admin" },
+              new Role { RoleId = 2, RoleName = "User" },
+              new Role { RoleId = 3, RoleName = "SuperAdmin" }
+            );
+
+            // Creazione dell'utente SuperAdmin
+            var superAdminUser = new User
+            {
+                UserId = 1,
+                FirstName = "Super",
+                LastName = "Admin",
+                UserName = "SuperAdmin",
+                Email = "admin@admin.com",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin"),
+                RoleId = 3, // Associa il ruolo SuperAdmin
+                ImagePath = "images/Account/default.jpg"
+            };
+
+            modelBuilder.Entity<User>().HasData(superAdminUser);
 
         }
     }
