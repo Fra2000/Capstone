@@ -9,7 +9,7 @@ using CapstoneBack.Models.DTO.AuthorDTO; // Assicurati di includere il namespace
 namespace CapstoneBack.Controllers
 {
 
-    [Authorize(Roles = "Admin, SuperAdmin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     [ApiController]
     [Route("api/[controller]")]
       // Assicura che solo gli admin possano accedere a queste rotte

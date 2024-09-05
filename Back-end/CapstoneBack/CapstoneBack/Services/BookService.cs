@@ -66,6 +66,8 @@ namespace CapstoneBack.Services
             existingBook.CoverImagePath = book.CoverImagePath;
             existingBook.PublicationDate = book.PublicationDate;
             existingBook.Price = book.Price;
+            existingBook.AvailableQuantity = book.AvailableQuantity;
+
 
             // Gestire l'aggiornamento delle relazioni con i generi
             existingBook.BookGenres = book.BookGenres;

@@ -20,6 +20,8 @@ namespace CapstoneBack
         public DbSet<BookGenre> BookGenres { get; set; }
         public DbSet<LoyaltyCardType> LoyaltyCardTypes { get; set; }
         public DbSet<UserLoyaltyCard> UserLoyaltyCards { get; set; }
+        
+
 
         // Configurazione delle relazioni e delle chiavi composte
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -92,6 +94,12 @@ namespace CapstoneBack
               new Role { RoleId = 2, RoleName = "User" },
               new Role { RoleId = 3, RoleName = "SuperAdmin" }
             );
+
+            modelBuilder.Entity<Status>().HasData(
+              new Status { StatusId = 1, StatusName = "Da Iniziare" },
+              new Status { StatusId = 2, StatusName = "In Corso" },
+              new Status { StatusId = 3, StatusName = "Terminati" }
+                );
 
             // Creazione dell'utente SuperAdmin
             var superAdminUser = new User

@@ -68,6 +68,9 @@ namespace CapstoneBack.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
+                    b.Property<int>("AvailableQuantity")
+                        .HasColumnType("int");
+
                     b.Property<string>("CoverImagePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -212,6 +215,23 @@ namespace CapstoneBack.Migrations
                     b.HasKey("StatusId");
 
                     b.ToTable("Statuses");
+
+                    b.HasData(
+                        new
+                        {
+                            StatusId = 1,
+                            StatusName = "Da Iniziare"
+                        },
+                        new
+                        {
+                            StatusId = 2,
+                            StatusName = "In Corso"
+                        },
+                        new
+                        {
+                            StatusId = 3,
+                            StatusName = "Terminati"
+                        });
                 });
 
             modelBuilder.Entity("CapstoneBack.Models.User", b =>
@@ -267,7 +287,7 @@ namespace CapstoneBack.Migrations
                             FirstName = "Super",
                             ImagePath = "images/Account/default.jpg",
                             LastName = "Admin",
-                            PasswordHash = "$2a$11$WQhNF5UClR6Dgsmu2jpNxuceyBfGxb8XDqMTkcI7tuvWK1u.eXj0u",
+                            PasswordHash = "$2a$11$R.mkFG5B.Bc5k.6/8nrwje1lRY03cCyifoAwS2qJzRW726es22WUW",
                             RoleId = 3,
                             UserName = "SuperAdmin"
                         });
@@ -289,16 +309,6 @@ namespace CapstoneBack.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<int?>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ReviewDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReviewText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -329,7 +339,13 @@ namespace CapstoneBack.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalPages")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")

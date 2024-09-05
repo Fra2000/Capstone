@@ -21,6 +21,14 @@ namespace CapstoneBack.Controllers
             _accountService = accountService;
         }
 
+        [HttpGet("check-role")]
+        public IActionResult CheckRole()
+        {
+            var roles = User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
+            return Ok(new { roles });
+        }
+
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {

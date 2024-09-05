@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Y9GqDF/ss8KWSmGW727qFA0LmUYU4tCFLwZ9SV88rhA=",
+  "Hash": "IGHa/Ex45pcS/3dGzb1pUN9tRKg+LeXZttbkCIFmyu0=",
   "Source": "CapstoneBack",
   "BasePath": "_content/CapstoneBack",
   "Mode": "Default",
@@ -167,6 +167,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Book\\default.png"
+    },
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\medicinalecane.jpg",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Book/medicinalecane.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Book\\medicinalecane.jpg"
     },
     {
       "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\mentidevera.jpeg",

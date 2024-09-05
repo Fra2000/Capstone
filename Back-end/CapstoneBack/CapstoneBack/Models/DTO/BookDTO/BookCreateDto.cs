@@ -9,6 +9,7 @@
        
         public DateTime PublicationDate { get; set; }
         public decimal Price { get; set; }
+        public int AvailableQuantity { get; set; }
         public List<int> GenreIds { get; set; } // Lista di ID dei generi associati
     }
 }

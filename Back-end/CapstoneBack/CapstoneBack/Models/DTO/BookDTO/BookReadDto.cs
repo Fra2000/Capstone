@@ -10,6 +10,7 @@
         public string CoverImagePath { get; set; }
         public DateTime PublicationDate { get; set; }
         public decimal Price { get; set; }
+        public int AvailableQuantity { get; set; }
         public List<string> Genres { get; set; } // Nomi dei generi associati
     }
 }

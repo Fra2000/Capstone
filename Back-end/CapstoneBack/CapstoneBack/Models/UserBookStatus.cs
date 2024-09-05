@@ -21,8 +21,10 @@ namespace CapstoneBack.Models
         [ForeignKey("Status")]
         public int StatusId { get; set; }
         public Status Status { get; set; }
+        public DateTime PurchaseDate { get; set; }
 
         public int? CurrentPage { get; set; }
+        public int TotalPages { get; set; }
         public DateTime DateUpdated { get; set; }
     }
 }

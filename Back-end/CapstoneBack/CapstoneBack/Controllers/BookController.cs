@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CapstoneBack.Controllers
 {
+
     
-    [Authorize(Roles = "Admin, SuperAdmin")]
     [ApiController]
     [Route("api/[controller]")]
     public class BookController : ControllerBase
@@ -134,6 +134,7 @@ namespace CapstoneBack.Controllers
                 AuthorId = bookDto.AuthorId,
                 PublicationDate = bookDto.PublicationDate,
                 Price = bookDto.Price,
+                AvailableQuantity = bookDto.AvailableQuantity,
                 CoverImagePath = imagePath,
                 BookGenres = bookDto.GenreIds.Select(id => new BookGenre
                 {
@@ -160,6 +161,7 @@ namespace CapstoneBack.Controllers
                 CoverImagePath = book.CoverImagePath,
                 PublicationDate = book.PublicationDate,
                 Price = book.Price,
+                AvailableQuantity = book.AvailableQuantity,
                 Genres = book.BookGenres.Select(bg => bg.Genre.GenreName).ToList()
             };
 
@@ -192,6 +194,7 @@ namespace CapstoneBack.Controllers
                 CoverImagePath = book.CoverImagePath,
                 PublicationDate = book.PublicationDate,
                 Price = book.Price,
+                AvailableQuantity = book.AvailableQuantity,
                 Genres = book.BookGenres?.Select(bg => bg.Genre.GenreName).ToList()
             };
 
@@ -218,6 +221,12 @@ namespace CapstoneBack.Controllers
             existingBook.AuthorId = bookDto.AuthorId ?? existingBook.AuthorId;
             existingBook.PublicationDate = bookDto.PublicationDate ?? existingBook.PublicationDate;
             existingBook.Price = bookDto.Price ?? existingBook.Price;
+
+            if (bookDto.AvailableQuantity.HasValue)
+            {
+                existingBook.AvailableQuantity = bookDto.AvailableQuantity.Value;
+            }
+
 
             // Gestisci l'immagine di copertina
             if (coverImage != null && coverImage.Length > 0)
@@ -251,16 +260,41 @@ namespace CapstoneBack.Controllers
             // Gestisci i generi se modificati
             if (bookDto.GenreIds != null && bookDto.GenreIds.Any())
             {
-                existingBook.BookGenres = bookDto.GenreIds.Select(id => new BookGenre
+                // Rimuovi i generi esistenti
+                existingBook.BookGenres.Clear();
+
+                // Aggiungi i nuovi generi, caricando prima i dati dal database
+                foreach (var genreId in bookDto.GenreIds)
                 {
-                    GenreId = id,
-                    BookId = existingBook.BookId
-                }).ToList();
+                    var genre = await _context.Genres.FindAsync(genreId);
+                    if (genre != null)  // Assicurati che il genere esista
+                    {
+                        existingBook.BookGenres.Add(new BookGenre
+                        {
+                            GenreId = genre.GenreId,
+                            BookId = existingBook.BookId
+                        });
+                    }
+                }
             }
 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            var bookReadDto = new BookReadDto
+            {
+                BookId = existingBook.BookId,
+                Name = existingBook.Name,
+                NumberOfPages = existingBook.NumberOfPages,
+                Description = existingBook.Description,
+                AuthorName = $"{existingBook.Author.FirstName} {existingBook.Author.LastName}",
+                CoverImagePath = existingBook.CoverImagePath,
+                PublicationDate = existingBook.PublicationDate,
+                Price = existingBook.Price,
+                AvailableQuantity = existingBook.AvailableQuantity,
+                Genres = existingBook.BookGenres.Select(bg => bg.Genre.GenreName).ToList()
+            };
+
+            return Ok(bookReadDto);
         }
 
 

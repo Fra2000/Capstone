@@ -20,10 +20,6 @@ namespace CapstoneBack.Models
 
         public DateTime PurchaseDate { get; set; }
         public int Quantity { get; set; } = 1;
-        public string ReviewText { get; set; }
 
-        [Range(1, 5)]
-        public int? Rating { get; set; }
-        public DateTime? ReviewDate { get; set; }
     }
 }

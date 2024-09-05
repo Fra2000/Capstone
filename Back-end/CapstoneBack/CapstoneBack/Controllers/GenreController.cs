@@ -8,7 +8,7 @@ using CapstoneBack.Models.DTO.BookDTO; // Importa il DTO corretto
 
 namespace CapstoneBack.Controllers
 {
-    [Authorize(Roles = "Admin,SuperAdmin")]
+    
     [ApiController]
     [Route("api/[controller]")]
     public class GenreController : ControllerBase
@@ -120,14 +120,8 @@ namespace CapstoneBack.Controllers
             var genreReadDto = new GenreReadDto
             {
                 GenreId = updatedGenre.GenreId,
-                GenreName = updatedGenre.GenreName,
-                Books = updatedGenre.BookGenres?.Any() == true
-                    ? updatedGenre.BookGenres.Select(bg => new BookDto
-                    {
-                        BookId = bg.BookId,
-                        Name = bg.Book.Name
-                    }).ToList()
-                    : null
+                GenreName = updatedGenre.GenreName
+                
             };
 
             return Ok(genreReadDto);

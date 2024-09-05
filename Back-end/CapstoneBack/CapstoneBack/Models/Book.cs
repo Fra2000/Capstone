@@ -28,6 +28,7 @@ namespace CapstoneBack.Models
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
+        public int AvailableQuantity { get; set; } = 1;
 
         public ICollection<BookGenre> BookGenres { get; set; }
        
