@@ -20,7 +20,9 @@ namespace CapstoneBack
         public DbSet<BookGenre> BookGenres { get; set; }
         public DbSet<LoyaltyCardType> LoyaltyCardTypes { get; set; }
         public DbSet<UserLoyaltyCard> UserLoyaltyCards { get; set; }
-        
+        public DbSet<UserReview> UserReviews { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
+
 
 
         // Configurazione delle relazioni e delle chiavi composte

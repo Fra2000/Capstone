@@ -4,6 +4,7 @@ using CapstoneBack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CapstoneBack.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240905185024_ModificheDbContext")]
+    partial class ModificheDbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -287,7 +290,7 @@ namespace CapstoneBack.Migrations
                             FirstName = "Super",
                             ImagePath = "images/Account/default.jpg",
                             LastName = "Admin",
-                            PasswordHash = "$2a$11$7Z3b7mUck1FAkBSd.yk2F.zNjJqZYkvgsisfb9cIKl0ql0jY5h58u",
+                            PasswordHash = "$2a$11$SHWtvTVprTsK0eYCxrTEb.BfJwFaldwR9hZs9q/Um3wBCeINMyhRG",
                             RoleId = 3,
                             UserName = "SuperAdmin"
                         });
@@ -424,32 +427,6 @@ namespace CapstoneBack.Migrations
                     b.ToTable("UserReviews");
                 });
 
-            modelBuilder.Entity("CapstoneBack.Models.Wishlist", b =>
-                {
-                    b.Property<int>("WishlistId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WishlistId"));
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("WishlistId");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Wishlists");
-                });
-
             modelBuilder.Entity("CapstoneBack.Models.Book", b =>
                 {
                     b.HasOne("CapstoneBack.Models.Author", "Author")
@@ -557,25 +534,6 @@ namespace CapstoneBack.Migrations
                 });
 
             modelBuilder.Entity("CapstoneBack.Models.UserReview", b =>
-                {
-                    b.HasOne("CapstoneBack.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CapstoneBack.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CapstoneBack.Models.Wishlist", b =>
                 {
                     b.HasOne("CapstoneBack.Models.Book", "Book")
                         .WithMany()
