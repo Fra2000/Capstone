@@ -1,12 +1,28 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\2.jpeg",
+      "PackagePath": "staticwebassets\\images\\Account\\2.jpeg"
+    },
+    {
       "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\bho.jpeg",
       "PackagePath": "staticwebassets\\images\\Account\\bho.jpeg"
     },
     {
       "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\default.jpg",
       "PackagePath": "staticwebassets\\images\\Account\\default.jpg"
+    },
+    {
+      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\epicode_logo.png",
+      "PackagePath": "staticwebassets\\images\\Account\\epicode_logo.png"
+    },
+    {
+      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\ff16.jpg",
+      "PackagePath": "staticwebassets\\images\\Account\\ff16.jpg"
+    },
+    {
+      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\mentidevera.jpeg",
+      "PackagePath": "staticwebassets\\images\\Account\\mentidevera.jpeg"
     },
     {
       "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\cane.jpeg",

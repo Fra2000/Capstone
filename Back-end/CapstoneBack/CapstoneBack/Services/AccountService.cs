@@ -2,29 +2,62 @@
 using Microsoft.EntityFrameworkCore;
 using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
+using CapstoneBack.Models.DTO;
 
 namespace CapstoneBack.Services
 {
     public class AccountService : IAccountService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AccountService(ApplicationDbContext context)
+        public AccountService(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
-        public async Task<User> AuthenticateAsync(string email, string password)
+        public async Task<AuthResponseDto> AuthenticateAsync(string email, string password)
         {
             var user = await _context.Users.Include(u => u.Role)
                                            .SingleOrDefaultAsync(u => u.Email == email);
 
-            if (user != null && VerifyPasswordHash(password, user.PasswordHash))
+            if (user == null || !VerifyPasswordHash(password, user.PasswordHash))
             {
-                return user;
+                return null;
             }
 
-            return null;
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);  // Chiave segreta dal file di configurazione
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                   new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                   new Claim(ClaimTypes.Email, user.Email),
+                   new Claim(ClaimTypes.Role, user.Role.RoleName)  // Assegna il ruolo dell'utente
+                }),
+                Expires = DateTime.UtcNow.AddHours(2), // Imposta la durata del token
+                Audience = "localhost",  // Aggiungi l'audience
+                Issuer = "localhost",
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            // Restituisce il DTO con il token e le informazioni dell'utente
+            return new AuthResponseDto
+            {
+                Token = tokenString,
+                User = user
+            };
         }
 
         public async Task<User> RegisterUserAsync(string firstName, string lastName, string username, string email, string password, IFormFile? imageFile)
@@ -78,7 +111,7 @@ namespace CapstoneBack.Services
         }
 
 
-        // Nuovo metodo per registrare un admin
+        
         public async Task<User> RegisterAdminAsync(string firstName, string lastName, string username, string email, string password, IFormFile? imageFile)
         {
             var hashedPassword = HashPassword(password);

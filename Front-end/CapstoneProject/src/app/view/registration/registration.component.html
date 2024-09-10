@@ -1,0 +1,124 @@
+<div class="container mt-5">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input
+        type="text"
+        id="firstName"
+        class="form-control"
+        formControlName="firstName"
+        placeholder="Enter first name"
+      />
+      <div
+        *ngIf="registrationForm.get('firstName')?.errors?.['required'] && registrationForm.get('firstName')?.touched"
+        class="text-danger"
+      >
+        First name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        formControlName="lastName"
+        placeholder="Enter last name"
+      />
+      <div
+        *ngIf="registrationForm.get('lastName')?.errors?.['required'] && registrationForm.get('lastName')?.touched"
+        class="text-danger"
+      >
+        Last name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        class="form-control"
+        formControlName="username"
+        placeholder="Enter username"
+      />
+      <div
+        *ngIf="registrationForm.get('username')?.errors?.['required'] && registrationForm.get('username')?.touched"
+        class="text-danger"
+      >
+        Username is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Enter email"
+      />
+      <div
+        *ngIf="registrationForm.get('email')?.errors?.['required'] && registrationForm.get('email')?.touched"
+        class="text-danger"
+      >
+        Email is required.
+      </div>
+      <div
+        *ngIf="registrationForm.get('email')?.errors?.['email'] && registrationForm.get('email')?.touched"
+        class="text-danger"
+      >
+        Please enter a valid email.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="Enter password"
+      />
+      <div
+        *ngIf="registrationForm.get('password')?.errors?.['required'] && registrationForm.get('password')?.touched"
+        class="text-danger"
+      >
+        Password is required.
+      </div>
+      <div
+        *ngIf="registrationForm.get('password')?.errors?.['minLength'] && registrationForm.get('password')?.touched"
+        class="text-danger"
+      >
+        Password must be at least 6 characters.
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <form
+        [formGroup]="registrationForm"
+        (ngSubmit)="onSubmit()"
+        enctype="multipart/form-data"
+        novalidate
+      >
+        <!-- Altri campi per firstName, lastName, username, email, password -->
+
+        <!-- Campo per l'immagine -->
+        <div class="form-group">
+          <label for="imageFile">Profile Image (optional):</label>
+          <input
+            type="file"
+            id="imageFile"
+            class="form-control"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+      </form>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>

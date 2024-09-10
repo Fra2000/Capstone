@@ -32,29 +32,22 @@ namespace CapstoneBack.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await _accountService.AuthenticateAsync(model.Email, model.Password);
-            if (user == null)
+            var authResponse = await _accountService.AuthenticateAsync(model.Email, model.Password);
+            if (authResponse == null)
                 return Unauthorized(new { message = "Email or password is incorrect" });
 
-            var claims = new List<Claim>
+            return Ok(new
             {
-                new Claim(ClaimTypes.Name, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.RoleName),
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString())
-            };
-
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var authProperties = new AuthenticationProperties
-            {
-                IsPersistent = true,
-                ExpiresUtc = DateTimeOffset.UtcNow.AddHours(2)
-            };
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity),
-                authProperties);
-
-            return Ok(new { message = "Login successful" });
+                token = authResponse.Token,
+                user = new
+                {
+                    authResponse.User.UserId,
+                    authResponse.User.Email,
+                    authResponse.User.FirstName,
+                    authResponse.User.LastName,
+                    Role = authResponse.User.Role.RoleName
+                }
+            });   
         }
 
         [HttpPost("register")]
@@ -131,16 +124,6 @@ namespace CapstoneBack.Controllers
             return Ok(new { message = "Admin registration successful", user = adminDto });
         }
 
-        [HttpPost("logout")]
-        public async Task<IActionResult> Logout()
-        {
-            // Esegui il logout dell'utente autenticato
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            // Puoi anche cancellare i cookie di autenticazione se necessario
-            HttpContext.Response.Cookies.Delete(".AspNetCore.Cookies");
-
-            return Ok(new { message = "Logout successful" });
-        }
+        
     }
 }
