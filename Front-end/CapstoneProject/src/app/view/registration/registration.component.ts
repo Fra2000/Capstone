@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/Account/auth.service';
 import { User } from '../../interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +13,7 @@ export class RegistrationComponent {
   registrationForm: FormGroup;
   selectedFile: File | null = null; // Variabile per l'immagine selezionata
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registrationForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -36,6 +37,7 @@ export class RegistrationComponent {
         next: (user) => {
           console.log('Registration successful', user);
           // Puoi aggiungere una logica di navigazione o un messaggio di successo
+          this.router.navigate(['/login']);
         },
         error: (error) => {
           console.error('Registration failed', error);
