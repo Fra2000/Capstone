@@ -97,26 +97,15 @@
       </div>
     </div>
 
-    <div class="container mt-5">
-      <form
-        [formGroup]="registrationForm"
-        (ngSubmit)="onSubmit()"
-        enctype="multipart/form-data"
-        novalidate
-      >
-        <!-- Altri campi per firstName, lastName, username, email, password -->
-
-        <!-- Campo per l'immagine -->
-        <div class="form-group">
-          <label for="imageFile">Profile Image (optional):</label>
-          <input
-            type="file"
-            id="imageFile"
-            class="form-control"
-            (change)="onFileSelected($event)"
-          />
-        </div>
-      </form>
+    <!-- Campo per l'immagine -->
+    <div class="form-group">
+      <label for="imageFile">Profile Image (optional):</label>
+      <input
+        type="file"
+        id="imageFile"
+        class="form-control"
+        (change)="onFileSelected($event)"
+      />
     </div>
 
     <button type="submit" class="btn btn-primary">Register</button>

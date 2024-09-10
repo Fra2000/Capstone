@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { LoginComponent } from './login.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent // Dichiara il componente di login
   ],
   imports: [
-    CommonModule,
-    LoginRoutingModule,
-    ReactiveFormsModule
+    CommonModule, // Modulo per le direttive comuni di Angular
+    ReactiveFormsModule, // Modulo per la gestione dei form reattivi
+    RouterModule.forChild([
+      { path: '', component: LoginComponent } // Rotta per il login
+    ])
   ]
 })
 export class LoginModule { }
