@@ -21,14 +21,11 @@ export class HomeComponent implements OnInit {
   }
 
   getCoverImagePath(relativePath: string): string {
-    if (!relativePath) {
-      return 'https://localhost:7097/images/Book/default.jpg'; // immagine di default se non presente
-    }
-    return `https://localhost:7097/${relativePath}`;
+    return this.bookService.getCoverImagePath(relativePath);
   }
 
   handleImageError(event: any) {
-    event.target.src = 'https://localhost:7097/images/Book/default.jpg';
+    this.bookService.handleImageError(event);
   }
 
 }

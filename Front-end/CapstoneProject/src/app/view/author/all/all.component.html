@@ -1,0 +1,22 @@
+<!-- all.component.html -->
+<div class="container mt-4">
+  <h2>Elenco Autori</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let author of authors">
+      <div class="card mb-4">
+        <img
+          [src]="getAuthorImagePath(author.imagePath)"
+          (error)="handleImageError($event)"
+          alt="Cover image of {{ author.firstName }}"
+          class="card-img-top img-fluid"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ author.firstName }} {{ author.lastName }}</h5>
+          <p class="card-text"><strong>Data di Nascita:</strong> {{ author.dateOfBirth | date:'mediumDate' }}</p>
+
+          <a [routerLink]="['/detailsAuthor', author.authorId]" class="btn btn-primary">Visualizza Più Dettagli</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

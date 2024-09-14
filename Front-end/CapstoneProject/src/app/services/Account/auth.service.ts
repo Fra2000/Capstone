@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root' // Questo rende il servizio disponibile in tutta l'applicazione
@@ -9,8 +10,9 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private baseUrl = 'https://localhost:7097/api/Account';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
+  private userRoles = new BehaviorSubject<string[]>([]);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Controlla se il token JWT esiste nel localStorage
   private hasToken(): boolean {
@@ -29,6 +31,8 @@ export class AuthService {
         if (response && response.token) {
           localStorage.setItem('jwtToken', response.token);
           this.isAuthenticatedSubject.next(true); // Aggiorna lo stato di autenticazione a true
+          const decodedToken = jwtDecode<any>(response.token);
+          this.userRoles.next(decodedToken.role || []);
         }
       })
     );
@@ -37,7 +41,8 @@ export class AuthService {
   // Logout: rimuove il token JWT dal localStorage e aggiorna lo stato di autenticazione
   logout(): void {
     localStorage.removeItem('jwtToken');
-    this.isAuthenticatedSubject.next(false); // Aggiorna lo stato di autenticazione a false
+    this.isAuthenticatedSubject.next(false);
+    this.userRoles.next([]); // Pulisci i ruoli al logout
   }
 
   // Metodo per ottenere il token JWT dal localStorage
@@ -63,4 +68,10 @@ export class AuthService {
 
     return this.http.post<any>(`${this.baseUrl}/register`, formData);
   }
+
+  hasRole(requiredRoles: string[]): boolean {
+    const currentUserRoles = this.userRoles.value;
+    return requiredRoles.some(role => currentUserRoles.includes(role));
+  }
+
 }

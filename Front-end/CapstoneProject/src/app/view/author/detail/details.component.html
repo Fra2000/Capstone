@@ -1,0 +1,26 @@
+<!-- details.component.html -->
+<div class="container mt-4">
+  <div *ngIf="author; else loading">
+    <div class="row">
+      <div class="col-md-4">
+        <img [src]="getAuthorImagePath(author.imagePath)"
+             (error)="handleImageError($event)"
+             class="img-fluid"
+             alt="Image of {{ author.firstName }} {{ author.lastName }}"
+        />
+      </div>
+      <div class="col-md-8">
+        <h2>{{ author.firstName }} {{ author.lastName }}</h2>
+        <p><strong>Date of Birth:</strong> {{ author.dateOfBirth | date: 'mediumDate' }}</p>
+        <p><strong>Bio:</strong> {{ author.bio }}</p>
+        <p><strong>Books:</strong></p>
+        <ul>
+          <li *ngFor="let book of author.books">{{ book }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading>
+    <p>Loading author details...</p>
+  </ng-template>
+</div>

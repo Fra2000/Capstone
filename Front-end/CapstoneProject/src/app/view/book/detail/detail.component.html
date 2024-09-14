@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <div *ngIf="book; else loading">
+    <div class="row">
+      <div class="col-md-4">
+        <img
+          [src]="getCoverImagePath(book.coverImagePath)"
+          (error)="handleImageError($event)"
+          class="img-fluid"
+          alt="Cover image of {{ book.name }}"
+        />
+      </div>
+      <div class="col-md-8">
+        <h2>{{ book.name }}</h2>
+        <p><strong>Author:</strong> {{ book.authorName }}</p>
+        <p>
+          <strong>Published:</strong>
+          {{ book.publicationDate | date : "mediumDate" }}
+        </p>
+        <p><strong>Price:</strong> {{ book.price | currency }}</p>
+        <p><strong>Description:</strong> {{ book.description }}</p>
+        <p>
+          <strong>Genres:</strong>
+          <span class="badge" *ngFor="let genre of book.genres">{{
+            genre
+          }}</span>
+        </p>
+        <p>
+          <strong>Available:</strong>
+          {{ book.availableQuantity > 0 ? "Yes" : "No" }}
+        </p>
+      </div>
+      <!-- Nel tuo componente di dettaglio -->
+<button *ngIf="authService.hasRole(['Admin', 'SuperAdmin'])" (click)="deleteBook()">Elimina Libro</button>
+
+    </div>
+  </div>
+  <ng-template #loading>
+    <p>Loading book details...</p>
+  </ng-template>
+</div>
