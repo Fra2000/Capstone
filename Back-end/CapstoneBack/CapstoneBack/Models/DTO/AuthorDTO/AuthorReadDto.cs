@@ -1,4 +1,6 @@
-﻿namespace CapstoneBack.Models.DTO.AuthorDTO
+﻿using CapstoneBack.Models.DTO.BookDTO;
+
+namespace CapstoneBack.Models.DTO.AuthorDTO
 {
     public class AuthorReadDto
     {
@@ -8,6 +10,6 @@
         public DateTime DateOfBirth { get; set; }
         public string Bio { get; set; }
         public string ImagePath { get; set; }
-        public List<string> Books { get; set; }
+        public List<BookDto> Books { get; set; }
     }
 }

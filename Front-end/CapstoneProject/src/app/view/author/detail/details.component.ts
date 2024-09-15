@@ -1,8 +1,8 @@
 // detail-author.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthorService } from '../../../services/Author/author.service.service';
-import { AuthorRead } from '../../../interfaces/AuthorRead';
+import { AuthorService } from '../../../services/Author/author.service';
+import { AuthorRead } from '../../../interfaces/Author';
 import { Book } from '../../../interfaces/Book'
 import { BookService } from '../../../services/Book/book.service';
 

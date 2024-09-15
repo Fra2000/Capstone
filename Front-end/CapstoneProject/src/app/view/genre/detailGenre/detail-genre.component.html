@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <h2>Books for {{ genre?.genreName }} Genre</h2>
+
+  <!-- Verifica se ci sono libri disponibili prima di iterare -->
+  <ul *ngIf="genre?.books?.length > 0; else noBooks">
+    <li *ngFor="let book of genre.books">
+      <a [routerLink]="['/detail', book.bookId]">{{ book.name }}</a>
+      <!-- Se l'autore è disponibile, lo visualizza -->
+      <p *ngIf="book?.author"> - {{ book.author?.firstName }} {{ book.author?.lastName }}</p>
+    </li>
+  </ul>
+
+  <!-- Messaggio predefinito se non ci sono libri -->
+  <ng-template #noBooks>
+    <p>No books available for this genre.</p>
+  </ng-template>
+
+  <!-- Debug: visualizza i dati dei libri per verificare la struttura -->
+
+</div>

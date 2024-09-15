@@ -10,7 +10,7 @@
         />
         <div class="card-body">
           <h5 class="card-title">{{ book.name }}</h5>
-          <p class="card-text">Author: {{ book.authorName }}</p>
+          <p class="card-text">Author: {{ book.author?.firstName }} {{book.author?.lastName}}</p>
           <p class="card-text">
             Published: {{ book.publicationDate | date : "mediumDate" }}
           </p>

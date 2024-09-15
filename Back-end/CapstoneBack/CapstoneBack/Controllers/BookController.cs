@@ -6,6 +6,8 @@ using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
 using CapstoneBack.Models.DTO.BookDTO;
 using Microsoft.EntityFrameworkCore;
+using CapstoneBack.Models.DTO.AuthorDTO;
+using CapstoneBack.Models.DTO.GenreDTO;
 
 namespace CapstoneBack.Controllers
 {
@@ -78,11 +80,20 @@ namespace CapstoneBack.Controllers
             {
                 BookId = book.BookId,
                 Name = book.Name,
-                AuthorName = $"{book.Author.FirstName} {book.Author.LastName}",
+                Author = new AuthorDto
+                {
+                    AuthorId = book.Author.AuthorId,
+                    FirstName = book.Author.FirstName,
+                    LastName = book.Author.LastName
+                },
                 CoverImagePath = book.CoverImagePath,
                 PublicationDate = book.PublicationDate,
                 Price = book.Price,
-                Genres = book.BookGenres.Select(bg => bg.Genre.GenreName).ToList()
+                Genres = book.BookGenres.Select(bg => new GenreDto
+                {
+                    GenreId = bg.Genre.GenreId,
+                    GenreName = bg.Genre.GenreName
+                }).ToList()
             }).ToList();
 
             return Ok(bookSummaryDtos);
@@ -157,12 +168,21 @@ namespace CapstoneBack.Controllers
                 Name = book.Name,
                 NumberOfPages = book.NumberOfPages,
                 Description = book.Description,
-                AuthorName = $"{book.Author.FirstName} {book.Author.LastName}",
+                Author = new AuthorDto
+                {
+                    AuthorId = book.Author.AuthorId,
+                    FirstName = book.Author.FirstName,
+                    LastName = book.Author.LastName
+                },
                 CoverImagePath = book.CoverImagePath,
                 PublicationDate = book.PublicationDate,
                 Price = book.Price,
                 AvailableQuantity = book.AvailableQuantity,
-                Genres = book.BookGenres.Select(bg => bg.Genre.GenreName).ToList()
+                Genres = book.BookGenres.Select(bg => new GenreDto
+                {
+                    GenreId = bg.Genre.GenreId,
+                    GenreName = bg.Genre.GenreName
+                }).ToList()
             };
 
             return CreatedAtAction(nameof(GetBookById), new { id = book.BookId }, bookReadDto);
@@ -190,12 +210,21 @@ namespace CapstoneBack.Controllers
                 Name = book.Name,
                 NumberOfPages = book.NumberOfPages,
                 Description = book.Description,
-                AuthorName = $"{book.Author.FirstName} {book.Author.LastName}",
+                Author = new AuthorDto
+                {
+                    AuthorId = book.Author.AuthorId,
+                    FirstName = book.Author.FirstName,
+                    LastName = book.Author.LastName
+                },
                 CoverImagePath = book.CoverImagePath,
                 PublicationDate = book.PublicationDate,
                 Price = book.Price,
                 AvailableQuantity = book.AvailableQuantity,
-                Genres = book.BookGenres?.Select(bg => bg.Genre.GenreName).ToList()
+                Genres = book.Genres.Select(bg => new GenreDto
+                {
+                    GenreId = bg.GenreId,
+                    GenreName = bg.GenreName
+                }).ToList()
             };
 
             return Ok(bookReadDto); // Restituisce 200 OK con i dati del libro
@@ -207,6 +236,7 @@ namespace CapstoneBack.Controllers
             var existingBook = await _context.Books
                 .Include(b => b.Author)
                 .Include(b => b.BookGenres)
+                .ThenInclude(bg => bg.Genre)
                 .FirstOrDefaultAsync(b => b.BookId == id);
 
             if (existingBook == null)
@@ -218,7 +248,17 @@ namespace CapstoneBack.Controllers
             existingBook.Name = bookDto.Name ?? existingBook.Name;
             existingBook.NumberOfPages = bookDto.NumberOfPages ?? existingBook.NumberOfPages;
             existingBook.Description = bookDto.Description ?? existingBook.Description;
-            existingBook.AuthorId = bookDto.AuthorId ?? existingBook.AuthorId;
+
+            // Gestione dell'ID dell'autore
+            if (bookDto.AuthorId.HasValue)
+            {
+                var author = await _context.Authors.FindAsync(bookDto.AuthorId.Value);
+                if (author != null)
+                {
+                    existingBook.AuthorId = author.AuthorId;
+                }
+            }
+
             existingBook.PublicationDate = bookDto.PublicationDate ?? existingBook.PublicationDate;
             existingBook.Price = bookDto.Price ?? existingBook.Price;
 
@@ -227,8 +267,7 @@ namespace CapstoneBack.Controllers
                 existingBook.AvailableQuantity = bookDto.AvailableQuantity.Value;
             }
 
-
-            // Gestisci l'immagine di copertina
+            // Gestione dell'immagine di copertina
             if (coverImage != null && coverImage.Length > 0)
             {
                 // Prima di cambiare l'immagine, controlla se quella attuale non è l'immagine di default
@@ -254,20 +293,20 @@ namespace CapstoneBack.Controllers
                 {
                     await coverImage.CopyToAsync(stream);
                 }
+
+                // Aggiorna correttamente il percorso dell'immagine
                 existingBook.CoverImagePath = Path.Combine("images", "Book", fileName);
             }
 
-            // Gestisci i generi se modificati
+            // Gestione dei generi
             if (bookDto.GenreIds != null && bookDto.GenreIds.Any())
             {
-                // Rimuovi i generi esistenti
                 existingBook.BookGenres.Clear();
 
-                // Aggiungi i nuovi generi, caricando prima i dati dal database
                 foreach (var genreId in bookDto.GenreIds)
                 {
                     var genre = await _context.Genres.FindAsync(genreId);
-                    if (genre != null)  // Assicurati che il genere esista
+                    if (genre != null)
                     {
                         existingBook.BookGenres.Add(new BookGenre
                         {
@@ -280,22 +319,36 @@ namespace CapstoneBack.Controllers
 
             await _context.SaveChangesAsync();
 
+            // Preparazione della risposta DTO
             var bookReadDto = new BookReadDto
             {
                 BookId = existingBook.BookId,
                 Name = existingBook.Name,
                 NumberOfPages = existingBook.NumberOfPages,
                 Description = existingBook.Description,
-                AuthorName = $"{existingBook.Author.FirstName} {existingBook.Author.LastName}",
-                CoverImagePath = existingBook.CoverImagePath,
+                Author = new AuthorDto
+                {
+                    AuthorId = existingBook.Author.AuthorId,
+                    FirstName = existingBook.Author.FirstName,
+                    LastName = existingBook.Author.LastName
+                },
+                CoverImagePath = existingBook.CoverImagePath,  // Corretto per mostrare l'immagine aggiornata
                 PublicationDate = existingBook.PublicationDate,
                 Price = existingBook.Price,
                 AvailableQuantity = existingBook.AvailableQuantity,
-                Genres = existingBook.BookGenres.Select(bg => bg.Genre.GenreName).ToList()
+                Genres = existingBook.BookGenres.Select(bg => new GenreDto
+                {
+                    GenreId = bg.Genre.GenreId,
+                    GenreName = bg.Genre.GenreName
+                }).ToList()
             };
 
             return Ok(bookReadDto);
         }
+
+
+
+
 
 
 

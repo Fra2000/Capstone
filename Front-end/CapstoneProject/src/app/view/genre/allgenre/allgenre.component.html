@@ -1,0 +1,11 @@
+<div class="container mt-4">
+  <h2>Genres</h2>
+  <ul *ngIf="genres.length > 0; else noGenres">
+    <li *ngFor="let genre of genres">
+      <a [routerLink]="['/detailGenre', genre.genreId]">{{ genre.genreName }}</a>
+    </li>
+  </ul>
+  <ng-template #noGenres>
+    <p>No genres available at the moment.</p>
+  </ng-template>
+</div>

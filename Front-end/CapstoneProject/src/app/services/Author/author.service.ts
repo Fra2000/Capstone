@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthorRead } from '../../interfaces/AuthorRead'; // Assicurati di creare questa interfaccia
+import { AuthorRead } from '../../interfaces/Author'; // Assicurati di creare questa interfaccia
 import { Book } from '../../interfaces/Book';
 
 @Injectable({
@@ -34,7 +34,6 @@ export class AuthorService {
 
   getAuthorImagePath(relativePath: string): string {
     if (!relativePath) {
-      // Fornisci un'immagine di default se non presente
       return 'https://localhost:7097/images/Author/default.jpg';
     }
     return `https://localhost:7097/${relativePath}`;
@@ -45,7 +44,7 @@ export class AuthorService {
   }
 
   getBooksByAuthorId(authorId: number): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/${authorId}`);
+    // Assicurati che l'endpoint sia corretto per ottenere i libri di un autore
+    return this.http.get<Book[]>(`${this.apiUrl}/${authorId}/books`);
   }
-
 }

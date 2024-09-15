@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using CapstoneBack.Models;
 using Microsoft.AspNetCore.Http;
 using CapstoneBack.Services.Interfaces;
 using System.IO;
+using CapstoneBack.Models.DTO.AuthorDTO;
+using CapstoneBack.Models.DTO.BookDTO;
 
 namespace CapstoneBack.Services
 {
@@ -17,16 +20,53 @@ namespace CapstoneBack.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<Author>> GetAllAuthorsAsync()
+        public async Task<IEnumerable<AuthorReadDto>> GetAllAuthorsAsync()
         {
-            return await _context.Authors.ToListAsync();
+            var authors = await _context.Authors
+                .Include(a => a.Books)
+                .ToListAsync();
+
+            return authors.Select(a => new AuthorReadDto
+            {
+                AuthorId = a.AuthorId,
+                FirstName = a.FirstName,
+                LastName = a.LastName,
+                DateOfBirth = a.DateOfBirth,
+                ImagePath = a.ImagePath,
+                Books = a.Books.Select(b => new BookDto
+                {
+                    BookId = b.BookId,
+                    Name = b.Name
+                }).ToList()
+            });
         }
 
-        public async Task<Author> GetAuthorByIdAsync(int authorId)
+        public async Task<AuthorReadDto> GetAuthorByIdAsync(int authorId)
         {
-            return await _context.Authors
-                .Include(a => a.Books) // Include i libri associati all'autore
-                .SingleOrDefaultAsync(a => a.AuthorId == authorId);
+            var author = await _context.Authors
+                 .Include(a => a.Books)
+                 .SingleOrDefaultAsync(a => a.AuthorId == authorId);
+
+            if (author == null)
+            {
+                return null;
+            }
+
+            // Mappatura manuale a AuthorReadDto
+            return new AuthorReadDto
+            {
+                AuthorId = author.AuthorId,
+                FirstName = author.FirstName,
+                LastName = author.LastName,
+                DateOfBirth = author.DateOfBirth,
+                Bio = author.Bio,
+                ImagePath = author.ImagePath,
+                Books = author.Books.Select(b => new BookDto
+                {
+                    BookId = b.BookId,
+                    Name = b.Name
+                }).ToList()
+            };
         }
 
 

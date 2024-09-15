@@ -1,4 +1,7 @@
-﻿namespace CapstoneBack.Models.DTO.BookDTO
+﻿using CapstoneBack.Models.DTO.AuthorDTO;
+using CapstoneBack.Models.DTO.GenreDTO;
+
+namespace CapstoneBack.Models.DTO.BookDTO
 {
     public class BookUpdateDto
     {
@@ -9,6 +12,6 @@
         public DateTime? PublicationDate { get; set; }
         public decimal? Price { get; set; }
         public int? AvailableQuantity { get; set; }
-        public List<int>? GenreIds { get; set; }
+        public List<int> GenreIds { get; set; }
     }
 }

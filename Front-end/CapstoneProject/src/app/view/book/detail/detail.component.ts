@@ -21,6 +21,7 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     const bookId = this.route.snapshot.paramMap.get('id');
+    console.log('User is Admin or SuperAdmin:', this.authService.hasRole(['Admin', 'SuperAdmin']));
     if (bookId) {
       this.bookService.getBookById(+bookId).subscribe({
         next: (book) => this.book = book,
@@ -30,6 +31,7 @@ export class DetailComponent implements OnInit {
       console.error('Book ID is missing in the route parameters.');
     }
   }
+
 
   getCoverImagePath(relativePath: string): string {
     return this.bookService.getCoverImagePath(relativePath);

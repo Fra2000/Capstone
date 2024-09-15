@@ -1,4 +1,7 @@
-﻿namespace CapstoneBack.Models.DTO.BookDTO
+﻿using CapstoneBack.Models.DTO.AuthorDTO;
+using CapstoneBack.Models.DTO.GenreDTO;
+
+namespace CapstoneBack.Models.DTO.BookDTO
 {
     public class BookReadDto
     {
@@ -6,11 +9,11 @@
         public string Name { get; set; }
         public int NumberOfPages { get; set; }
         public string Description { get; set; }
-        public string AuthorName { get; set; }
+        public AuthorDto Author { get; set; }
         public string CoverImagePath { get; set; }
         public DateTime PublicationDate { get; set; }
         public decimal Price { get; set; }
         public int AvailableQuantity { get; set; }
-        public List<string> Genres { get; set; } // Nomi dei generi associati
+        public List<GenreDto> Genres { get; set; } 
     }
 }

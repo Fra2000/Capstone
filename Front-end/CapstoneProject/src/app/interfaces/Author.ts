@@ -1,3 +1,5 @@
+import { Book } from "./Book";
+
 export interface AuthorRead {
   authorId: number;
   firstName: string;
@@ -5,5 +7,5 @@ export interface AuthorRead {
   dateOfBirth: Date;
   bio: string;
   imagePath: string;
-  books: string[];
+  books: Book[];
 }

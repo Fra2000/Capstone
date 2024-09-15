@@ -12,7 +12,13 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.hasToken());
   private userRoles = new BehaviorSubject<string[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = jwtDecode<any>(token);
+      this.userRoles.next(decodedToken.role ? [decodedToken.role] : []);
+    }
+  }
 
   // Controlla se il token JWT esiste nel localStorage
   private hasToken(): boolean {
@@ -70,8 +76,18 @@ export class AuthService {
   }
 
   hasRole(requiredRoles: string[]): boolean {
+    // Se i ruoli sono vuoti, prova a recuperarli dal token
+    if (this.userRoles.value.length === 0) {
+      const token = this.getToken();
+      if (token) {
+        const decodedToken = jwtDecode<any>(token);
+        this.userRoles.next(decodedToken.role ? [decodedToken.role] : []);
+      }
+    }
+
     const currentUserRoles = this.userRoles.value;
     return requiredRoles.some(role => currentUserRoles.includes(role));
   }
+
 
 }

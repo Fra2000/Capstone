@@ -1,7 +1,7 @@
 // all-authors.component.ts
 import { Component, OnInit } from '@angular/core';
-import { AuthorService } from '../../../services/Author/author.service.service';
-import { AuthorRead } from '../../../interfaces/AuthorRead'
+import { AuthorService } from '../../../services/Author/author.service';
+import { AuthorRead } from '../../../interfaces/Author'
 
 
 @Component({

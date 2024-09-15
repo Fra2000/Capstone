@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nQqJEDToGOYnOG7Ijpswle0PbmSJFVwii9TTvGZmdmY=",
+  "Hash": "24/0Z2NhVE/NLbJJYZ6t634wBxU9Dsfz7H3zhUj++zQ=",
   "Source": "CapstoneBack",
   "BasePath": "_content/CapstoneBack",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Account\\mentidevera.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\pettinecane.jpeg",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Account/pettinecane.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Account\\pettinecane.jpeg"
     },
     {
       "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\cane.jpeg",
@@ -300,44 +319,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Book\\mentidevera.jpeg"
-    },
-    {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\pettinagatti.jpeg",
-      "SourceId": "CapstoneBack",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
-      "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Book/pettinagatti.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Book\\pettinagatti.jpeg"
-    },
-    {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\spiaggia1-min.jpg",
-      "SourceId": "CapstoneBack",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
-      "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Book/spiaggia1-min.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Book\\spiaggia1-min.jpg"
     }
   ]
 }

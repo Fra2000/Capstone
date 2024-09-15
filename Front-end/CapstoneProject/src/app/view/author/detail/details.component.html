@@ -15,8 +15,12 @@
         <p><strong>Bio:</strong> {{ author.bio }}</p>
         <p><strong>Books:</strong></p>
         <ul>
-          <li *ngFor="let book of author.books">{{ book }}</li>
+          <li *ngFor="let book of author.books">
+            <a [routerLink]="['/detail', book.bookId]" class="book-link">{{ book.name }}</a>
+          </li>
         </ul>
+
+
       </div>
     </div>
   </div>

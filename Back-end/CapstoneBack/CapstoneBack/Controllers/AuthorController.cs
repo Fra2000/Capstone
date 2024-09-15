@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
 using CapstoneBack.Models.DTO.AuthorDTO; // Assicurati di includere il namespace per il DTO
+using CapstoneBack.Models.DTO.BookDTO;
 
 namespace CapstoneBack.Controllers
 {
@@ -40,7 +41,7 @@ namespace CapstoneBack.Controllers
                 LastName = author.LastName,
                 DateOfBirth = author.DateOfBirth,
                 ImagePath = author.ImagePath,
-                Books = new List<string>()  // Manteniamo una lista vuota per i libri
+                Books = new List<BookDto>()  // Manteniamo una lista vuota per i libri
             }).ToList();
 
             return Ok(authorDtos);
@@ -59,8 +60,6 @@ namespace CapstoneBack.Controllers
                 return NotFound();
             }
 
-            // Assicurati che la lista Books non sia null e mappa correttamente i titoli dei libri
-            var books = author.Books ?? new List<Book>();
 
             var authorDto = new AuthorReadDto
             {
@@ -70,7 +69,11 @@ namespace CapstoneBack.Controllers
                 DateOfBirth = author.DateOfBirth,
                 Bio = author.Bio,
                 ImagePath = author.ImagePath,
-                Books = books.Select(b => b.Name).ToList() // Mappa i nomi dei libri
+                Books = author.Books.Select(b => new BookDto
+                {
+                    BookId = b.BookId,
+                    Name = b.Name
+                }).ToList()
             };
 
             return Ok(authorDto);
@@ -106,7 +109,7 @@ namespace CapstoneBack.Controllers
                 DateOfBirth = createdAuthor.DateOfBirth,
                 Bio = createdAuthor.Bio,
                 ImagePath = createdAuthor.ImagePath,
-                Books = new List<string>() // Inizialmente vuoto, poiché l'autore è appena stato creato
+                Books = new List<BookDto>() // Inizialmente vuoto, poiché l'autore è appena stato creato
             };
 
             return CreatedAtAction(nameof(GetAuthorById), new { id = createdAuthor.AuthorId }, authorReadDto);

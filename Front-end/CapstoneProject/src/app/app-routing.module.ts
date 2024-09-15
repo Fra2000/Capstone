@@ -10,7 +10,9 @@ const routes: Routes = [
   { path: 'detail/:id', loadChildren: () => import('./view/book/detail/detail.module').then(m => m.DetailModule) },
   { path: 'update', loadChildren: () => import('./view/book/update/update.module').then(m => m.UpdateModule) },
   { path: 'authors', loadChildren: () => import('./view/author/all/all.module').then(m => m.AllModule) },
-  { path: 'detailsAuthor/:id', loadChildren: () => import('./view/author/detail/details.module').then(m => m.DetailsModule) }
+  { path: 'detailsAuthor/:id', loadChildren: () => import('./view/author/detail/details.module').then(m => m.DetailsModule) },
+  { path: 'allGenre', loadChildren: () => import('./view/genre/allgenre/allgenre.module').then(m => m.AllgenreModule) },
+  { path: 'detailGenre/:id', loadChildren: () => import('./view/genre/detailGenre/detail-genre.module').then(m => m.DetailGenreModule) }
 
 
 
