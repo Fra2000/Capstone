@@ -1,10 +1,24 @@
 <div class="container mt-4">
   <h2>Genres</h2>
+
+  <!-- Pulsante per creare un nuovo genere -->
+  <div class="mb-3">
+    <button class="btn btn-success" [routerLink]="['/createGenre']">Create New Genre</button>
+  </div>
+
   <ul *ngIf="genres.length > 0; else noGenres">
-    <li *ngFor="let genre of genres">
+    <li *ngFor="let genre of genres" class="d-flex justify-content-between align-items-center">
+      <!-- Nome del genere con link ai dettagli -->
       <a [routerLink]="['/detailGenre', genre.genreId]">{{ genre.genreName }}</a>
+
+      <!-- Pulsanti Update e Delete per ogni genere -->
+      <div>
+        <button class="btn btn-primary me-2" [routerLink]="['/updateGenre', genre.genreId]">Update</button>
+        <button class="btn btn-danger" [routerLink]="['/deleteGenre', genre.genreId]">Delete</button> <!-- Porta alla pagina di conferma dell'eliminazione -->
+      </div>
     </li>
   </ul>
+
   <ng-template #noGenres>
     <p>No genres available at the moment.</p>
   </ng-template>

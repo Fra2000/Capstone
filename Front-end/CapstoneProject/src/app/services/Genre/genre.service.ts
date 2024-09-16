@@ -22,4 +22,22 @@ export class GenreService {
     return this.http.get<Book[]>(`${this.apiUrl}/${genreId}`);
   }
 
+  createGenre(genreData: { GenreName: string }): Observable<Genre> {
+    return this.http.post<Genre>(`${this.apiUrl}`, genreData);
+  }
+
+  updateGenre(genreId: number, genreData: { GenreName: string }): Observable<Genre> {
+    return this.http.put<Genre>(`${this.apiUrl}/${genreId}`, genreData);
+  }
+
+  getGenreById(genreId: number): Observable<Genre> {
+    return this.http.get<Genre>(`${this.apiUrl}/${genreId}`);
+  }
+
+  deleteGenre(genreId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${genreId}`);
+  }
+
+
+
 }

@@ -20,17 +20,19 @@ export class AuthorService {
     return this.http.get<AuthorRead>(`${this.apiUrl}/${authorId}`);
   }
 
-  createAuthor(authorData: AuthorRead): Observable<AuthorRead> {
-    return this.http.post<AuthorRead>(this.apiUrl, authorData);
+  createAuthor(authorData: FormData): Observable<AuthorRead> {
+    return this.http.post<AuthorRead>(`${this.apiUrl}`, authorData);
   }
 
-  updateAuthor(authorId: number, authorData: AuthorRead): Observable<AuthorRead> {
+  updateAuthor(authorId: number, authorData: FormData): Observable<AuthorRead> {
     return this.http.put<AuthorRead>(`${this.apiUrl}/${authorId}`, authorData);
   }
 
-  deleteAuthor(authorId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${authorId}`);
+
+  deleteAuthor(authorId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${authorId}`);
   }
+
 
   getAuthorImagePath(relativePath: string): string {
     if (!relativePath) {

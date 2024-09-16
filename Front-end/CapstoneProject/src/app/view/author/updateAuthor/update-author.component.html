@@ -1,0 +1,27 @@
+<div class="form-group">
+  <label for="firstName">First Name</label>
+  <input type="text" id="firstName" [(ngModel)]="author.firstName" name="firstName" class="form-control" required>
+</div>
+
+<div class="form-group">
+  <label for="lastName">Last Name</label>
+  <input type="text" id="lastName" [(ngModel)]="author.lastName" name="lastName" class="form-control" required>
+</div>
+
+<div class="form-group">
+  <label for="dateOfBirth">Date of Birth</label>
+  <input type="date" id="dateOfBirth" [(ngModel)]="formattedDateOfBirth" name="dateOfBirth" class="form-control" required>
+</div>
+
+<div class="form-group">
+  <label for="bio">Bio</label>
+  <textarea id="bio" [(ngModel)]="author.bio" name="bio" class="form-control" required></textarea>
+</div>
+
+<div class="form-group">
+  <label for="imageFile">Author Image</label>
+  <input type="file" id="imageFile" (change)="onFileSelected($event)" class="form-control">
+  <img *ngIf="author.imagePath" [src]="authorService.getAuthorImagePath(author.imagePath)" (error)="authorService.handleImageError($event)" alt="Author Image" class="img-thumbnail mt-2" style="width: 150px;">
+</div>
+
+<button (click)="updateAuthor()" class="btn btn-primary">Update Author</button>

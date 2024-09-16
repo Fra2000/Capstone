@@ -1,0 +1,71 @@
+<div class="container mt-5">
+  <h2>Update Book</h2>
+  <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+    <div class="form-group">
+      <label for="name">Book Name</label>
+      <input type="text" id="name" class="form-control" [(ngModel)]="book.name" name="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="authorId">Author</label>
+      <select id="authorId" class="form-control" [(ngModel)]="authorId" name="authorId" required>
+        <option *ngFor="let author of authors" [value]="author.authorId" [selected]="isAuthorSelected(author.authorId)">
+          {{ author.firstName }} {{ author.lastName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="genres">Genres</label>
+      <div *ngFor="let genre of genres">
+        <input
+          type="checkbox"
+          [value]="genre.genreId"
+          (change)="onGenreChange($event, genre.genreId)"
+          [checked]="isGenreSelected(genre.genreId)">
+        {{ genre.genreName }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="numberOfPages">Number of Pages</label>
+      <input type="number" id="numberOfPages" class="form-control" [(ngModel)]="book.numberOfPages" name="numberOfPages" required>
+    </div>
+
+    <div class="form-group">
+      <label for="publicationDate">Publication Date</label>
+      <input
+        type="date"
+        id="publicationDate"
+        class="form-control"
+        [(ngModel)]="book.publicationDate"
+        [ngModel]="book.publicationDate | date:'yyyy-MM-dd'"
+        name="publicationDate"
+        required>
+    </div>
+
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" id="price" class="form-control" [(ngModel)]="book.price" name="price" required>
+    </div>
+
+    <div class="form-group">
+      <label for="availableQuantity">Available Quantity</label>
+      <input type="number" id="availableQuantity" class="form-control" [(ngModel)]="book.availableQuantity" name="availableQuantity" required>
+    </div>
+
+    <div class="form-group">
+      <label for="coverImage">Cover Image</label>
+      <input type="file" id="coverImage" (change)="onFileSelected($event)" class="form-control">
+      <img *ngIf="book.coverImagePath" [src]="getCoverImagePath(book.coverImagePath)" alt="Cover image" class="img-thumbnail mt-2" style="width: 150px;">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" class="form-control" [(ngModel)]="book.description" name="description"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Book</button>
+  </form>
+</div>

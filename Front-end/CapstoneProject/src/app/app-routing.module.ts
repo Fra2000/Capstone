@@ -9,10 +9,18 @@ const routes: Routes = [
   { path: 'logout', loadChildren: () => import('./view/account/logout/logout.module').then(m => m.LogoutModule) },
   { path: 'detail/:id', loadChildren: () => import('./view/book/detail/detail.module').then(m => m.DetailModule) },
   { path: 'update', loadChildren: () => import('./view/book/update/update.module').then(m => m.UpdateModule) },
-  { path: 'authors', loadChildren: () => import('./view/author/all/all.module').then(m => m.AllModule) },
-  { path: 'detailsAuthor/:id', loadChildren: () => import('./view/author/detail/details.module').then(m => m.DetailsModule) },
+  { path: 'allAuthors', loadChildren: () => import('./view/author/allAuthor/all.module').then(m => m.AllModule) },
+  { path: 'detailsAuthor/:id', loadChildren: () => import('./view/author/detailAuthor/details.module').then(m => m.DetailsModule) },
   { path: 'allGenre', loadChildren: () => import('./view/genre/allgenre/allgenre.module').then(m => m.AllgenreModule) },
-  { path: 'detailGenre/:id', loadChildren: () => import('./view/genre/detailGenre/detail-genre.module').then(m => m.DetailGenreModule) }
+  { path: 'detailGenre/:id', loadChildren: () => import('./view/genre/detailGenre/detail-genre.module').then(m => m.DetailGenreModule) },
+  { path: 'createGenre', loadChildren: () => import('./view/genre/createGenre/create-genre.module').then(m => m.CreateGenreModule) },
+  { path: 'updateGenre/:id', loadChildren: () => import('./view/genre/updateGenre/update-genre.module').then(m => m.UpdateGenreModule) },
+  { path: 'deleteGenre/:id', loadChildren: () => import('./view/genre/delete-genre/delete-genre.module').then(m => m.DeleteGenreModule) },
+  { path: 'updateAuthor/:id', loadChildren: () => import('./view/author/updateAuthor/update-author.module').then(m => m.UpdateAuthorModule) },
+  { path: 'deleteAuthor/:id', loadChildren: () => import('./view/author/deleteAuthor/delete-author.module').then(m => m.DeleteAuthorModule) },
+  { path: 'createAuthor', loadChildren: () => import('./view/author/create-author/create-author.module').then(m => m.CreateAuthorModule) },
+  { path: 'createBook', loadChildren: () => import('./view/book/createBook/create-book.module').then(m => m.CreateBookModule) },
+  { path: 'updateBook/:id', loadChildren: () => import('./view/book/updateBook/update-book.module').then(m => m.UpdateBookModule) }
 
 
 

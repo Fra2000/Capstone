@@ -11,29 +11,35 @@
       </div>
       <div class="col-md-8">
         <h2>{{ book.name }}</h2>
-        <p><strong>Author:</strong> {{ book.authorName }}</p>
+        <p>
+          <strong>Author:</strong>
+          <a [routerLink]="['/detailsAuthor', book.author?.authorId]">
+            {{ book.author?.fullName }}
+          </a>
+        </p>
+
         <p>
           <strong>Published:</strong>
           {{ book.publicationDate | date : "mediumDate" }}
         </p>
         <p><strong>Price:</strong> {{ book.price | currency }}</p>
         <p><strong>Description:</strong> {{ book.description }}</p>
-        <p>
-          <strong>Genres:</strong>
-          <span class="badge" *ngFor="let genre of book.genres">{{
-            genre
-          }}</span>
-        </p>
-        <p>
-          <strong>Available:</strong>
-          {{ book.availableQuantity > 0 ? "Yes" : "No" }}
-        </p>
-      </div>
-      <!-- Nel tuo componente di dettaglio -->
-<button *ngIf="authService.hasRole(['Admin', 'SuperAdmin'])" (click)="deleteBook()">Elimina Libro</button>
 
+        <!-- Visualizzazione dei generi come link -->
+        <p *ngIf="book.genres && book.genres.length > 0">
+          <strong>Genres:</strong>
+          <span *ngFor="let genre of book.genres; let i = index">
+            <a [routerLink]="['/detailGenre', genre.genreId]">{{ genre.genreName }}</a>
+            <span *ngIf="i < book.genres.length - 1">, </span>
+          </span>
+        </p>
+        <p><strong>Available:</strong> {{ book.availableQuantity > 0 ? "Yes" : "No" }}</p>
+        <a [routerLink]="['/updateBook', book.bookId]" class="btn btn-warning">Update</a>
+        <button *ngIf="authService.hasRole(['Admin', 'SuperAdmin'])" (click)="deleteBook()">Elimina Libro</button>
+      </div>
     </div>
   </div>
+
   <ng-template #loading>
     <p>Loading book details...</p>
   </ng-template>

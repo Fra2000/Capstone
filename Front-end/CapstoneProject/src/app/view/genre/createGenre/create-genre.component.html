@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Crea un nuovo genere</h2>
+  <form (submit)="createGenre()">
+    <div class="form-group">
+      <label for="genreName">Nome del genere</label>
+      <input type="text" id="genreName" [(ngModel)]="genreName" name="genreName" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Crea</button>
+  </form>
+</div>

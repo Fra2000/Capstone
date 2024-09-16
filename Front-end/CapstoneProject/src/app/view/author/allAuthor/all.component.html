@@ -1,5 +1,8 @@
 <!-- all.component.html -->
 <div class="container mt-4">
+  <div class="mb-3">
+    <a [routerLink]="['/createAuthor']" class="btn btn-success">Crea Nuovo Autore</a>
+  </div>
   <h2>Elenco Autori</h2>
   <div class="row">
     <div class="col-md-4" *ngFor="let author of authors">
@@ -15,6 +18,8 @@
           <p class="card-text"><strong>Data di Nascita:</strong> {{ author.dateOfBirth | date:'mediumDate' }}</p>
 
           <a [routerLink]="['/detailsAuthor', author.authorId]" class="btn btn-primary">Visualizza Più Dettagli</a>
+          <a [routerLink]="['/updateAuthor', author.authorId]" class="btn btn-warning">Modifica</a>
+          <a [routerLink]="['/deleteAuthor', author.authorId]" class="btn btn-danger">Elimina</a>
         </div>
       </div>
     </div>

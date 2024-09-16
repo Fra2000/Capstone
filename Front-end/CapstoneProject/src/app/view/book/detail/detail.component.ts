@@ -2,7 +2,7 @@ import { AuthService } from './../../../services/Account/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../../services/Book/book.service';
-import { BookRead } from '../../../interfaces/BookRead';
+import { Book } from '../../../interfaces/Book';
 
 @Component({
   selector: 'detail',
@@ -10,7 +10,7 @@ import { BookRead } from '../../../interfaces/BookRead';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  book: BookRead | undefined;
+  book: Book | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,16 +21,23 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     const bookId = this.route.snapshot.paramMap.get('id');
-    console.log('User is Admin or SuperAdmin:', this.authService.hasRole(['Admin', 'SuperAdmin']));
     if (bookId) {
       this.bookService.getBookById(+bookId).subscribe({
-        next: (book) => this.book = book,
+        next: (book) => {
+          this.book = book;
+
+          // Calcola il fullName dell'autore
+          if (this.book?.author?.firstName && this.book?.author.lastName) {
+            this.book.author.fullName = `${book.author?.firstName} ${book.author?.lastName}`;
+          }
+        },
         error: (error) => console.error('Error fetching book:', error)
       });
     } else {
       console.error('Book ID is missing in the route parameters.');
     }
   }
+
 
 
   getCoverImagePath(relativePath: string): string {

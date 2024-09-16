@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Modifica Genere</h2>
+  <form (submit)="updateGenre()">
+    <div class="form-group">
+      <label for="genreName">Nome del genere</label>
+      <input type="text" id="genreName" [(ngModel)]="genreName" name="genreName" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Aggiorna</button>
+  </form>
+</div>

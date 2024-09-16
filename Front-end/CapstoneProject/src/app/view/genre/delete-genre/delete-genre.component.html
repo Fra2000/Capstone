@@ -1,0 +1,6 @@
+<div class="container mt-4">
+  <h2>Delete Genre</h2>
+  <p>Are you sure you want to delete the genre: <strong>{{ genreName }}</strong>?</p>
+  <button class="btn btn-danger" (click)="deleteGenre()">Yes, Delete</button>
+  <button class="btn btn-secondary" [routerLink]="['/allGenre']">Cancel</button>
+</div>

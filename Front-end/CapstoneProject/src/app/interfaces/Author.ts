@@ -8,4 +8,5 @@ export interface AuthorRead {
   bio: string;
   imagePath: string;
   books: Book[];
+  fullName?: string;
 }
