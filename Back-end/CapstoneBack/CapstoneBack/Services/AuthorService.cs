@@ -8,6 +8,7 @@ using CapstoneBack.Services.Interfaces;
 using System.IO;
 using CapstoneBack.Models.DTO.AuthorDTO;
 using CapstoneBack.Models.DTO.BookDTO;
+using CapstoneBack.Models.DTO.GenreDTO;
 
 namespace CapstoneBack.Services
 {
@@ -33,7 +34,7 @@ namespace CapstoneBack.Services
                 LastName = a.LastName,
                 DateOfBirth = a.DateOfBirth,
                 ImagePath = a.ImagePath,
-                Books = a.Books.Select(b => new BookDto
+                Books = a.Books.Select(b => new BookSummaryDto
                 {
                     BookId = b.BookId,
                     Name = b.Name
@@ -45,6 +46,8 @@ namespace CapstoneBack.Services
         {
             var author = await _context.Authors
                  .Include(a => a.Books)
+                   .ThenInclude(b => b.BookGenres)
+                      .ThenInclude(bg => bg.Genre)
                  .SingleOrDefaultAsync(a => a.AuthorId == authorId);
 
             if (author == null)
@@ -61,10 +64,24 @@ namespace CapstoneBack.Services
                 DateOfBirth = author.DateOfBirth,
                 Bio = author.Bio,
                 ImagePath = author.ImagePath,
-                Books = author.Books.Select(b => new BookDto
+                Books = author.Books.Select(b => new BookSummaryDto
                 {
                     BookId = b.BookId,
-                    Name = b.Name
+                    Name = b.Name,
+                    Author = new AuthorDto
+                    {
+                        AuthorId = b.Author.AuthorId,
+                        FirstName = b.Author.FirstName,
+                        LastName = b.Author.LastName
+                    },
+                    CoverImagePath = b.CoverImagePath,
+                    PublicationDate = b.PublicationDate,
+                    Price = b.Price,
+                    Genres = b.BookGenres.Select(bg => new GenreDto
+                    {
+                        GenreId = bg.Genre.GenreId,
+                        GenreName = bg.Genre.GenreName
+                    }).ToList()
                 }).ToList()
             };
         }

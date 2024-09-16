@@ -23,6 +23,7 @@
           {{ book.publicationDate | date : "mediumDate" }}
         </p>
         <p><strong>Price:</strong> {{ book.price | currency }}</p>
+        <p><strong>Number of pages:</strong> {{book.numberOfPages}}</p>
         <p><strong>Description:</strong> {{ book.description }}</p>
 
         <!-- Visualizzazione dei generi come link -->
@@ -34,7 +35,11 @@
           </span>
         </p>
         <p><strong>Available:</strong> {{ book.availableQuantity > 0 ? "Yes" : "No" }}</p>
-        <a [routerLink]="['/updateBook', book.bookId]" class="btn btn-warning">Update</a>
+
+        <!-- Controlla se l'utente ha i ruoli Admin o SuperAdmin per mostrare il pulsante di aggiornamento -->
+        <a *ngIf="authService.hasRole(['Admin', 'SuperAdmin'])" [routerLink]="['/updateBook', book.bookId]" class="btn btn-warning">Update</a>
+
+        <!-- Mostra il pulsante di eliminazione solo agli admin -->
         <button *ngIf="authService.hasRole(['Admin', 'SuperAdmin'])" (click)="deleteBook()">Elimina Libro</button>
       </div>
     </div>

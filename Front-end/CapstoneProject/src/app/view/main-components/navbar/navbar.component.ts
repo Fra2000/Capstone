@@ -10,19 +10,23 @@ import { Subscription } from 'rxjs';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   isAuthenticated: boolean = false;
+  isAdminOrSuperAdmin: boolean = false;
   private authSubscription!: Subscription;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     // Sottoscrivi allo stato di autenticazione e specifica il tipo boolean per isAuth
     this.authSubscription = this.authService.isAuthenticated().subscribe((isAuth: boolean) => {
       this.isAuthenticated = isAuth;
+      this.isAdminOrSuperAdmin = this.authService.hasRole(['Admin', 'SuperAdmin']);
     });
   }
 
   onLogout(): void {
     this.authService.logout();
+    this.isAuthenticated = false;
+    this.isAdminOrSuperAdmin = false;
     this.router.navigate(['/login']);
   }
 

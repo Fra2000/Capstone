@@ -2,6 +2,21 @@
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">BookStore</a>
     <ul class="navbar-nav ms-auto d-flex flex-row">
+
+      <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
+        <a class="nav-link" routerLink="/createBook">Create Book</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
+        <a class="nav-link" routerLink="/allAuthors">All Authors</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
+        <a class="nav-link" routerLink="/allGenre">All Genres</a>
+      </li>
+      <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
+        <a class="nav-link" routerLink="/registrationAdmin">Register Admin</a>
+      </li>
+
+
       <!-- Mostra il link di login solo se non si è nella pagina di login o registrazione -->
       <li class="nav-item" *ngIf="!isAuthenticated && !isLoginOrRegisterPage()">
         <a class="nav-link" routerLink="/login">Login</a>

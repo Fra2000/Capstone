@@ -4,10 +4,12 @@ using CapstoneBack.Models.DTO;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using CapstoneBack.Models.DTO.ReviewDTO;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace CapstoneBack.Controllers
 {
+    [Authorize(Roles = "User")]
     [ApiController]
     [Route("api/[controller]")]
     public class ReviewController : ControllerBase

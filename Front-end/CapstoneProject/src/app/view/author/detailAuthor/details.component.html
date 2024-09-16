@@ -1,4 +1,3 @@
-<!-- details.component.html -->
 <div class="container mt-4">
   <div *ngIf="author; else loading">
     <div class="row">
@@ -6,24 +5,43 @@
         <img [src]="getAuthorImagePath(author.imagePath)"
              (error)="handleImageError($event)"
              class="img-fluid"
-             alt="Image of {{ author.firstName }} {{ author.lastName }}"
-        />
+             alt="Image of {{ author.firstName }} {{ author.lastName }}"/>
       </div>
       <div class="col-md-8">
         <h2>{{ author.firstName }} {{ author.lastName }}</h2>
         <p><strong>Date of Birth:</strong> {{ author.dateOfBirth | date: 'mediumDate' }}</p>
         <p><strong>Bio:</strong> {{ author.bio }}</p>
-        <p><strong>Books:</strong></p>
-        <ul>
-          <li *ngFor="let book of author.books">
-            <a [routerLink]="['/detail', book.bookId]" class="book-link">{{ book.name }}</a>
-          </li>
-        </ul>
+      </div>
+    </div>
 
-
+    <!-- Sezione delle card dei libri -->
+    <div class="row mt-4">
+      <div class="col-md-4 mb-4" *ngFor="let book of author.books">
+        <div class="card h-100">
+          <img
+            [src]="getCoverImagePath(book.coverImagePath)"
+            (error)="handleImageError($event)"
+            alt="Cover image of {{ book.name }}"
+            class="card-img-top img-fluid"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ book.name }}</h5>
+            <p class="card-text">Published: {{ book.publicationDate | date: 'mediumDate' }}</p>
+            <p class="card-text">Price: {{ book.price | currency }}</p>
+            <p class="card-text">
+              <strong>Genres:</strong>
+              <span *ngFor="let genre of book.genres; let isLast = last">
+                <a [routerLink]="['/detailGenre', genre.genreId]">{{ genre.genreName }}</a>
+                <span *ngIf="!isLast">, </span> <!-- Aggiunge una virgola tra i generi -->
+              </span>
+            </p>
+            <a [routerLink]="['/detail', book.bookId]" class="btn btn-primary">Details</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
   <ng-template #loading>
     <p>Loading author details...</p>
   </ng-template>

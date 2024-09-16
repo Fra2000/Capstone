@@ -28,6 +28,34 @@ export class DetailGenreComponent implements OnInit {
         error: (error) => console.error('Error fetching books by genre:', error)
       });
     }
+    this.route.paramMap.subscribe(params => {
+      const genreIdParam = params.get('id');  // Ottieni il parametro 'id'
+      if (genreIdParam) {  // Controlla se il parametro esiste
+        const genreId = +genreIdParam;  // Converti in numero
+        this.loadGenreDetails(genreId); // Carica i dettagli del nuovo genere
+      }
+    });
   }
+
+  getCoverImagePath(relativePath: string): string {
+    if (!relativePath) {
+      return 'https://localhost:7097/images/Book/default.png'; // immagine di default se non presente
+    }
+    return `https://localhost:7097/${relativePath}`;
+  }
+
+  handleImageError(event: any) {
+    event.target.src = 'https://localhost:7097/images/Book/default.png';
+  }
+
+  loadGenreDetails(genreId: number) {
+    this.genreService.getBooksByGenreId(genreId).subscribe({
+      next: (genre) => {
+        this.genre = genre;
+      },
+      error: (error) => console.error('Error fetching genre details:', error)
+    });
+  }
+
 
 }

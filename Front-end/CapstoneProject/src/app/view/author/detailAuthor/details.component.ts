@@ -49,7 +49,16 @@ export class DetailAuthorComponent implements OnInit {
     return this.authorService.getAuthorImagePath(relativePath);
   }
 
-  handleImageError(event: any) {
-    this.authorService.handleImageError(event);
+  getCoverImagePath(relativePath: string): string {
+    if (!relativePath) {
+      return 'https://localhost:7097/images/Book/default.png'; // immagine di default se non presente
+    }
+    return `https://localhost:7097/${relativePath}`;
   }
+
+
+  handleImageError(event: any) {
+    event.target.src = 'https://localhost:7097/images/Book/default.png';
+  }
+
 }

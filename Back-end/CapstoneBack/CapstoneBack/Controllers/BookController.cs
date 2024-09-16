@@ -105,6 +105,7 @@ namespace CapstoneBack.Controllers
 
 
         // POST: api/Book
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPost]
         public async Task<ActionResult<BookReadDto>> CreateBook([FromForm] BookCreateDto bookDto, IFormFile? coverImage)
         {
@@ -193,7 +194,7 @@ namespace CapstoneBack.Controllers
 
 
 
-        // Aggiungiamo il metodo GetBookById come placeholder, verrà implementato successivamente
+       
         [HttpGet("{id}")]
         public async Task<ActionResult<BookReadDto>> GetBookById(int id)
         {
@@ -230,6 +231,8 @@ namespace CapstoneBack.Controllers
             return Ok(bookReadDto); // Restituisce 200 OK con i dati del libro
         }
 
+
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBook(int id, [FromForm] BookUpdateDto bookDto, IFormFile? coverImage)
         {
@@ -352,7 +355,7 @@ namespace CapstoneBack.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {

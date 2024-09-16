@@ -7,7 +7,8 @@ using System.Security.Claims;
 
 namespace CapstoneBack.Controllers
 {
-    [Authorize]
+
+    [Authorize(Roles = "User")]
     [ApiController]
     [Route("api/[controller]")]
     public class CartController : ControllerBase

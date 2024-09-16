@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'deleteAuthor/:id', loadChildren: () => import('./view/author/deleteAuthor/delete-author.module').then(m => m.DeleteAuthorModule) },
   { path: 'createAuthor', loadChildren: () => import('./view/author/create-author/create-author.module').then(m => m.CreateAuthorModule) },
   { path: 'createBook', loadChildren: () => import('./view/book/createBook/create-book.module').then(m => m.CreateBookModule) },
-  { path: 'updateBook/:id', loadChildren: () => import('./view/book/updateBook/update-book.module').then(m => m.UpdateBookModule) }
+  { path: 'updateBook/:id', loadChildren: () => import('./view/book/updateBook/update-book.module').then(m => m.UpdateBookModule) },
+  { path: 'registrationAdmin', loadChildren: () => import('./view/account/registrationAdmin/registration-admin.module').then(m => m.RegistrationAdminModule) }
 
 
 

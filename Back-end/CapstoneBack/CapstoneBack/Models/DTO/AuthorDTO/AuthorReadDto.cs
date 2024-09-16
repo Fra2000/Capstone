@@ -10,6 +10,6 @@ namespace CapstoneBack.Models.DTO.AuthorDTO
         public DateTime DateOfBirth { get; set; }
         public string Bio { get; set; }
         public string ImagePath { get; set; }
-        public List<BookDto> Books { get; set; }
+        public List<BookSummaryDto> Books { get; set; }
     }
 }

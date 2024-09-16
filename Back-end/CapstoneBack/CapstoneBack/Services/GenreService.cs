@@ -24,9 +24,15 @@ namespace CapstoneBack.Services
         {
             return await _context.Genres
                 .Include(g => g.BookGenres)
-                    .ThenInclude(bg => bg.Book) // Includiamo i dettagli dei libri associati
+                    .ThenInclude(bg => bg.Book) // Include i dettagli dei libri associati
+                    .ThenInclude(b => b.Author) // Include i dettagli dell'autore
+                .Include(g => g.BookGenres)
+                    .ThenInclude(bg => bg.Book) // Include i dettagli dei libri associati
+                    .ThenInclude(b => b.BookGenres) // Include i generi dei libri
+                        .ThenInclude(bg => bg.Genre) // Include il genere del libro
                 .SingleOrDefaultAsync(g => g.GenreId == genreId);
         }
+
 
         public async Task<Genre> CreateGenreAsync(Genre genre)
         {

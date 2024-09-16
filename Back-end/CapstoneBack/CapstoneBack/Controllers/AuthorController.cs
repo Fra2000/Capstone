@@ -6,11 +6,12 @@ using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
 using CapstoneBack.Models.DTO.AuthorDTO; // Assicurati di includere il namespace per il DTO
 using CapstoneBack.Models.DTO.BookDTO;
+using CapstoneBack.Models.DTO.GenreDTO;
 
 namespace CapstoneBack.Controllers
 {
 
-    [Authorize(Roles = "Admin,SuperAdmin")]
+    
     [ApiController]
     [Route("api/[controller]")]
       // Assicura che solo gli admin possano accedere a queste rotte
@@ -25,9 +26,10 @@ namespace CapstoneBack.Controllers
             _context = context;
         }
 
-       
+
 
         // GET: api/Author
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AuthorReadDto>>> GetAllAuthors()
         {
@@ -41,7 +43,7 @@ namespace CapstoneBack.Controllers
                 LastName = author.LastName,
                 DateOfBirth = author.DateOfBirth,
                 ImagePath = author.ImagePath,
-                Books = new List<BookDto>()  // Manteniamo una lista vuota per i libri
+                Books = new List<BookSummaryDto>()  // Manteniamo una lista vuota per i libri
             }).ToList();
 
             return Ok(authorDtos);
@@ -69,10 +71,24 @@ namespace CapstoneBack.Controllers
                 DateOfBirth = author.DateOfBirth,
                 Bio = author.Bio,
                 ImagePath = author.ImagePath,
-                Books = author.Books.Select(b => new BookDto
+                Books = author.Books.Select(b => new BookSummaryDto
                 {
                     BookId = b.BookId,
-                    Name = b.Name
+                    Name = b.Name,
+                    Author = new AuthorDto
+                    {
+                        AuthorId = b.Author.AuthorId,
+                        FirstName = b.Author.FirstName,
+                        LastName = b.Author.LastName
+                    },
+                    CoverImagePath = b.CoverImagePath,
+                    PublicationDate = b.PublicationDate,
+                    Price = b.Price,
+                    Genres = b.Genres.Select(bg => new GenreDto
+                    {
+                        GenreId = bg.GenreId,
+                        GenreName = bg.GenreName
+                    }).ToList(),
                 }).ToList()
             };
 
@@ -83,6 +99,7 @@ namespace CapstoneBack.Controllers
 
 
         // POST: api/Author
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPost]
         public async Task<ActionResult<AuthorReadDto>> CreateAuthor([FromForm] AuthorCreateDto authorDto, IFormFile? imageFile)
         {
@@ -109,7 +126,7 @@ namespace CapstoneBack.Controllers
                 DateOfBirth = createdAuthor.DateOfBirth,
                 Bio = createdAuthor.Bio,
                 ImagePath = createdAuthor.ImagePath,
-                Books = new List<BookDto>() // Inizialmente vuoto, poiché l'autore è appena stato creato
+                Books = new List<BookSummaryDto>() // Inizialmente vuoto, poiché l'autore è appena stato creato
             };
 
             return CreatedAtAction(nameof(GetAuthorById), new { id = createdAuthor.AuthorId }, authorReadDto);
@@ -117,6 +134,7 @@ namespace CapstoneBack.Controllers
 
 
         // PUT: api/Author/{id}
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAuthor(int id, [FromForm] AuthorCreateDto authorDto, IFormFile? imageFile)
         {
@@ -155,6 +173,7 @@ namespace CapstoneBack.Controllers
 
 
         // DELETE: api/Author/{id}
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthor(int id)
         {

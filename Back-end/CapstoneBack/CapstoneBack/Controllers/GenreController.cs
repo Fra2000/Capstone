@@ -5,10 +5,11 @@ using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
 using CapstoneBack.Models.DTO.GenreDTO;
 using CapstoneBack.Models.DTO.BookDTO; // Importa il DTO corretto
+using CapstoneBack.Models.DTO.AuthorDTO;
 
 namespace CapstoneBack.Controllers
 {
-    
+    [Authorize(Roles = "Admin,SuperAdmin")]
     [ApiController]
     [Route("api/[controller]")]
     public class GenreController : ControllerBase
@@ -31,7 +32,7 @@ namespace CapstoneBack.Controllers
                 GenreId = g.GenreId,
                 GenreName = g.GenreName,
                 Books = g.BookGenres?.Any() == true
-                    ? g.BookGenres.Select(bg => new BookDto
+                    ? g.BookGenres.Select(bg => new BookSummaryDto
                     {
                         BookId = bg.BookId,
                         Name = bg.Book.Name
@@ -83,11 +84,25 @@ namespace CapstoneBack.Controllers
                 return NotFound();
             }
 
-            var books = genre.BookGenres?.Select(bg => new BookDto
+            var books = genre.BookGenres?.Select(bg => new BookSummaryDto
             {
                 BookId = bg.BookId,
-                Name = bg.Book.Name
-            }).ToList() ?? new List<BookDto>();
+                Name = bg.Book.Name,
+                Author = new AuthorDto
+                {
+                    AuthorId = bg.Book.Author.AuthorId,
+                    FirstName = bg.Book.Author.FirstName,
+                    LastName = bg.Book.Author.LastName
+                },
+                CoverImagePath = bg.Book.CoverImagePath,
+                PublicationDate = bg.Book.PublicationDate,
+                Price = bg.Book.Price,
+                Genres = bg.Book.BookGenres.Select(g => new GenreDto
+                {
+                    GenreId = g.Genre.GenreId,
+                    GenreName = g.Genre.GenreName
+                }).ToList()
+            }).ToList() ?? new List<BookSummaryDto>();
 
             var genreDto = new GenreReadDto
             {
@@ -98,6 +113,7 @@ namespace CapstoneBack.Controllers
 
             return Ok(genreDto);
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateGenre(int id, [FromBody] GenreCreateDto genreDto)

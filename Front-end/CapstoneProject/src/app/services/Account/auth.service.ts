@@ -89,5 +89,25 @@ export class AuthService {
     return requiredRoles.some(role => currentUserRoles.includes(role));
   }
 
+  // Metodo di registrazione per gli admin
+  registerAdmin(admin: any, imageFile: File | null): Observable<any> {
+    const formData: FormData = new FormData();
+
+    // Aggiungi i dati dell'admin al FormData
+    formData.append('firstName', admin.firstName);
+    formData.append('lastName', admin.lastName);
+    formData.append('username', admin.username);
+    formData.append('email', admin.email);
+    formData.append('password', admin.password);
+
+    // Aggiungi l'immagine solo se presente
+    if (imageFile) {
+      formData.append('imageFile', imageFile);
+    }
+
+    return this.http.post<any>(`${this.baseUrl}/register-admin`, formData);
+  }
+
+
 
 }

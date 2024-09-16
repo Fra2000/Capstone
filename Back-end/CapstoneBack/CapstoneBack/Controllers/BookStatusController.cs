@@ -2,9 +2,12 @@
 using CapstoneBack.Services.Interfaces;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CapstoneBack.Controllers
 {
+
+    [Authorize(Roles = "User")]
     [ApiController]
     [Route("api/[controller]")]
     public class BookStatusController : ControllerBase
@@ -17,6 +20,7 @@ namespace CapstoneBack.Controllers
         }
 
         // Ottieni tutti i libri con il loro stato per l'utente autenticato
+        
         [HttpGet("user-statuses")]
         public async Task<IActionResult> GetUserBookStatuses()
         {
@@ -37,6 +41,7 @@ namespace CapstoneBack.Controllers
         }
 
         // Aggiorna lo status di un libro per l'utente autenticato
+        
         [HttpPut("update-status")]
         public async Task<IActionResult> UpdateBookStatus(int bookId, string newStatus = null, int? currentPage = null)
         {

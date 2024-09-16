@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\images\\Account\\mentidevera.jpeg"
     },
     {
+      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\missile3.jpeg",
+      "PackagePath": "staticwebassets\\images\\Account\\missile3.jpeg"
+    },
+    {
       "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Account\\pettinecane.jpeg",
       "PackagePath": "staticwebassets\\images\\Account\\pettinecane.jpeg"
     },
@@ -43,6 +47,14 @@
     {
       "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\mentidevera.jpeg",
       "PackagePath": "staticwebassets\\images\\Author\\mentidevera.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\missile1.jpeg",
+      "PackagePath": "staticwebassets\\images\\Author\\missile1.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\missile2.jpeg",
+      "PackagePath": "staticwebassets\\images\\Author\\missile2.jpeg"
     },
     {
       "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\pettinecane.jpeg",
@@ -61,8 +73,12 @@
       "PackagePath": "staticwebassets\\images\\Book\\medicinalecane.jpg"
     },
     {
-      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\mentidevera.jpeg",
-      "PackagePath": "staticwebassets\\images\\Book\\mentidevera.jpeg"
+      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\pettinagatti.jpeg",
+      "PackagePath": "staticwebassets\\images\\Book\\pettinagatti.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\spiaggia1-min.jpg",
+      "PackagePath": "staticwebassets\\images\\Book\\spiaggia1-min.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.CapstoneBack.Microsoft.AspNetCore.StaticWebAssets.props",
