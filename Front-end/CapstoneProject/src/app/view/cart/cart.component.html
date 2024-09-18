@@ -1,0 +1,34 @@
+<div *ngIf="cart; else noCart">
+  <h2 class="mb-4">Carrello</h2>
+
+  <ul class="list-group">
+    <li *ngFor="let item of cart.cartItems" class="list-group-item d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <!-- Immagine del libro -->
+        <img
+          [src]="getCoverImagePath(item.coverImagePath)"
+          (error)="handleImageError($event)"
+          alt="Cover image of {{ item.bookName }}"
+          class="img-thumbnail me-3"
+          style="width: 100px; height: auto;"
+        />
+        <!-- Dettagli del libro -->
+        <div>
+          <h5 class="mb-1">{{ item.bookName }}</h5>
+          <p class="mb-0"><strong>Autore:</strong> {{ item.authorName }}</p>
+          <p class="mb-0"><strong>Quantità:</strong> {{ item.quantity }}</p>
+          <p class="mb-0"><strong>Prezzo per unità:</strong> {{ item.pricePerUnit | currency }}</p>
+          <p class="mb-0"><strong>Totale:</strong> {{ item.totalPrice | currency }}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="cart-total mt-4 text-end">
+    <h3>Totale Carrello: {{ cart.cartTotal | currency }}</h3>
+  </div>
+</div>
+
+<ng-template #noCart>
+  <p class="text-center">Il carrello è vuoto.</p>
+</ng-template>

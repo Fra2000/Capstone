@@ -1,8 +1,10 @@
+import { CartService } from './../../../services/cart.service';
 import { AuthService } from './../../../services/Account/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../../services/Book/book.service';
 import { Book } from '../../../interfaces/Book';
+import { UpdateCartItem } from '../../../interfaces/updateCartItem';
 
 @Component({
   selector: 'detail',
@@ -15,6 +17,7 @@ export class DetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
+    private cartService: CartService,
     public authService: AuthService,
     private router: Router
   ) { }
@@ -73,5 +76,16 @@ export class DetailComponent implements OnInit {
       });
     }
   }
+
+  addToCart(bookId: number): void {
+    const cartItem = { bookId, quantity: 1 };
+    this.cartService.addToCart(cartItem).subscribe(() => {
+      // Reindirizza alla home page dopo l'aggiunta al carrello
+      this.router.navigate(['/']);
+    }, error => {
+      console.error('Errore durante l\'aggiunta al carrello:', error);
+    });
+  }
+
 
 }

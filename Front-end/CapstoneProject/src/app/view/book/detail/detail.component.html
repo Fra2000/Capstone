@@ -41,6 +41,9 @@
 
         <!-- Mostra il pulsante di eliminazione solo agli admin -->
         <button *ngIf="authService.hasRole(['Admin', 'SuperAdmin'])" (click)="deleteBook()">Elimina Libro</button>
+        <button *ngIf="book.availableQuantity > 0" (click)="addToCart(book.bookId)" class="btn btn-primary mt-3">
+          Aggiungi al Carrello
+        </button>
       </div>
     </div>
   </div>

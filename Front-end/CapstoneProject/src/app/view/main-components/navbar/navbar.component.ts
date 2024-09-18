@@ -11,15 +11,17 @@ import { Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit, OnDestroy {
   isAuthenticated: boolean = false;
   isAdminOrSuperAdmin: boolean = false;
+  isUser: boolean = false; // Variabile per controllare se l'utente ha il ruolo "User"
   private authSubscription!: Subscription;
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // Sottoscrivi allo stato di autenticazione e specifica il tipo boolean per isAuth
+    // Sottoscrivi allo stato di autenticazione e ai ruoli dell'utente
     this.authSubscription = this.authService.isAuthenticated().subscribe((isAuth: boolean) => {
       this.isAuthenticated = isAuth;
       this.isAdminOrSuperAdmin = this.authService.hasRole(['Admin', 'SuperAdmin']);
+      this.isUser = this.authService.hasRole(['User']); // Controlla se l'utente ha il ruolo "User"
     });
   }
 
@@ -27,6 +29,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.isAuthenticated = false;
     this.isAdminOrSuperAdmin = false;
+    this.isUser = false; // Resetta anche lo stato dell'utente "User"
     this.router.navigate(['/login']);
   }
 
@@ -40,5 +43,4 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isLoginOrRegisterPage(): boolean {
     return this.router.url === '/login' || this.router.url === '/registration';
   }
-
 }

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">BookStore</a>
     <ul class="navbar-nav ms-auto d-flex flex-row">
-
+      <!-- Condizione per Admin o SuperAdmin -->
       <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
         <a class="nav-link" routerLink="/createBook">Create Book</a>
       </li>
@@ -16,6 +16,10 @@
         <a class="nav-link" routerLink="/registrationAdmin">Register Admin</a>
       </li>
 
+      <!-- Aggiungi il pulsante "Carrello" solo per gli utenti autenticati con ruolo User -->
+      <li class="nav-item" *ngIf="isAuthenticated && isUser">
+        <a class="nav-link" routerLink="/Cart">Carrello</a>
+      </li>
 
       <!-- Mostra il link di login solo se non si è nella pagina di login o registrazione -->
       <li class="nav-item" *ngIf="!isAuthenticated && !isLoginOrRegisterPage()">
