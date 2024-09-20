@@ -1,27 +1,40 @@
-<div class="form-group">
-  <label for="firstName">First Name</label>
-  <input type="text" id="firstName" [(ngModel)]="author.firstName" name="firstName" class="form-control" required>
-</div>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Modifica Autore</h2>
 
-<div class="form-group">
-  <label for="lastName">Last Name</label>
-  <input type="text" id="lastName" [(ngModel)]="author.lastName" name="lastName" class="form-control" required>
-</div>
+  <div class="card p-4 shadow-sm">
+    <div class="form-group mb-3">
+      <label for="firstName" class="form-label fs-5">Nome</label>
+      <input type="text" id="firstName" [(ngModel)]="author.firstName" name="firstName" class="form-control" required>
+    </div>
 
-<div class="form-group">
-  <label for="dateOfBirth">Date of Birth</label>
-  <input type="date" id="dateOfBirth" [(ngModel)]="formattedDateOfBirth" name="dateOfBirth" class="form-control" required>
-</div>
+    <div class="form-group mb-3">
+      <label for="lastName" class="form-label fs-5">Cognome</label>
+      <input type="text" id="lastName" [(ngModel)]="author.lastName" name="lastName" class="form-control" required>
+    </div>
 
-<div class="form-group">
-  <label for="bio">Bio</label>
-  <textarea id="bio" [(ngModel)]="author.bio" name="bio" class="form-control" required></textarea>
-</div>
+    <div class="form-group mb-3">
+      <label for="dateOfBirth" class="form-label fs-5">Data di nascita</label>
+      <input type="date" id="dateOfBirth" [(ngModel)]="formattedDateOfBirth" name="dateOfBirth" class="form-control" required>
+    </div>
 
-<div class="form-group">
-  <label for="imageFile">Author Image</label>
-  <input type="file" id="imageFile" (change)="onFileSelected($event)" class="form-control">
-  <img *ngIf="author.imagePath" [src]="authorService.getAuthorImagePath(author.imagePath)" (error)="authorService.handleImageError($event)" alt="Author Image" class="img-thumbnail mt-2" style="width: 150px;">
-</div>
+    <div class="form-group mb-3">
+      <label for="bio" class="form-label fs-5">Bio</label>
+      <textarea id="bio" [(ngModel)]="author.bio" name="bio" class="form-control" rows="4" required></textarea>
+    </div>
 
-<button (click)="updateAuthor()" class="btn btn-primary">Update Author</button>
+    <div class="form-group mb-3 ">
+      <label for="imageFile" class="form-label fs-5">Immagine dell'autore</label>
+      <input type="file" id="imageFile" (change)="onFileSelected($event)" class="form-control">
+      <img *ngIf="author.imagePath" [src]="authorService.getAuthorImagePath(author.imagePath)" (error)="authorService.handleImageError($event)" alt="Author Image" class="img-thumbnail mt-2" style="width: 150px;">
+    </div>
+
+
+    <button type="button" (click)="updateAuthor()" class="buttonAdd mt-2 m-auto"> <span class="button__text">Modifica</span>
+      <span class="button__icon ps-2 pt-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+          <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+        </svg>
+      </span></button>
+
+  </div>
+</div>

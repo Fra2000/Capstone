@@ -1,0 +1,70 @@
+$navbar-bg: #f5deb3; // Colore di sfondo delle vecchie pagine
+$text-color: #8b4513; // Marrone scuro per il testo
+$hover-color: #a0522d; // Colore per l'effetto hover
+
+.book-card {
+  max-width: 100%;
+  margin: auto;
+  border: 2px solid $text-color; // Bordi marroni scuri
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: $navbar-bg; // Sfondo giallo
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .img-fluid {
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .card-body {
+    padding: 20px;
+    background-color: $navbar-bg; // Sfondo giallo simile alle vecchie pagine
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: $text-color; // Testo marrone scuro
+    }
+
+    .card-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: $text-color; // Testo marrone scuro
+
+      &.text-muted {
+        color: darken($navbar-bg, 20%); // Testo leggermente più scuro
+      }
+    }
+
+    a.text-decoration-none {
+      color: $text-color;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .badge {
+      font-size: 0.9rem;
+      margin-right: 5px;
+      background-color: $text-color; // Badge con lo stesso colore marrone scuro
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+
+  }
+}

@@ -16,9 +16,7 @@
         <div>
           <h5 class="mb-1">{{ item.bookName }}</h5>
           <p class="mb-0"><strong>Autore:</strong> {{ item.authorName }}</p>
-          <p class="mb-0"><strong>Quantità:</strong> {{ item.quantity }}</p>
-          <p class="mb-0"><strong>Prezzo per unità:</strong> {{ item.pricePerUnit | currency }}</p>
-          <p class="mb-0"><strong>Totale:</strong> {{ item.totalPrice | currency }}</p>
+          <p class="mb-0"><strong>Prezzo</strong> {{ item.pricePerUnit | currency }}</p>
         </div>
       </div>
     </li>

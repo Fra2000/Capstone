@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthorRead } from '../../../interfaces/Author'; // Assicurati che AuthorRead sia importato correttamente
 import { AuthorService } from '../../../services/Author/author.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { AuthorService } from '../../../services/Author/author.service';
 })
 export class DeleteAuthorComponent implements OnInit {
   authorId!: number;
+  author!: AuthorRead;
 
   constructor(
     private authorService: AuthorService,
@@ -19,6 +21,16 @@ export class DeleteAuthorComponent implements OnInit {
   ngOnInit(): void {
     // Ottieni l'ID dell'autore dalla route
     this.authorId = Number(this.route.snapshot.paramMap.get('id'));
+
+    // Carica i dettagli dell'autore tramite l'ID
+    this.authorService.getAuthorById(this.authorId).subscribe(
+      (data: AuthorRead) => {
+        this.author = data; // Assegna i dettagli dell'autore all'oggetto author
+      },
+      (error) => {
+        console.error('Errore nel recupero dell\'autore:', error);
+      }
+    );
   }
 
   // Metodo per confermare l'eliminazione

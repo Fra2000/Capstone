@@ -1,33 +1,38 @@
-<nav class="navbar navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-custom">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">BookStore</a>
-    <ul class="navbar-nav ms-auto d-flex flex-row">
-      <!-- Condizione per Admin o SuperAdmin -->
-      <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
-        <a class="nav-link" routerLink="/createBook">Create Book</a>
-      </li>
-      <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
-        <a class="nav-link" routerLink="/allAuthors">All Authors</a>
-      </li>
-      <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
-        <a class="nav-link" routerLink="/allGenre">All Genres</a>
-      </li>
-      <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
-        <a class="nav-link" routerLink="/registrationAdmin">Register Admin</a>
-      </li>
-
-      <!-- Aggiungi il pulsante "Carrello" solo per gli utenti autenticati con ruolo User -->
-      <li class="nav-item" *ngIf="isAuthenticated && isUser">
-        <a class="nav-link" routerLink="/Cart">Carrello</a>
-      </li>
-
-      <!-- Mostra il link di login solo se non si è nella pagina di login o registrazione -->
-      <li class="nav-item" *ngIf="!isAuthenticated && !isLoginOrRegisterPage()">
-        <a class="nav-link" routerLink="/login">Login</a>
-      </li>
-      <li class="nav-item" *ngIf="isAuthenticated">
-        <a class="nav-link pointer" (click)="onLogout()">Logout</a>
-      </li>
-    </ul>
+    <!-- Pulsante toggle per il collapse della navbar -->
+    <button class="navbar-toggler border border-3 bord" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- Condizione per Admin o SuperAdmin -->
+        <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
+          <a class="nav-link" routerLink="/createBook"><strong>Crea un libro</strong></a>
+        </li>
+        <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
+          <a class="nav-link" routerLink="/allAuthors"><strong>Tutti gli autori</strong></a>
+        </li>
+        <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
+          <a class="nav-link" routerLink="/allGenre"><strong>Tutti i generi</strong></a>
+        </li>
+        <li class="nav-item" *ngIf="isAdminOrSuperAdmin">
+          <a class="nav-link" routerLink="/registrationAdmin"><strong>Registrazione admin</strong></a>
+        </li>
+        <!-- Carrello per utenti autenticati -->
+        <li class="nav-item" *ngIf="isAuthenticated && isUser">
+          <a class="nav-link" routerLink="/Cart"><strong>Carrello</strong></a>
+        </li>
+        <!-- Login o Logout -->
+        <li class="nav-item" *ngIf="!isAuthenticated && !isLoginOrRegisterPage()">
+          <a class="nav-link" routerLink="/login"><strong>Login</strong></a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a class="nav-link pointer" (click)="onLogout()"><strong>Logout</strong></a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

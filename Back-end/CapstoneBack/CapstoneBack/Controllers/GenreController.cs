@@ -9,7 +9,7 @@ using CapstoneBack.Models.DTO.AuthorDTO;
 
 namespace CapstoneBack.Controllers
 {
-    [Authorize(Roles = "Admin,SuperAdmin")]
+    
     [ApiController]
     [Route("api/[controller]")]
     public class GenreController : ControllerBase
@@ -21,7 +21,7 @@ namespace CapstoneBack.Controllers
             _genreService = genreService;
         }
 
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GenreReadDto>>> GetAllGenres()
         {
@@ -47,6 +47,7 @@ namespace CapstoneBack.Controllers
 
 
         // POST: api/Genre
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPost]
         public async Task<ActionResult<GenreReadDto>> CreateGenre([FromBody] GenreCreateDto genreDto)
         {
@@ -114,7 +115,7 @@ namespace CapstoneBack.Controllers
             return Ok(genreDto);
         }
 
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateGenre(int id, [FromBody] GenreCreateDto genreDto)
         {
@@ -142,7 +143,7 @@ namespace CapstoneBack.Controllers
 
             return Ok(genreReadDto);
         }
-
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGenre(int id)
         {

@@ -1,7 +1,28 @@
-<div class="container mt-4">
-  <h2>Conferma Eliminazione</h2>
-  <p>Sei sicuro di voler eliminare questo autore?</p>
+<div class="container mt-5">
+  <div class="card p-4 shadow-lg">
+    <h1 class="text-center mb-4 text">Conferma Eliminazione</h1>
+    <p class="text-center mt-3 fs-5 text">
+      Sei sicuro di voler eliminare l'autore
+      <strong class="text fs-5">{{ author.firstName }} {{ author.lastName }}</strong>?
+    </p>
 
-  <button class="btn btn-danger" (click)="confirmDelete()">Conferma</button>
-  <button class="btn btn-secondary" (click)="cancel()">Annulla</button>
+    <div class="d-flex justify-content-center mt-4">
+      <button class="buttonAdd me-2" (click)="confirmDelete()">
+        <span class="button__text">Elimina</span>
+        <span class="button__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+            <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+          </svg>
+        </span>
+      </button>
+      <button class="buttonAdd" (click)="cancel()">
+        <span class="button__text">Annulla</span>
+        <span class="button__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg mt-1 ms-1">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
 </div>

@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./view/account/login/login.module').then(m => m.LoginModule) },
   { path: 'logout', loadChildren: () => import('./view/account/logout/logout.module').then(m => m.LogoutModule) },
   { path: 'detail/:id', loadChildren: () => import('./view/book/detail/detail.module').then(m => m.DetailModule) },
-  { path: 'update', loadChildren: () => import('./view/book/update/update.module').then(m => m.UpdateModule) },
   { path: 'allAuthors', loadChildren: () => import('./view/author/allAuthor/all.module').then(m => m.AllModule) },
   { path: 'detailsAuthor/:id', loadChildren: () => import('./view/author/detailAuthor/details.module').then(m => m.DetailsModule) },
   { path: 'allGenre', loadChildren: () => import('./view/genre/allgenre/allgenre.module').then(m => m.AllgenreModule) },

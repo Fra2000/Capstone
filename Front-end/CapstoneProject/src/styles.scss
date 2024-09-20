@@ -1,4 +1,168 @@
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 .fs-7 {
-  font-size: 5rem !important;
+  font-size: 1.05rem !important;
+}
+
+.fs-8 {
+  font-size: 1.1rem;
+}
+
+$navbar-bg: #f5deb3; // Colore di sfondo delle vecchie pagine
+$text-color: #8b4513; // Marrone scuro per il testo
+$hover-color: #a0522d; // Colore per l'effetto hover
+
+
+
+
+body {
+ background-color:blanchedalmond !important;
+
+}
+
+.ButtonDetails {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffff;
+  gap: 10px;
+  font-weight: bold;
+  border: 3px solid #ffffff4d;
+  outline: none;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+.icon {
+  width: 8rem;
+  height: 2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.ButtonDetails:hover {
+  transform: scale(1.05);
+  border-color: #fff9;
+}
+
+.ButtonDetails:hover .icon {
+  transform: translate(4px);
+}
+
+.ButtonDetails:hover::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+.ButtonDetails::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+
+  60% {
+    left: 100%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+
+
+
+/* --- */
+.buttonAdd {
+  position: relative;
+  width: 150px;
+  padding-right: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid $text-color;
+  background-color: $navbar-bg;
+  overflow: hidden; /* Evita che il contenuto fuoriesca */
+}
+
+.buttonAdd, .button__icon, .button__text {
+  transition: all 0.3s ease-in-out; /* Smooth transitions */
+}
+
+.buttonAdd .button__text {
+  transform: translateX(0); /* Partenza del testo senza offset */
+  color: $text-color;
+  font-weight: 600;
+  line-height: 1;
+  flex-grow: 1; /* Assicura che il testo occupi tutto lo spazio disponibile */
+  text-align: center; /* Centra il testo */
+  padding: 0 10px;
+}
+
+.buttonAdd .button__icon {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 40px;
+  background-color: $hover-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonAdd .svg {
+  width: 30px;
+  stroke: #fff;
+}
+
+.buttonAdd:hover {
+  background: $hover-color;
+}
+
+.buttonAdd:hover .button__text {
+  color: transparent; /* Nascondi il testo al passaggio del mouse */
+}
+
+.buttonAdd:hover .button__icon {
+  width: 100%; /* L'icona si espande fino a coprire tutto il pulsante */
+  right: 0;
+}
+
+
+.cursor{
+  cursor: pointer;
+}
+
+.btn-select {
+  background-color: #f5deb3; /* Colore di sfondo personalizzato */
+  color: #8b4513; /* Colore del testo personalizzato */
+
+  &:hover {
+    background-color: #a0522d; /* Colore di sfondo al passaggio del mouse */
+    color: white;
+  }
+}
+
+.dropdown-menu li:hover {
+  background-color: #a0522d; /* Colore di sfondo al passaggio del mouse sulle opzioni */
 }

@@ -1,30 +1,41 @@
 <div class="container mt-4">
-  <h2>Crea Nuovo Autore</h2>
+  <div class="card author-card p-4">
+    <h2 class="text-center mb-4 text">Aggiungi Nuovo Autore</h2>
 
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input type="text" id="firstName" [(ngModel)]="author.firstName" name="firstName" class="form-control" required>
+    <div class="form-group mb-3">
+      <label for="firstName" class="form-label fs-5">Nome</label>
+      <input type="text" id="firstName" [(ngModel)]="author.firstName" name="firstName" class="form-control" required placeholder="Inserisci il nome">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="lastName" class="form-label fs-5">Cognome</label>
+      <input type="text" id="lastName" [(ngModel)]="author.lastName" name="lastName" class="form-control" required placeholder="Inserisci il cognome">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="dateOfBirth" class="form-label fs-5">Data di Nascita</label>
+      <input type="date" id="dateOfBirth" [(ngModel)]="author.dateOfBirth" name="dateOfBirth" class="form-control" required placeholder="Seleziona la data di nascita">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="bio" class="form-label fs-5">Bio</label>
+      <textarea id="bio" [(ngModel)]="author.bio" name="bio" class="form-control" required placeholder="Scrivi una breve biografia"></textarea>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="imageFile" class="form-label fs-5">Immagine dell'autore</label>
+      <input type="file" id="imageFile" (change)="onFileSelected($event)" class="form-control">
+    </div>
+
+    <button type="button"  class="buttonAdd m-auto mt-3" (click)="createAuthor()">
+      <span class="button__text fs-5">Aggiungi</span>
+      <span class="button__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+          <line y2="19" y1="5" x2="12" x1="12"></line>
+          <line y2="12" y1="12" x2="19" x1="5"></line>
+        </svg>
+      </span>
+    </button>
+
   </div>
-
-  <div class="form-group">
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" [(ngModel)]="author.lastName" name="lastName" class="form-control" required>
-  </div>
-
-  <div class="form-group">
-    <label for="dateOfBirth">Date of Birth</label>
-    <input type="date" id="dateOfBirth" [(ngModel)]="author.dateOfBirth" name="dateOfBirth" class="form-control" required>
-  </div>
-
-  <div class="form-group">
-    <label for="bio">Bio</label>
-    <textarea id="bio" [(ngModel)]="author.bio" name="bio" class="form-control" required></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="imageFile">Author Image</label>
-    <input type="file" id="imageFile" (change)="onFileSelected($event)" class="form-control">
-  </div>
-
-  <button (click)="createAuthor()" class="btn btn-primary mt-3">Crea Autore</button>
 </div>

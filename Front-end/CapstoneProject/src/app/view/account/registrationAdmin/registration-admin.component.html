@@ -1,113 +1,123 @@
 <div class="container mt-5">
-  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="form-group">
-      <label for="firstName">First Name:</label>
-      <input
-        type="text"
-        id="firstName"
-        class="form-control"
-        formControlName="firstName"
-        placeholder="Enter first name"
-      />
-      <div
-        *ngIf="registrationForm.get('firstName')?.errors?.['required'] && registrationForm.get('firstName')?.touched"
-        class="text-danger"
-      >
-        First name is required.
+  <div class="card p-4 shadow-lg form-container">
+    <h2 class="text-center mb-4 text">Registrazione Admin</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group mb-3">
+        <label for="firstName" class="form-label fs-5">Nome:</label>
+        <input
+          type="text"
+          id="firstName"
+          class="form-control"
+          formControlName="firstName"
+          placeholder="Inserisci il nome"
+        />
+        <div
+          *ngIf="registrationForm.get('firstName')?.errors?.['required'] && registrationForm.get('firstName')?.touched"
+          class="text-danger"
+        >
+          Il nome è richiesto.
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="lastName">Last Name:</label>
-      <input
-        type="text"
-        id="lastName"
-        class="form-control"
-        formControlName="lastName"
-        placeholder="Enter last name"
-      />
-      <div
-        *ngIf="registrationForm.get('lastName')?.errors?.['required'] && registrationForm.get('lastName')?.touched"
-        class="text-danger"
-      >
-        Last name is required.
+      <div class="form-group mb-3">
+        <label for="lastName" class="form-label fs-5">Cognome:</label>
+        <input
+          type="text"
+          id="lastName"
+          class="form-control"
+          formControlName="lastName"
+          placeholder="Inserisci il cognome"
+        />
+        <div
+          *ngIf="registrationForm.get('lastName')?.errors?.['required'] && registrationForm.get('lastName')?.touched"
+          class="text-danger"
+        >
+          Il cognome è richiesto.
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        formControlName="username"
-        placeholder="Enter username"
-      />
-      <div
-        *ngIf="registrationForm.get('username')?.errors?.['required'] && registrationForm.get('username')?.touched"
-        class="text-danger"
-      >
-        Username is required.
+      <div class="form-group mb-3">
+        <label for="username" class="form-label fs-5">Username:</label>
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          formControlName="username"
+          placeholder="Inserisci username"
+        />
+        <div
+          *ngIf="registrationForm.get('username')?.errors?.['required'] && registrationForm.get('username')?.touched"
+          class="text-danger"
+        >
+          Username è richiesto.
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        class="form-control"
-        formControlName="email"
-        placeholder="Enter email"
-      />
-      <div
-        *ngIf="registrationForm.get('email')?.errors?.['required'] && registrationForm.get('email')?.touched"
-        class="text-danger"
-      >
-        Email is required.
+      <div class="form-group mb-3">
+        <label for="email" class="form-label fs-5">Email:</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Inserisci l'email"
+        />
+        <div
+          *ngIf="registrationForm.get('email')?.errors?.['required'] && registrationForm.get('email')?.touched"
+          class="text-danger"
+        >
+          L'email è richiesta.
+        </div>
+        <div
+          *ngIf="registrationForm.get('email')?.errors?.['email'] && registrationForm.get('email')?.touched"
+          class="text-danger"
+        >
+          Inserisci un'email valida.
+        </div>
       </div>
-      <div
-        *ngIf="registrationForm.get('email')?.errors?.['email'] && registrationForm.get('email')?.touched"
-        class="text-danger"
-      >
-        Please enter a valid email.
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        formControlName="password"
-        placeholder="Enter password"
-      />
-      <div
-        *ngIf="registrationForm.get('password')?.errors?.['required'] && registrationForm.get('password')?.touched"
-        class="text-danger"
-      >
-        Password is required.
+      <div class="form-group mb-3">
+        <label for="password" class="form-label fs-5">Password:</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Inserisci la password"
+        />
+        <div
+          *ngIf="registrationForm.get('password')?.errors?.['required'] && registrationForm.get('password')?.touched"
+          class="text-danger"
+        >
+          La password è richiesta.
+        </div>
+        <div
+          *ngIf="registrationForm.get('password')?.errors?.['minLength'] && registrationForm.get('password')?.touched"
+          class="text-danger"
+        >
+          La password deve avere almeno 6 caratteri.
+        </div>
       </div>
-      <div
-        *ngIf="registrationForm.get('password')?.errors?.['minLength'] && registrationForm.get('password')?.touched"
-        class="text-danger"
-      >
-        Password must be at least 6 characters.
+
+      <div class="form-group mb-3">
+        <label for="imageFile" class="form-label fs-5">Immagine del profilo (opzionale):</label>
+        <input
+          type="file"
+          id="imageFile"
+          class="form-control"
+          (change)="onFileSelected($event)"
+        />
       </div>
-    </div>
 
-    <!-- Campo per l'immagine -->
-    <div class="form-group">
-      <label for="imageFile">Profile Image (optional):</label>
-      <input
-        type="file"
-        id="imageFile"
-        class="form-control"
-        (change)="onFileSelected($event)"
-      />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Register</button>
-  </form>
+      <button type="submit" class="buttonAdd m-auto">
+        <span class="button__text">Registrati</span>
+        <span class="button__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+            <line y2="19" y1="5" x2="12" x1="12"></line>
+            <line y2="12" y1="12" x2="19" x1="5"></line>
+          </svg>
+        </span>
+      </button>
+    </form>
+  </div>
 </div>

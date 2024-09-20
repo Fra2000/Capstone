@@ -1,0 +1,96 @@
+$primary: #007bff;
+$navbar-bg: #f5deb3; // Colore di sfondo delle vecchie pagine
+$text-color: #8b4513; // Marrone scuro per il testo
+$hover-color: #a0522d; // Colore per l'effetto hover
+
+.container {
+  .card {
+    border: 2px solid $text-color; // Bordi marroni scuri
+    border-radius: 10px;
+    background-color: $navbar-bg; // Sfondo simile alle vecchie pagine
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: inline-block;
+
+    max-width: 100%; // Non supera mai il 100% della larghezza disponibile
+    width: calc(100% - 20px); // Aggiungi più larghezza per rendere le card più larghe
+    margin: 0 auto;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-container {
+      position: relative;
+      overflow: hidden;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      img {
+        display: block;
+        height: auto;
+        object-fit: contain;
+        min-height:250px;
+        width: 100%;
+      }
+    }
+
+
+    .card-body {
+      padding: 15px;
+      background-color: $navbar-bg; // Sfondo giallo simile alle vecchie pagine
+
+      .book-info {
+        .card-title {
+          font-weight: bold;
+          margin-bottom: 10px;
+          font-size: 1.2rem;
+          color: $text-color; // Testo marrone scuro
+        }
+
+        .card-text {
+          font-size: 0.9rem;
+          color: $text-color; // Testo marrone scuro
+
+          &.text-muted {
+            color: darken($navbar-bg, 20%); // Testo leggermente più scuro
+          }
+
+          .text-success {
+            font-weight: bold;
+            color: #228B22; // Verde scuro per il prezzo
+          }
+        }
+      }
+
+      a.btn, .ButtonDetails {
+        display: flex;
+
+
+        align-items: center;
+        justify-content: center;
+        color: $text-color;
+        padding: 8px 12px;
+        border: 1px solid $text-color;
+        border-radius: 5px;
+        background-color: lighten($navbar-bg, 10%); // Un tocco più chiaro del giallo caldo
+
+        &:hover {
+          background-color: darken($navbar-bg, 10%); // Sfondo più scuro al passaggio del mouse
+          color: #fff; // Testo bianco al passaggio del mouse
+        }
+
+        svg {
+          margin-left: 5px;
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+
+}
+
+

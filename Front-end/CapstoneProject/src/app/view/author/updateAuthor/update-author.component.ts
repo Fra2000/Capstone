@@ -36,10 +36,12 @@ export class UpdateAuthorComponent implements OnInit {
       (response: AuthorRead) => {
         this.author = response;
 
-        // Converti la data di nascita in formato yyyy-MM-dd solo per il binding dell'input
+        // Converti la data di nascita in formato yyyy-MM-dd senza spostamenti di fuso orario
         if (this.author.dateOfBirth) {
           const date = new Date(this.author.dateOfBirth);
-          this.formattedDateOfBirth = date.toISOString().split('T')[0]; // yyyy-MM-dd
+          const userTimezoneOffset = date.getTimezoneOffset() * 60000; // Ottieni l'offset del fuso orario in millisecondi
+          const correctedDate = new Date(date.getTime() - userTimezoneOffset); // Correggi l'offset
+          this.formattedDateOfBirth = correctedDate.toISOString().split('T')[0]; // yyyy-MM-dd
         }
       },
       (error) => {
@@ -47,6 +49,7 @@ export class UpdateAuthorComponent implements OnInit {
       }
     );
   }
+
 
   // Metodo per selezionare il file immagine
   onFileSelected(event: any): void {

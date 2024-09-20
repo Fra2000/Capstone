@@ -1,0 +1,53 @@
+$navbar-bg: #f5deb3;
+$text-color: #8b4513;
+
+.container {
+  .form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .card {
+    border: 2px solid $text-color;
+    border-radius: 10px;
+    background-color: $navbar-bg;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+
+      .form-label {
+        font-weight: bold;
+        color: $text-color;
+      }
+
+      .form-control {
+        border: 1px solid $text-color;
+        border-radius: 5px;
+        color: $text-color; // Colore del testo inserito dall'utente
+
+        &::placeholder {
+          color: $text-color; // Colore del placeholder
+          opacity: 1;
+        }
+
+        &:focus {
+          border-color: $text-color; // Colore del bordo durante il focus
+          box-shadow: 0 0 0 0.2rem rgba($text-color, 0.25); // Ombra personalizzata
+        }
+      }
+    }
+
+    .text {
+      color: $text-color;
+    }
+  }
+}
