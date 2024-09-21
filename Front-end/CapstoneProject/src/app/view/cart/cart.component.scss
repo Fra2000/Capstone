@@ -1,0 +1,35 @@
+$navbar-bg: #f5deb3;
+$text-color: #8b4513;
+$placeholder-color: #a9a9a9;
+
+.container {
+  .list-group-item {
+    border: 2px solid $text-color;
+    border-radius: 10px;
+    background-color: $navbar-bg !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+      width: 100px;
+      padding: 0;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  .cart-total {
+    h3 {
+      color: $text-color;
+    }
+  }
+}
+
+.text {
+  color: $text-color !important;
+}

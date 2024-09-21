@@ -1,32 +1,42 @@
-<div *ngIf="cart; else noCart">
-  <h2 class="mb-4">Carrello</h2>
-
-  <ul class="list-group">
-    <li *ngFor="let item of cart.cartItems" class="list-group-item d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
-        <!-- Immagine del libro -->
-        <img
-          [src]="getCoverImagePath(item.coverImagePath)"
-          (error)="handleImageError($event)"
-          alt="Cover image of {{ item.bookName }}"
-          class="img-thumbnail me-3"
-          style="width: 100px; height: auto;"
-        />
-        <!-- Dettagli del libro -->
-        <div>
-          <h5 class="mb-1">{{ item.bookName }}</h5>
-          <p class="mb-0"><strong>Autore:</strong> {{ item.authorName }}</p>
-          <p class="mb-0"><strong>Prezzo</strong> {{ item.pricePerUnit | currency }}</p>
-        </div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h2 class="text-center mb-4 text">Carrello</h2>
+      <ul class="list-group">
+        <li *ngFor="let item of cart?.cartItems" class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-center shadow-sm p-3 mb-3 bg-body rounded">
+          <div class="d-flex align-items-center flex-column flex-md-row text-center text-md-start">
+            <img
+              [src]="getCoverImagePath(item.coverImagePath)"
+              (error)="handleImageError($event)"
+              alt="Cover image of {{ item.bookName }}"
+              class="img-thumbnail mb-3 mb-md-0 me-md-3"
+              style="width: 100px; height: auto;"
+            />
+            <div class="text">
+              <h3 class="mb-1">{{ item.bookName }}</h3>
+              <p class="mb-0 fs-7"><strong class="fs-5">Prezzo:</strong> {{ item.pricePerUnit | currency:'EUR':'symbol' }}</p>
+            </div>
+          </div>
+          <!-- Manteniamo il tuo pulsante personalizzato -->
+          <button type="button" class="buttonAdd mt-3 mt-md-0" (click)="deleteFromCart(item)">
+            <span class="button__text">Elimina</span>
+            <span class="button__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+              </svg>
+            </span>
+          </button>
+        </li>
+      </ul>
+      <div class="cart-total my-4 text-center">
+        <h3>Totale Carrello: {{ cart?.cartTotal | currency:'EUR':'symbol' }}</h3>
       </div>
-    </li>
-  </ul>
-
-  <div class="cart-total mt-4 text-end">
-    <h3>Totale Carrello: {{ cart.cartTotal | currency }}</h3>
+    </div>
   </div>
 </div>
 
 <ng-template #noCart>
-  <p class="text-center">Il carrello è vuoto.</p>
+  <div class="text-center mt-5">
+    <p>Il carrello è vuoto.</p>
+  </div>
 </ng-template>

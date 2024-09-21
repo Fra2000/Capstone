@@ -53,19 +53,15 @@ export class CartComponent implements OnInit {
   }
 
   deleteFromCart(item: any): void {
-    if (item.deleteQuantity > 0) {
-      this.cartService.removeCartItem(item.userBookId, item.deleteQuantity).subscribe(() => {
-        // Aggiorna la quantità o rimuovi completamente l'articolo dal carrello
-        if (item.deleteQuantity >= item.quantity) {
-          this.cart!.cartItems = this.cart!.cartItems.filter(cartItem => cartItem.userBookId !== item.userBookId);
-        } else {
-          item.quantity -= item.deleteQuantity;
-          this.updateTotal(item); // Aggiorna il totale per l'articolo
-        }
-        this.calculateCartTotal(); // Aggiorna il totale del carrello
-      }, error => {
-        console.error('Errore durante l\'eliminazione dal carrello:', error);
-      });
-    }
+    this.cartService.removeCartItem(item.userBookId, 1).subscribe(() => {
+      // Rimuovi completamente l'articolo dal carrello
+      this.cart!.cartItems = this.cart!.cartItems.filter(cartItem => cartItem.userBookId !== item.userBookId);
+
+      // Ricalcola il totale del carrello
+      this.calculateCartTotal();
+    }, error => {
+      console.error('Errore durante l\'eliminazione dal carrello:', error);
+    });
   }
+
 }
