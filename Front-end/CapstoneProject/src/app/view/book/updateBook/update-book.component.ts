@@ -13,7 +13,10 @@ import { AuthorRead } from '../../../interfaces/Author';
   styleUrls: ['./update-book.component.scss']
 })
 export class UpdateBookComponent implements OnInit {
-  book: Partial<Book> = {};
+  book: Partial<Book> = {
+    publicationDate: new Date()
+  };
+  formattedPublicationDate: string = '';
   genres: Genre[] = [];
   authors: AuthorRead[] = [];
   selectedGenres: number[] = [];
@@ -36,6 +39,12 @@ export class UpdateBookComponent implements OnInit {
         this.book = book;
         this.authorId = this.book.author?.authorId || null;
         this.selectedGenres = this.book.genres?.map(g => g.genreId) || [];
+        if (this.book.publicationDate) {
+          const date = new Date(this.book.publicationDate);
+          const userTimezoneOffset = date.getTimezoneOffset() * 60000; // Ottieni l'offset del fuso orario in millisecondi
+          const correctedDate = new Date(date.getTime() - userTimezoneOffset); // Correggi l'offset
+          this.formattedPublicationDate = correctedDate.toISOString().split('T')[0]; // yyyy-MM-dd
+        }
       },
       error: (error) => console.error('Error fetching book:', error)
     });
@@ -79,14 +88,10 @@ export class UpdateBookComponent implements OnInit {
     formData.append('name', this.book.name || '');
     formData.append('authorId', this.authorId?.toString() || '');
 
-    const publicationDateString = this.book.publicationDate
-      ? (this.book.publicationDate instanceof Date
-        ? this.book.publicationDate.toISOString().split('T')[0]
-        : this.book.publicationDate)
-      : '';
-    formData.append('publicationDate', publicationDateString);
+    formData.append('publicationDate', this.formattedPublicationDate);
 
-    formData.append('price', this.book.price?.toString() || '');
+    const formattedPrice = this.book.price ? this.book.price.toString().replace(',', '.') : '';
+    formData.append('price', formattedPrice);
     formData.append('availableQuantity', this.book.availableQuantity?.toString() || '');
     formData.append('numberOfPages', this.book.numberOfPages?.toString() || '');
     formData.append('description', this.book.description || '');

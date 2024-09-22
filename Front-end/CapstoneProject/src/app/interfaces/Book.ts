@@ -9,7 +9,7 @@ export interface Book {
   author?: AuthorRead;
   coverImagePath: string;
   publicationDate: Date;
-  price: number;
+  price: string;
   availableQuantity: number;
   genres?: Genre[];
 }

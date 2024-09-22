@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
@@ -52,7 +50,7 @@ namespace CapstoneBack.Controllers
                 booksQuery = booksQuery.Where(b => b.AuthorId == authorId.Value);
             }
 
-            // Gestione dell'ordinamento
+        
             booksQuery = orderBy switch
             {
                 "PublicationDate" => ascending
@@ -67,7 +65,7 @@ namespace CapstoneBack.Controllers
                 "Price" => ascending
                     ? booksQuery.OrderBy(b => b.Price)
                     : booksQuery.OrderByDescending(b => b.Price),
-                _ => ascending
+                    _ => ascending
                     ? booksQuery.OrderBy(b => b.Name)
                     : booksQuery.OrderByDescending(b => b.Name),
             };
@@ -104,7 +102,7 @@ namespace CapstoneBack.Controllers
 
 
 
-        // POST: api/Book
+        
         [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPost]
         public async Task<ActionResult<BookReadDto>> CreateBook([FromForm] BookCreateDto bookDto, IFormFile? coverImage)
@@ -134,8 +132,8 @@ namespace CapstoneBack.Controllers
             }
             else
             {
-                // Usa un'immagine di default
-                imagePath = Path.Combine("images", "Book", "default.png"); // Assicurati che questo file esista
+                
+                imagePath = Path.Combine("images", "Book", "default.png");
             }
 
             var book = new Book
@@ -157,10 +155,10 @@ namespace CapstoneBack.Controllers
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
 
-            // Carica l'autore dal database per evitare NullReferenceException
+           
             book = await _context.Books
-                .Include(b => b.Author)  // Include l'autore
-                .Include(b => b.BookGenres).ThenInclude(bg => bg.Genre)  // Include i generi
+                .Include(b => b.Author)  
+                .Include(b => b.BookGenres).ThenInclude(bg => bg.Genre)  
                 .FirstOrDefaultAsync(b => b.BookId == book.BookId);
 
             var bookReadDto = new BookReadDto
@@ -202,7 +200,7 @@ namespace CapstoneBack.Controllers
 
             if (book == null)
             {
-                return NotFound(); // Restituisce 404 se il libro non viene trovato
+                return NotFound(); 
             }
 
             var bookReadDto = new BookReadDto
@@ -228,7 +226,7 @@ namespace CapstoneBack.Controllers
                 }).ToList()
             };
 
-            return Ok(bookReadDto); // Restituisce 200 OK con i dati del libro
+            return Ok(bookReadDto);
         }
 
 
@@ -247,12 +245,12 @@ namespace CapstoneBack.Controllers
                 return NotFound();
             }
 
-            // Aggiorna solo i campi modificati
+            
             existingBook.Name = bookDto.Name ?? existingBook.Name;
             existingBook.NumberOfPages = bookDto.NumberOfPages ?? existingBook.NumberOfPages;
             existingBook.Description = bookDto.Description ?? existingBook.Description;
 
-            // Gestione dell'ID dell'autore
+           
             if (bookDto.AuthorId.HasValue)
             {
                 var author = await _context.Authors.FindAsync(bookDto.AuthorId.Value);
@@ -270,10 +268,10 @@ namespace CapstoneBack.Controllers
                 existingBook.AvailableQuantity = bookDto.AvailableQuantity.Value;
             }
 
-            // Gestione dell'immagine di copertina
+           
             if (coverImage != null && coverImage.Length > 0)
             {
-                // Prima di cambiare l'immagine, controlla se quella attuale non è l'immagine di default
+                
                 if (!string.IsNullOrEmpty(existingBook.CoverImagePath) && !existingBook.CoverImagePath.EndsWith("default.png"))
                 {
                     var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", existingBook.CoverImagePath);
@@ -283,7 +281,7 @@ namespace CapstoneBack.Controllers
                     }
                 }
 
-                // Carica la nuova immagine
+               
                 var imagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Book");
                 if (!Directory.Exists(imagesPath))
                 {
@@ -297,11 +295,11 @@ namespace CapstoneBack.Controllers
                     await coverImage.CopyToAsync(stream);
                 }
 
-                // Aggiorna correttamente il percorso dell'immagine
+                
                 existingBook.CoverImagePath = Path.Combine("images", "Book", fileName);
             }
 
-            // Gestione dei generi
+            
             if (bookDto.GenreIds != null && bookDto.GenreIds.Any())
             {
                 existingBook.BookGenres.Clear();
@@ -322,7 +320,7 @@ namespace CapstoneBack.Controllers
 
             await _context.SaveChangesAsync();
 
-            // Preparazione della risposta DTO
+           
             var bookReadDto = new BookReadDto
             {
                 BookId = existingBook.BookId,
@@ -335,7 +333,7 @@ namespace CapstoneBack.Controllers
                     FirstName = existingBook.Author.FirstName,
                     LastName = existingBook.Author.LastName
                 },
-                CoverImagePath = existingBook.CoverImagePath,  // Corretto per mostrare l'immagine aggiornata
+                CoverImagePath = existingBook.CoverImagePath,  
                 PublicationDate = existingBook.PublicationDate,
                 Price = existingBook.Price,
                 AvailableQuantity = existingBook.AvailableQuantity,
@@ -365,7 +363,7 @@ namespace CapstoneBack.Controllers
                 return NotFound();
             }
 
-            // Controlla se l'immagine è diversa dall'immagine di default
+            
             if (!string.IsNullOrEmpty(book.CoverImagePath) && !book.CoverImagePath.EndsWith("default.png"))
             {
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", book.CoverImagePath);

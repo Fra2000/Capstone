@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
-using CapstoneBack.Models.DTO.AuthorDTO; // Assicurati di includere il namespace per il DTO
+using CapstoneBack.Models.DTO.AuthorDTO; 
 using CapstoneBack.Models.DTO.BookDTO;
 using CapstoneBack.Models.DTO.GenreDTO;
 
@@ -14,7 +12,6 @@ namespace CapstoneBack.Controllers
     
     [ApiController]
     [Route("api/[controller]")]
-      // Assicura che solo gli admin possano accedere a queste rotte
     public class AuthorController : ControllerBase
     {
         private readonly IAuthorService _authorService;
@@ -28,14 +25,14 @@ namespace CapstoneBack.Controllers
 
 
 
-        // GET: api/Author
+        
         [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AuthorReadDto>>> GetAllAuthors()
         {
             var authors = await _authorService.GetAllAuthorsAsync();
 
-            // Mappa ciascun autore in un DTO, senza includere i libri
+            
             var authorDtos = authors.Select(author => new AuthorReadDto
             {
                 AuthorId = author.AuthorId,
@@ -43,7 +40,7 @@ namespace CapstoneBack.Controllers
                 LastName = author.LastName,
                 DateOfBirth = author.DateOfBirth,
                 ImagePath = author.ImagePath,
-                Books = new List<BookSummaryDto>()  // Manteniamo una lista vuota per i libri
+                Books = new List<BookSummaryDto>()  
             }).ToList();
 
             return Ok(authorDtos);
@@ -51,7 +48,7 @@ namespace CapstoneBack.Controllers
 
 
 
-        // GET: api/Author/{id}
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<AuthorReadDto>> GetAuthorById(int id)
         {
@@ -96,9 +93,6 @@ namespace CapstoneBack.Controllers
         }
 
 
-
-
-        // POST: api/Author
         [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPost]
         public async Task<ActionResult<AuthorReadDto>> CreateAuthor([FromForm] AuthorCreateDto authorDto, IFormFile? imageFile)
@@ -133,7 +127,7 @@ namespace CapstoneBack.Controllers
         }
 
 
-        // PUT: api/Author/{id}
+        
         [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAuthor(int id, [FromForm] AuthorCreateDto authorDto, IFormFile? imageFile)
@@ -172,7 +166,7 @@ namespace CapstoneBack.Controllers
 
 
 
-        // DELETE: api/Author/{id}
+        
         [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthor(int id)

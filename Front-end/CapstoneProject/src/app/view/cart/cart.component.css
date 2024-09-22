@@ -1,0 +1,28 @@
+.container .list-group-item {
+  border: 2px solid #8b4513;
+  border-radius: 10px;
+  background-color: #f5deb3 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.container .list-group-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+.container .list-group-item img {
+  width: 100px;
+  padding: 0;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.container .cart-total h3 {
+  color: #8b4513;
+}
+.container .img-thumbnail {
+  border: 2px solid #8b4513;
+}
+
+.text {
+  color: #8b4513 !important;
+}/*# sourceMappingURL=cart.component.css.map */

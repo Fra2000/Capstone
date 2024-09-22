@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CapstoneBack.Services.Interfaces;
-using CapstoneBack.Models.DTO;
-using System.Threading.Tasks;
 using System.Security.Claims;
 using CapstoneBack.Models.DTO.WishlistDTO;
 using Microsoft.AspNetCore.Authorization;
@@ -20,7 +18,7 @@ namespace CapstoneBack.Controllers
             _wishlistService = wishlistService;
         }
 
-        // POST: api/Wishlist
+      
         [HttpPost]
         public async Task<IActionResult> AddToWishlist([FromBody] WishlistCreateDto wishlistDto)
         {
@@ -29,8 +27,7 @@ namespace CapstoneBack.Controllers
             return CreatedAtAction(nameof(GetWishlistItem), new { id = wishlistItem.WishlistId }, wishlistItem);
         }
 
-        // GET: api/Wishlist/{id}
-        // GET: api/Wishlist/{id}
+       
         [HttpGet("{id}")]
         public async Task<IActionResult> GetWishlistItem(int id)
         {
@@ -43,7 +40,7 @@ namespace CapstoneBack.Controllers
         }
 
 
-        // GET: api/Wishlist
+       
         [HttpGet]
         public async Task<IActionResult> GetAllWishlistItems()
         {
@@ -52,7 +49,7 @@ namespace CapstoneBack.Controllers
             return Ok(wishlistItems);
         }
 
-        // PUT: api/Wishlist/{id}
+      
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateWishlistItem(int id, [FromBody] WishlistUpdateDto updateDto)
         {
@@ -65,7 +62,7 @@ namespace CapstoneBack.Controllers
             return Ok(updatedWishlistItem);
         }
 
-        // DELETE: api/Wishlist/{id}
+       
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveFromWishlist(int id)
         {

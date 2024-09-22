@@ -10,13 +10,14 @@
             class="card-img-top img-fluid"
           />
         </div>
-        <div class="card-body d-flex flex-column justify-content-between">
+        <div class="card-body d-flex flex-column justify-content-between p-1 pb-2">
           <div class="book-info">
             <h5 class="card-title fs-4">{{ book.name }}</h5>
-            <p class="card-text mb-1 fs-7"><strong>Autore: </strong> {{ book.author?.firstName }} {{ book.author?.lastName }}</p>
-            <p class="card-text mb-0 fs-7"><strong>Data di pubblicazione:</strong> </p>
-            <p class="card-text fs-7">{{ book.publicationDate | date: 'dd MMMM yyyy':'':'it' }}</p>
-            <p class="card-text fs-7"><strong>Prezzo: </strong> <span class="card-text fs-5">{{ book.price | currency:'EUR':'symbol' }}</span></p>
+            <p class="card-text fs-7 author mb-0"><strong>Autore: </strong></p>
+            <p class="card-text mb-1 fs-7">{{ book.author?.firstName }} {{ book.author?.lastName }}</p>
+            <p class="card-text mb-0 fs-7 publication-date-label"><strong>Data di pubblicazione:</strong> </p>
+            <p class="card-text fs-7 publication-date">{{ book.publicationDate | date: 'dd MMMM yyyy':'':'it' }}</p>
+            <p class="card-text fs-7 price"><strong>Prezzo: </strong> <span class="card-text fs-5">{{ book.price | currency:'EUR':'symbol' }}</span></p>
           </div>
           <div class="mt-3">
             <a [routerLink]="['/detail', book.bookId]" class="m-auto icon ButtonDetails text-decoration-none fs-7">

@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CapstoneBack.Services.Interfaces;
-using CapstoneBack.Models.DTO;
-using System.Threading.Tasks;
 using System.Security.Claims;
 using CapstoneBack.Models.DTO.ReviewDTO;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CapstoneBack.Controllers
 {
-    [Authorize(Roles = "User")]
+    
     [ApiController]
     [Route("api/[controller]")]
     public class ReviewController : ControllerBase
@@ -21,17 +19,17 @@ namespace CapstoneBack.Controllers
             _reviewService = reviewService;
         }
 
-        // POST: api/Review
+        [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> AddReview([FromBody] ReviewCreateDto reviewDto)
         {
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);  // Assicurati che l'utente sia autenticato
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var reviewReadDto = await _reviewService.AddReviewAsync(userId, reviewDto);
             return CreatedAtAction(nameof(GetReview), new { id = reviewReadDto.UserReviewId }, reviewReadDto);
         }
 
-        // GET: api/Review/{id}
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetReview(int id)
         {
@@ -43,7 +41,7 @@ namespace CapstoneBack.Controllers
             return Ok(review);
         }
 
-        // GET: api/Review/book/{bookId}
+        
         [HttpGet("book/{bookId}")]
         public async Task<IActionResult> GetReviewsByBookId(int bookId)
         {
@@ -55,7 +53,7 @@ namespace CapstoneBack.Controllers
             return Ok(reviews);
         }
 
-        // GET: api/Review/user/{userId}
+        
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetReviewsByUserId(int userId)
         {
@@ -67,7 +65,7 @@ namespace CapstoneBack.Controllers
             return Ok(reviews);
         }
 
-        // PUT: api/Review/{reviewId}
+        
         [HttpPut("{reviewId}")]
         public async Task<IActionResult> UpdateReview(int reviewId, [FromBody] ReviewCreateDto reviewDto)
         {
@@ -85,7 +83,7 @@ namespace CapstoneBack.Controllers
         }
 
 
-        // DELETE: api/Review/{id}
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReview(int id)
         {

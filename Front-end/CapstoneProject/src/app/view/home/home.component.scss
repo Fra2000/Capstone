@@ -11,10 +11,11 @@ $hover-color: #a0522d; // Colore per l'effetto hover
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    display: inline-block;
-
-    max-width: 100%; // Non supera mai il 100% della larghezza disponibile
-    width: calc(100% - 20px); // Aggiungi più larghezza per rendere le card più larghe
+    display: flex; // Cambiato a flex per assicurare un layout coerente
+    flex-direction: column; // Disporre i contenuti verticalmente
+    max-width: 100%;
+    max-height: 720px;
+    width: calc(110% - 20px); // Ho lasciato questo perché l'hai impostato tu
     margin: 0 auto;
 
     &:hover {
@@ -32,54 +33,74 @@ $hover-color: #a0522d; // Colore per l'effetto hover
         display: block;
         height: auto;
         object-fit: contain;
-        min-height:250px;
+        min-height: 250px; // Imposta un'altezza minima per mantenere consistenza
         width: 100%;
       }
     }
 
-
     .card-body {
       padding: 15px;
       background-color: $navbar-bg; // Sfondo giallo simile alle vecchie pagine
+      flex: 1; // Permette al card-body di occupare lo spazio rimanente
+      display: flex;
+      flex-direction: column; // Dispone gli elementi verticalmente
 
       .book-info {
+        flex-grow: 1; // Permette alla parte superiore della card di occupare lo spazio rimanente
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; // Assicura che il testo sia allineato verso il basso
+
         .card-title {
           font-weight: bold;
           margin-bottom: 10px;
           font-size: 1.2rem;
-          color: $text-color; // Testo marrone scuro
+          color: $text-color;
+          min-height: 40px; // Assegna altezza fissa per garantire uniformità
+
+          display: -webkit-box;
+          display: box;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          -webkit-box-orient: vertical;
+          box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .card-text {
           font-size: 0.9rem;
-          color: $text-color; // Testo marrone scuro
+          color: $text-color;
 
           &.text-muted {
-            color: darken($navbar-bg, 20%); // Testo leggermente più scuro
+            color: darken($navbar-bg, 20%);
           }
 
-          .text-success {
+          &.text-success {
             font-weight: bold;
-            color: #228B22; // Verde scuro per il prezzo
+            color: #228B22;
           }
         }
       }
 
+      .mt-3 {
+        margin-top: auto; // Fa sì che il pulsante "Dettagli" sia sempre allineato verso il fondo
+      }
+
       a.btn, .ButtonDetails {
         display: flex;
-
-
         align-items: center;
         justify-content: center;
         color: $text-color;
         padding: 8px 12px;
         border: 1px solid $text-color;
         border-radius: 5px;
-        background-color: lighten($navbar-bg, 10%); // Un tocco più chiaro del giallo caldo
+        background-color: lighten($navbar-bg, 10%);
+        text-decoration: none;
 
         &:hover {
-          background-color: darken($navbar-bg, 10%); // Sfondo più scuro al passaggio del mouse
-          color: #fff; // Testo bianco al passaggio del mouse
+          background-color: darken($navbar-bg, 10%);
+          color: #fff;
         }
 
         svg {
@@ -90,7 +111,4 @@ $hover-color: #a0522d; // Colore per l'effetto hover
       }
     }
   }
-
 }
-
-

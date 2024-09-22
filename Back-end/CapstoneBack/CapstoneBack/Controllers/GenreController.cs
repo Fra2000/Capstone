@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
 using CapstoneBack.Models.DTO.GenreDTO;
-using CapstoneBack.Models.DTO.BookDTO; // Importa il DTO corretto
+using CapstoneBack.Models.DTO.BookDTO; 
 using CapstoneBack.Models.DTO.AuthorDTO;
 
 namespace CapstoneBack.Controllers
@@ -46,7 +45,7 @@ namespace CapstoneBack.Controllers
 
 
 
-        // POST: api/Genre
+        
         [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPost]
         public async Task<ActionResult<GenreReadDto>> CreateGenre([FromBody] GenreCreateDto genreDto)
@@ -67,14 +66,14 @@ namespace CapstoneBack.Controllers
             {
                 GenreId = createdGenre.GenreId,
                 GenreName = createdGenre.GenreName
-                // Notare che non includiamo la lista di libri qui
+               
             };
 
             return CreatedAtAction(nameof(GetGenreById), new { id = createdGenre.GenreId }, genreReadDto);
         }
 
 
-        // GET: api/Genre/{id}
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<GenreReadDto>> GetGenreById(int id)
         {
@@ -162,10 +161,6 @@ namespace CapstoneBack.Controllers
 
             return NoContent();
         }
-
-
-        
-
 
     }
 }

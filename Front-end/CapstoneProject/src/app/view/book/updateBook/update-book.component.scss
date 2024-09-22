@@ -1,0 +1,101 @@
+$navbar-bg: #f5deb3;
+$text-color: #8b4513;
+$hover-color: #a0522d;
+
+
+.container {
+  .form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .card {
+    border: 2px solid $text-color;
+    border-radius: 10px;
+    background-color: $navbar-bg;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+
+      .form-label {
+        font-weight: bold;
+        color: $text-color;
+      }
+
+      .form-control {
+        border: 1px solid $text-color;
+        border-radius: 5px;
+        color: $text-color;
+
+        &::placeholder {
+          color: $text-color;
+          opacity: 1;
+        }
+
+        &:focus {
+          border-color: $text-color;
+          box-shadow: 0 0 0 0.2rem rgba($text-color, 0.25);
+        }
+      }
+
+      .form-check-input {
+        border-color: $text-color;
+        box-shadow: 0 0 5px rgba($text-color, 0.5);
+        &:checked {
+          background-color: $text-color;
+          box-shadow: 0 0 5px rgba($text-color, 0.5);
+        }
+      }
+
+      .form-check-label {
+        color: $text-color;
+      }
+
+      .text-danger {
+        color: red;
+        font-size: 0.875rem;
+      }
+    }
+
+    .text {
+      color: $text-color;
+    }
+
+    input,
+    textarea {
+      color: $text-color;
+    }
+
+    .img-thumbnail {
+      border: 2px solid $text-color;
+    }
+  }
+}
+
+
+.btn-select {
+  background-color: #f5deb3;
+  color: #8b4513;
+
+  &:hover {
+    background-color: #a0522d; /* Colore dello sfondo quando si passa sopra */
+    color: white;
+  }
+}
+
+.dropdown-menu li:hover {
+  background-color: #a0522d; /* Colore di sfondo quando si passa sopra le opzioni */
+}
+
+.p {
+  padding: 0;
+}

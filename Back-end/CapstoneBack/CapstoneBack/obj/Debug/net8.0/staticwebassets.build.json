@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WvOGT5nG69E30WapjKdiZfgQk/Dc6ZH/YsEoveqfbsM=",
+  "Hash": "KJkYypU0V6Yo8lmDwAcy2bo3SnSuNTXzMwu6rKPk8hY=",
   "Source": "CapstoneBack",
   "BasePath": "_content/CapstoneBack",
   "Mode": "Default",
@@ -188,12 +188,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Account\\pettinecane.jpeg"
     },
     {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\cane.jpeg",
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\644171-4395231-philippa-gregory (1).png",
       "SourceId": "CapstoneBack",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
       "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Author/cane.jpeg",
+      "RelativePath": "images/Author/644171-4395231-philippa-gregory (1).png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -204,7 +204,83 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Author\\cane.jpeg"
+      "OriginalItemSpec": "wwwroot\\images\\Author\\644171-4395231-philippa-gregory (1).png"
+    },
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\6j18e1k12qi13uo8cno7srjnvb.jpg",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Author/6j18e1k12qi13uo8cno7srjnvb.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Author\\6j18e1k12qi13uo8cno7srjnvb.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\Brandon-Sanderson.png",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Author/Brandon-Sanderson.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Author\\Brandon-Sanderson.png"
+    },
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\briasco_il_re_di_tutti_cover.jpeg",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Author/briasco_il_re_di_tutti_cover.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Author\\briasco_il_re_di_tutti_cover.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\cn710t4a1ta8s9hq1ne5h8f0de.jpg",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Author/cn710t4a1ta8s9hq1ne5h8f0de.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Author\\cn710t4a1ta8s9hq1ne5h8f0de.jpg"
     },
     {
       "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\default.jpg",
@@ -226,12 +302,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Author\\default.jpg"
     },
     {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\mentidevera.jpeg",
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\dGgiOjE1MDAsImhlaWdodCI6M (1).jpeg",
       "SourceId": "CapstoneBack",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
       "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Author/mentidevera.jpeg",
+      "RelativePath": "images/Author/dGgiOjE1MDAsImhlaWdodCI6M (1).jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -242,15 +318,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Author\\mentidevera.jpeg"
+      "OriginalItemSpec": "wwwroot\\images\\Author\\dGgiOjE1MDAsImhlaWdodCI6M (1).jpeg"
     },
     {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\missile1.jpeg",
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\licensed-image.jpeg",
       "SourceId": "CapstoneBack",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
       "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Author/missile1.jpeg",
+      "RelativePath": "images/Author/licensed-image.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -261,15 +337,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Author\\missile1.jpeg"
+      "OriginalItemSpec": "wwwroot\\images\\Author\\licensed-image.jpeg"
     },
     {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\missile2.jpeg",
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\pJA22rDh_400x400.jpg",
       "SourceId": "CapstoneBack",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
       "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Author/missile2.jpeg",
+      "RelativePath": "images/Author/pJA22rDh_400x400.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -280,15 +356,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Author\\missile2.jpeg"
+      "OriginalItemSpec": "wwwroot\\images\\Author\\pJA22rDh_400x400.jpg"
     },
     {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\pettinecane.jpeg",
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\rowling.jpg",
       "SourceId": "CapstoneBack",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
       "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Author/pettinecane.jpeg",
+      "RelativePath": "images/Author/rowling.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -299,15 +375,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Author\\pettinecane.jpeg"
+      "OriginalItemSpec": "wwwroot\\images\\Author\\rowling.jpg"
     },
     {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\cane.jpeg",
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Author\\wilbur-smith-libri-ordine-cronologia.jpg",
       "SourceId": "CapstoneBack",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
       "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Book/cane.jpeg",
+      "RelativePath": "images/Author/wilbur-smith-libri-ordine-cronologia.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -318,7 +394,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Book\\cane.jpeg"
+      "OriginalItemSpec": "wwwroot\\images\\Author\\wilbur-smith-libri-ordine-cronologia.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\5.jpeg",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Book/5.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Book\\5.jpeg"
     },
     {
       "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\default.png",
@@ -340,12 +435,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Book\\default.png"
     },
     {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\medicinalecane.jpg",
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\harry2.jpeg",
       "SourceId": "CapstoneBack",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
       "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Book/medicinalecane.jpg",
+      "RelativePath": "images/Book/harry2.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -356,15 +451,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Book\\medicinalecane.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\Book\\harry2.jpeg"
     },
     {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\pettinagatti.jpeg",
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\harry6.jpg",
       "SourceId": "CapstoneBack",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
       "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Book/pettinagatti.jpeg",
+      "RelativePath": "images/Book/harry6.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -375,15 +470,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Book\\pettinagatti.jpeg"
+      "OriginalItemSpec": "wwwroot\\images\\Book\\harry6.jpg"
     },
     {
-      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\spiaggia1-min.jpg",
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\harry7.jpeg",
       "SourceId": "CapstoneBack",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
       "BasePath": "_content/CapstoneBack",
-      "RelativePath": "images/Book/spiaggia1-min.jpg",
+      "RelativePath": "images/Book/harry7.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -394,7 +489,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Book\\spiaggia1-min.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\Book\\harry7.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\images\\Book\\HarryPotter.jpg",
+      "SourceId": "CapstoneBack",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fra00\\OneDrive\\Desktop\\Capstone\\Back-end\\CapstoneBack\\CapstoneBack\\wwwroot\\",
+      "BasePath": "_content/CapstoneBack",
+      "RelativePath": "images/Book/HarryPotter.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Book\\HarryPotter.jpg"
     }
   ]
 }

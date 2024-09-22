@@ -25,7 +25,7 @@
     <div class="form-group mb-3 ">
       <label for="imageFile" class="form-label fs-5">Immagine dell'autore</label>
       <input type="file" id="imageFile" (change)="onFileSelected($event)" class="form-control">
-      <img *ngIf="author.imagePath" [src]="authorService.getAuthorImagePath(author.imagePath)" (error)="authorService.handleImageError($event)" alt="Author Image" class="img-thumbnail mt-2" style="width: 150px;">
+      <img *ngIf="author.imagePath" [src]="authorService.getAuthorImagePath(author.imagePath)" (error)="authorService.handleImageError($event)" alt="Author Image" class="img-thumbnail mt-2 p" style="width: 150px;">
     </div>
 
 

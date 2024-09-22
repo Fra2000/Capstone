@@ -28,6 +28,9 @@ $placeholder-color: #a9a9a9;
       color: $text-color;
     }
   }
+  .img-thumbnail {
+    border: 2px solid $text-color;
+  }
 }
 
 .text {

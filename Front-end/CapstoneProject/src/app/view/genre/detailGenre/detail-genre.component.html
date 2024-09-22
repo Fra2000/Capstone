@@ -19,7 +19,7 @@
               <p class="card-title text-center fs-4">{{ book.name }}</p>
 
               <!-- Nome dell'autore -->
-              <p class="card-text text-center"><strong class="fs-5">Autore: </strong>
+              <p class="card-text text-center"><strong class="fs-5 mx-xxl-5">Autore: </strong>
                 <a class="badge text-white text-decoration-none" [routerLink]="['/detailsAuthor', book.author.authorId]">
                   {{ book.author?.firstName }} {{ book.author?.lastName }}
                 </a>
@@ -38,7 +38,7 @@
 
               <!-- Visualizzazione dei generi del libro -->
               <p class="card-text text-center">
-                <strong class="fs-5">Generi: </strong>
+                <strong class="fs-5 ms-xxl-4 me-xxl-1">Generi: </strong>
                 <span *ngFor="let genre of book.genres; let isLast = last">
                   <a class="badge text-white text-decoration-none mb-1" [routerLink]="['/detailGenre', genre.genreId]">{{ genre.genreName }}</a>
                   <span *ngIf="!isLast">, </span>

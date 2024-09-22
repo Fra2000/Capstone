@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using CapstoneBack.Services.Interfaces;
@@ -50,6 +46,7 @@ namespace CapstoneBack.Controllers
             });   
         }
 
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromForm] RegisterModel model, IFormFile? imageFile)
         {
@@ -78,7 +75,7 @@ namespace CapstoneBack.Controllers
                     RoleId = user.Role.RoleId,
                     RoleName = user.Role.RoleName
                 },
-                ImagePath = user.ImagePath, // Aggiungi l'immagine nel DTO
+                ImagePath = user.ImagePath,
                 UserBooks = user.UserBooks,
                 UserBookStatuses = user.UserBookStatuses,
                 UserLoyaltyCards = user.UserLoyaltyCards
@@ -88,7 +85,7 @@ namespace CapstoneBack.Controllers
         }
 
 
-        // Nuovo endpoint per registrare un admin
+       
         [HttpPost("register-admin")]
         [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> RegisterAdmin([FromForm] RegisterModel model, IFormFile? imageFile)
@@ -118,12 +115,11 @@ namespace CapstoneBack.Controllers
                     RoleId = admin.Role.RoleId,
                     RoleName = admin.Role.RoleName
                 },
-                ImagePath = admin.ImagePath // Aggiungi l'immagine nel DTO
+                ImagePath = admin.ImagePath
             };
 
             return Ok(new { message = "Admin registration successful", user = adminDto });
         }
-
         
     }
 }
