@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CapstoneBack")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94c3118af1c961a0ea8c75d2eb25d68023f82f5b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b87e5bc2e9598870485e44c00cccd7127e9b131e")]
 [assembly: System.Reflection.AssemblyProductAttribute("CapstoneBack")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CapstoneBack")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
