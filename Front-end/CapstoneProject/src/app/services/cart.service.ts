@@ -26,4 +26,8 @@ export class CartService {
     return this.http.delete<void>(`${this.apiUrl}/${userBookId}?quantity=${quantity}`);
   }
 
+  purchase(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/complete-purchase`, {}); // Cambia l'URL se necessario
+  }
+
 }

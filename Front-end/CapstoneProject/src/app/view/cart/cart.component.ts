@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { BookService } from '../../services/Book/book.service';
 import { Cart } from '../../interfaces/cart';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,7 @@ import { Cart } from '../../interfaces/cart';
 export class CartComponent implements OnInit {
   cart: Cart | null = null;
 
-  constructor(private cartService: CartService, private bookService: BookService) { }
+  constructor(private cartService: CartService, private bookService: BookService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadCart();
@@ -63,5 +64,18 @@ export class CartComponent implements OnInit {
       console.error('Errore durante l\'eliminazione dal carrello:', error);
     });
   }
+
+  purchase() {
+    this.cartService.purchase().subscribe(
+      () => {
+        this.router.navigate(['/userBook']); // Reindirizza direttamente alla pagina di gestione dei libri acquistati
+      },
+      (error) => {
+        console.error('Errore durante l\'acquisto:', error);
+        alert('Si è verificato un errore durante l\'acquisto. Riprova.');
+      }
+    );
+  }
+
 
 }

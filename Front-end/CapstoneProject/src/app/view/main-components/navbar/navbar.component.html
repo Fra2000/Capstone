@@ -25,6 +25,9 @@
         <li class="nav-item" *ngIf="isAuthenticated && isUser">
           <a class="nav-link" routerLink="/Cart"><strong>Carrello</strong></a>
         </li>
+        <li class="nav-item" *ngIf="isAuthenticated && isUser">
+          <a class="nav-link" routerLink="/userBook"><strong>I Tuoi Libri</strong></a>
+        </li>
         <!-- Login o Logout -->
         <li class="nav-item" *ngIf="!isAuthenticated && !isLoginOrRegisterPage()">
           <a class="nav-link" routerLink="/login"><strong>Login</strong></a>

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
 using CapstoneBack.Models.DTO.StatusDTO;
+using System;
 
 namespace CapstoneBack.Services
 {
@@ -16,12 +17,14 @@ namespace CapstoneBack.Services
             _context = context;
         }
 
-        // Metodo per aggiornare lo stato di un libro e/o il numero di pagine
+        /// <summary>
+        /// Metodo per aggiornare lo stato di un libro e/o il numero di pagine.
+        /// </summary>
         public async Task<bool> UpdateBookStatusAsync(int userId, int bookId, string newStatus = null, int? currentPage = null)
         {
             // Recupera lo stato del libro dell'utente
             var userBookStatus = await _context.UserBookStatuses
-                .Include(ubs => ubs.Status)  // Includi lo stato corrente del libro
+                .Include(ubs => ubs.Status)
                 .FirstOrDefaultAsync(ubs => ubs.UserId == userId && ubs.BookId == bookId);
 
             if (userBookStatus == null)
@@ -29,63 +32,82 @@ namespace CapstoneBack.Services
                 return false;  // Stato del libro non trovato
             }
 
-            bool isStatusUpdated = false;
-            string currentStatusName = userBookStatus.Status.StatusName;
-
-            // Se viene fornito un nuovo stato, aggiorna lo stato
+            // Se `newStatus` è fornito, verifica se è valido
             if (!string.IsNullOrEmpty(newStatus))
             {
                 var status = await _context.Statuses.FirstOrDefaultAsync(s => s.StatusName == newStatus);
                 if (status == null)
                 {
-                    return false;  // Stato non valido
+                    return false; // Stato non valido
                 }
 
                 // Aggiorna lo stato solo se è diverso dall'attuale
                 if (userBookStatus.StatusId != status.StatusId)
                 {
                     userBookStatus.StatusId = status.StatusId;
-                    userBookStatus.DateUpdated = DateTime.UtcNow;  // Aggiorna la data solo se cambia lo stato
-                    isStatusUpdated = true;  // Stato aggiornato
+                    userBookStatus.DateUpdated = DateTime.UtcNow;
                 }
             }
 
-            // Permetti di aggiornare il numero di pagine solo se lo stato era "In Corso" e rimane "In Corso"
-            if (currentStatusName == "In Corso" && (userBookStatus.Status.StatusName == "In Corso") && currentPage.HasValue)
+            // Gestione dello stato "Da Iniziare"
+            if (newStatus == "Da Iniziare" && userBookStatus.CurrentPage == null)
             {
-                // Verifica che la pagina corrente non superi il numero totale di pagine
-                if (currentPage.Value > userBookStatus.TotalPages)
-                {
-                    return false;  // La pagina corrente non può superare il totale delle pagine del libro
-                }
+                userBookStatus.CurrentPage = 0;
+            }
 
-                userBookStatus.CurrentPage = currentPage.Value;
-                userBookStatus.DateUpdated = DateTime.UtcNow;  // Aggiorna la data anche se cambia il numero di pagine
+            // Gestione dello stato "In Corso"
+            if (newStatus == "In Corso" || userBookStatus.Status.StatusName == "In Corso")
+            {
+                if (currentPage.HasValue)
+                {
+                    if (currentPage.Value > userBookStatus.TotalPages || currentPage.Value < 0)
+                    {
+                        return false;  // Pagina corrente non valida
+                    }
+                    userBookStatus.CurrentPage = currentPage.Value;
+                    userBookStatus.DateUpdated = DateTime.UtcNow;
+                }
+            }
+
+            // Gestione dello stato "Terminato"
+            else if (newStatus == "Terminato")
+            {
+                // Imposta `currentPage` uguale a `TotalPages` quando il libro è terminato
+                userBookStatus.CurrentPage = userBookStatus.TotalPages;
+                userBookStatus.DateUpdated = DateTime.UtcNow;
             }
 
             await _context.SaveChangesAsync();
             return true;  // Aggiornamento riuscito
         }
 
-
-
-
-        // Metodo per ottenere tutti i libri con il loro stato per un utente
+        /// <summary>
+        /// Metodo per ottenere tutti i libri con il loro stato per un utente.
+        /// </summary>
         public async Task<List<UserBookStatusDto>> GetUserBookStatusesAsync(int userId)
         {
-            return await _context.UserBookStatuses
+            var userBookStatuses = await _context.UserBookStatuses
                 .Where(ubs => ubs.UserId == userId)
                 .Include(ubs => ubs.Book)
                 .Include(ubs => ubs.Status)
-                .Select(ubs => new UserBookStatusDto
-                {
-                    BookId = ubs.BookId,
-                    BookName = ubs.Book.Name,
-                    StatusName = ubs.Status.StatusName,
-                    CurrentPage = ubs.CurrentPage,
-                    DateUpdated = ubs.DateUpdated
-                })
                 .ToListAsync();
+
+            if (userBookStatuses == null || userBookStatuses.Count == 0)
+            {
+                return new List<UserBookStatusDto>();
+            }
+
+            return userBookStatuses.Select(ubs => new UserBookStatusDto
+            {
+                BookId = ubs.BookId,
+                BookName = ubs.Book.Name,
+                StatusName = ubs.Status.StatusName,
+                CurrentPage = ubs.CurrentPage,
+                DateUpdated = ubs.DateUpdated,
+                CoverImagePath = ubs.Book.CoverImagePath,
+                PurchaseDate = ubs.PurchaseDate,
+                TotalPages = ubs.TotalPages
+            }).ToList();
         }
     }
 }

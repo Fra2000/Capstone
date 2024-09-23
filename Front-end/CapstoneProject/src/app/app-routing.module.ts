@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'createBook', loadChildren: () => import('./view/book/createBook/create-book.module').then(m => m.CreateBookModule) },
   { path: 'updateBook/:id', loadChildren: () => import('./view/book/updateBook/update-book.module').then(m => m.UpdateBookModule) },
   { path: 'registrationAdmin', loadChildren: () => import('./view/account/registrationAdmin/registration-admin.module').then(m => m.RegistrationAdminModule) },
-  { path: 'Cart', loadChildren: () => import('./view/cart/cart.module').then(m => m.CartModule) }
+  { path: 'Cart', loadChildren: () => import('./view/cart/cart.module').then(m => m.CartModule) },
+  { path: 'userBook', loadChildren: () => import('./view/userBook/user-book.module').then(m => m.UserBookModule) }
 
 
 

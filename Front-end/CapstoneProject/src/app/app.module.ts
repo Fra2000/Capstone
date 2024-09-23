@@ -12,6 +12,7 @@ import { FooterComponent } from './view/main-components/footer/footer.component'
 import { NavbarModule } from './view/main-components/navbar/navbar.module';
 import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(localeIt);
 
@@ -26,10 +27,8 @@ registerLocaleData(localeIt);
     AppRoutingModule,
     HttpClientModule,
     LoginModule,
-    NavbarModule
-
-
-
+    NavbarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

@@ -1,0 +1,141 @@
+<div class="container mt-5" *ngIf="!loading; else loadingTemplate">
+  <h2 class="text-center mb-4">I Tuoi Libri</h2>
+
+  <!-- Sezione per i libri da iniziare -->
+  <div class="mb-4 text-center">
+    <button class="button-custom mb-2" (click)="toggleSection('toStart')">
+      Libri Da Iniziare
+    </button>
+    <div *ngIf="showSection.toStart" @fadeInOut>
+      <div class="row justify-content-center">
+        <div *ngFor="let book of toStartBooks" class="col-lg-3 col-md-4 col-sm-6 mb-4 mt-3">
+          <div class="card h-100 shadow-sm book-card">
+            <div class="card-img-container">
+              <img
+                [src]="getCoverImagePath(book.coverImagePath)"
+                (error)="handleImageError($event)"
+                alt="{{ book.bookName }}"
+                class="card-img-top img-fluid"
+              />
+            </div>
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="book-info d-flex flex-column align-items-center">
+                <p class="card-title text-center fs-4 flex-grow-1 d-flex align-items-center justify-content-center">{{ book.bookName }}</p>
+                <p *ngIf="book.currentPage !== null && book.currentPage !== undefined" class="text-center">
+                  Pagina Corrente: {{ book.currentPage }}
+                </p>
+                <p *ngIf="book.currentPage === null || book.currentPage === undefined" class="text-center">
+                  Pagina Corrente: Non ancora iniziata
+                </p>
+                <p class="card-text text-center">Data di Acquisto: {{ book.purchaseDate | date: 'dd/MM/yyyy' }}</p>
+              </div>
+              <div class="mt-3 m-auto">
+                <button class="button-custom m-1" [disabled]="updating" (click)="changeBookStatus(book, 'In Corso')">Inizia</button>
+                <button class="button-custom m-1" [disabled]="updating || book.statusName === 'Terminati'" (click)="changeBookStatus(book, 'Terminati')">Termina</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sezione per i libri in corso -->
+  <div class="mb-4 text-center">
+    <button class="button-custom mb-2" (click)="toggleSection('inProgress')">
+      Libri In Corso
+    </button>
+    <div *ngIf="showSection.inProgress" @fadeInOut>
+      <div class="row justify-content-center">
+        <div *ngFor="let book of inProgressBooks" class="col-lg-3 col-md-4 col-sm-6 mb-4 mt-3">
+          <div class="card h-100 shadow-sm book-card">
+            <div class="card-img-container">
+              <img
+                [src]="getCoverImagePath(book.coverImagePath)"
+                (error)="handleImageError($event)"
+                alt="{{ book.bookName }}"
+                class="card-img-top img-fluid"
+              />
+            </div>
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="book-info">
+                <p class="card-title text-center fs-4">{{ book.bookName }}</p>
+
+                <!-- Pagina Attuale Personalizzata -->
+<div class="page-input-container text-center">
+  <p>Pagina Attuale:</p>
+  <div class="input-group mb-2">
+    <input
+      type="number"
+      [(ngModel)]="book.currentPage"
+      [max]="book.totalPages"
+      min="1"
+      class="form-control page-input p-1 styled-input"
+      (change)="updateCurrentPage(book)"
+    />
+    <span class="input-group-text">/ {{ book.totalPages }}</span>
+  </div>
+</div>
+
+
+                <p class="card-text text-center">Data di Acquisto: {{ book.purchaseDate | date: 'dd/MM/yyyy' }}</p>
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-success btn-sm" [disabled]="updating || book.statusName === 'Terminato'" (click)="changeBookStatus(book, 'Terminati')">Termina</button>
+                <button class="btn btn-warning btn-sm" [disabled]="updating" (click)="changeBookStatus(book, 'Da Iniziare')">Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sezione per i libri terminati -->
+  <div class="mb-4 text-center">
+    <button class="button-custom mb-2" (click)="toggleSection('completed')">
+      Libri Terminati
+    </button>
+    <div *ngIf="showSection.completed" @fadeInOut>
+      <div class="row justify-content-center">
+        <div *ngFor="let book of completedBooks" class="col-lg-3 col-md-4 col-sm-6 mb-4 mt-3">
+          <div class="card h-100 shadow-sm book-card">
+            <div class="card-img-container">
+              <img
+                [src]="getCoverImagePath(book.coverImagePath)"
+                (error)="handleImageError($event)"
+                alt="{{ book.bookName }}"
+                class="card-img-top img-fluid"
+              />
+            </div>
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="book-info d-flex flex-column align-items-center">
+                <p class="card-title text-center fs-4 flex-grow-1 d-flex align-items-center justify-content-center">{{ book.bookName }}</p>
+                <p class="card-text text-center fs-5">Pagina Finale:</p>
+                <p class="card-text text-center fs-5"> {{ book.totalPages }}</p>
+                <p class="card-text text-center">Data di Acquisto: {{ book.purchaseDate | date: 'dd/MM/yyyy' }}</p>
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-warning btn-sm" [disabled]="updating" (click)="changeBookStatus(book, 'In Corso')">Ricomincia</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Template per caricamento -->
+<ng-template #loadingTemplate>
+  <div class="text-center mt-5">
+    <p>Caricamento in corso...</p>
+  </div>
+</ng-template>
+
+<!-- Messaggio per quando non ci sono libri -->
+<ng-template #noBooks>
+  <div class="text-center mt-5">
+    <p>Non hai libri in questa sezione.</p>
+  </div>
+</ng-template>

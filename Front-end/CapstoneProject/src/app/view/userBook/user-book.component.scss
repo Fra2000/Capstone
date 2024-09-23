@@ -1,0 +1,229 @@
+$navbar-bg: #f5deb3;
+$text-color: #8b4513;
+$hover-color: #a0522d;
+
+.book-card {
+  border: 2px solid $text-color;
+  border-radius: 10px;
+  background-color: $navbar-bg;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  width: calc(110% - 20px);
+  margin: 0 auto;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-img-container {
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    img {
+      display: block;
+      height: auto;
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+
+  .card-body {
+    padding: 15px;
+    background-color: $navbar-bg;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .book-info {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      .card-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        color: $text-color;
+        min-height: 40px;
+        display: -webkit-box;
+        display: box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .card-text {
+        font-size: 0.9rem;
+        color: $text-color;
+      }
+    }
+
+    .mt-3 {
+      margin-top: auto;
+    }
+
+    a.btn, .ButtonDetails {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $text-color;
+      padding: 8px 12px;
+      border: 1px solid $text-color;
+      border-radius: 5px;
+      background-color: lighten($navbar-bg, 10%);
+      text-decoration: none;
+
+      &:hover {
+        background-color: darken($navbar-bg, 10%);
+        color: #fff;
+      }
+
+      svg {
+        margin-left: 5px;
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
+
+.badge {
+  font-size: 0.9rem;
+  margin-right: 5px;
+  background-color: $text-color;
+}
+
+.text {
+  color: $text-color;
+}
+
+.page-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  .page-input-container {
+    margin: 0;  /* Assicurati che non ci siano margini */
+    padding: 0; /* Assicurati che non ci siano padding */
+  }
+
+}
+
+.input-group {
+  width: 70%;
+  max-width: 150px;
+  display: flex;
+  align-items: center;
+}
+
+.page-input {
+  width: 60px;
+  text-align: center;
+  border: 1px solid #8b4513; /* Bordi marrone scuro */
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.page-input:focus {
+  outline: none;
+  border-color: #a0522d; /* Colore marrone scuro per l'input quando è attivo */
+  box-shadow: 0 0 5px rgba(160, 82, 45, 0.5); /* Effetto ombra */
+}
+
+.input-group-text {
+  background-color: #f5deb3; /* Colore di sfondo simile alle altre sezioni */
+  border: 1px solid #8b4513; /* Bordi marrone scuro */
+  border-radius: 4px;
+  color: #8b4513; /* Colore del testo */
+  padding: 5px 8px;
+}
+
+.page-input-container {
+  .input-group {
+    background-color: #f5deb3; /* Colore di sfondo personalizzato per l'intera area dell'input */
+
+    .form-control {
+      background-color: #f5deb3; /* Colore di sfondo per l'input */
+      color: #8b4513; /* Colore del testo */
+      border: 1px solid #8b4513; /* Colore del bordo */
+      &:focus {
+        background-color: #ffe4b5; /* Colore dello sfondo durante il focus */
+        color: #8b4513; /* Colore del testo durante il focus */
+        border-color: #a0522d; /* Colore del bordo durante il focus */
+        box-shadow: none; /* Rimuove l'ombra predefinita */
+      }
+    }
+
+    .input-group-text {
+      background-color: #f5deb3; /* Colore di sfondo per il testo dell'input group */
+      color: #8b4513; /* Colore del testo */
+      border: 1px solid #8b4513; /* Colore del bordo */
+    }
+  }
+}
+
+/* Rende l'input simile al testo */
+.styled-input {
+  border: none; /* Rimuove il bordo */
+  background-color: transparent; /* Sfondo trasparente */
+  text-align: center; /* Allinea il testo al centro */
+  box-shadow: none; /* Rimuove l'ombra */
+  width: 50px; /* Imposta la larghezza per farlo sembrare un numero */
+
+  &:focus {
+    outline: none; /* Rimuove il contorno al focus */
+  }
+}
+
+.styled-text {
+  background-color: #e9ecef; /* Imposta lo stesso sfondo dell'input */
+  border: none; /* Rimuove il bordo */
+}
+
+/* Rimuove le freccette in Google Chrome, Safari, Edge e Opera */
+/* Rimuove le freccette in Google Chrome, Safari, Edge e Opera */
+.styled-input::-webkit-outer-spin-button,
+.styled-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none; /* Aggiunta la proprietà standard */
+  margin: 0;
+}
+
+/* Rimuove le freccette in Firefox */
+.styled-input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield; /* Aggiunta la proprietà standard */
+}
+
+.button-custom {
+  background-color: #f5deb3; // Sostituisci con il colore di sfondo della tua pagina
+  color: #8b4513; // Colore del testo per abbinarlo al resto della pagina
+  border: 2px solid #8b4513; // Bordo in marrone scuro
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+
+  &:hover {
+    background-color: #a0522d; // Colore di hover per abbinarsi al resto della pagina
+    color: #fff; // Colore del testo in bianco quando si passa sopra
+    transform: translateY(-2px); // Leggera animazione di sollevamento
+  }
+
+  &:focus {
+    outline: none; // Rimuove il contorno di focus
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); // Aggiunge un'ombra per l'effetto focus
+  }
+}
