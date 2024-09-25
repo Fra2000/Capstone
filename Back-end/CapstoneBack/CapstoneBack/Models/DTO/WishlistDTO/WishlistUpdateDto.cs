@@ -2,7 +2,7 @@
 {
     public class WishlistUpdateDto
     {
-        public int Quantity { get; set; }  // Nuova quantità desiderata
+        public int Quantity { get; set; }  
     }
 
 }

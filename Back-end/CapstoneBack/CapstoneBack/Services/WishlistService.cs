@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
-using CapstoneBack.Models.DTO;
 using CapstoneBack.Models.DTO.WishlistDTO;
 
 namespace CapstoneBack.Services
@@ -70,7 +66,7 @@ namespace CapstoneBack.Services
 
             if (wishlist == null)
             {
-                return null;  // O gestisci l'eccezione a seconda delle tue politiche di errore
+                return null;  
             }
 
             return new WishlistDto
@@ -127,21 +123,21 @@ namespace CapstoneBack.Services
 
             if (wishlistItem == null)
             {
-                return false; // Elemento non trovato nella lista dei desideri
+                return false; 
             }
 
-            // Verifica se l'articolo esiste già nel carrello
+           
             var cartItem = await _context.UserBooks
                 .FirstOrDefaultAsync(ub => ub.UserId == userId && ub.BookId == wishlistItem.BookId);
 
             if (cartItem != null)
             {
-                // Aggiorna la quantità se il libro è già nel carrello
+                
                 cartItem.Quantity += wishlistItem.Quantity;
             }
             else
             {
-                // Aggiungi un nuovo articolo al carrello se non esiste
+                
                 var newUserBook = new UserBook
                 {
                     UserId = userId,
@@ -152,7 +148,7 @@ namespace CapstoneBack.Services
                 _context.UserBooks.Add(newUserBook);
             }
 
-            // Rimuovi l'articolo dalla lista dei desideri
+            
             _context.Wishlists.Remove(wishlistItem);
 
             await _context.SaveChangesAsync();

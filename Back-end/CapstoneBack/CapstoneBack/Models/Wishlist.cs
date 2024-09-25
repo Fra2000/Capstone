@@ -16,6 +16,6 @@ namespace CapstoneBack.Models
         public int BookId { get; set; }
         public Book Book { get; set; }
 
-        public int Quantity { get; set; }  // Quantità desiderata del libro
+        public int Quantity { get; set; }  
     }
 }

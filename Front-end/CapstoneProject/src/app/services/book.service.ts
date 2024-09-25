@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Book } from '../../interfaces/Book';
+import { Book } from '../interfaces/Book';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class BookService {
 
   getCoverImagePath(relativePath: string): string {
     if (!relativePath) {
-      return 'https://localhost:7097/images/Book/default.jpg'; // immagine di default se non presente
+      return 'https://localhost:7097/images/Book/default.jpg';
     }
     return `https://localhost:7097/${relativePath}`;
   }

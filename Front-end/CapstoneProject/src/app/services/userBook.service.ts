@@ -7,7 +7,7 @@ import { UserBookStatus } from '../interfaces/UserBookStatus';
   providedIn: 'root',
 })
 export class UserBookService {
-  private apiUrl = 'https://localhost:7097/api/BookStatus'; // Assicurati che l'URL sia corretto
+  private apiUrl = 'https://localhost:7097/api/BookStatus';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class UserBookService {
   updateBookStatus(bookId: number, newStatus: string, currentPage?: number): Observable<any> {
     let url = `${this.apiUrl}/update-status?bookId=${bookId}&newStatus=${newStatus}`;
 
-    // Aggiungi `currentPage` alla URL solo se lo stato è "In Corso" e `currentPage` è definito
+
     if (newStatus === 'In Corso' && currentPage !== undefined && currentPage !== null) {
       url += `&currentPage=${currentPage}`;
     }

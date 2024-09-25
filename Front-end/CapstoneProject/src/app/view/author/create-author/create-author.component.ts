@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthorService } from '../../../services/Author/author.service';
-import { AuthorRead } from '../../../interfaces/Author'; // Utilizziamo AuthorRead
+import { AuthorService } from '../../../services/author.service';
+import { AuthorRead } from '../../../interfaces/Author';
 
 @Component({
   selector: 'app-create-author',
@@ -22,12 +22,12 @@ export class CreateAuthorComponent {
     private router: Router
   ) { }
 
-  // Metodo per selezionare il file immagine
+
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
 
-  // Metodo per creare un autore
+
   createAuthor(): void {
     const formData = new FormData();
     formData.append('firstName', this.author.firstName);
@@ -39,11 +39,11 @@ export class CreateAuthorComponent {
       formData.append('imageFile', this.selectedFile);
     }
 
-    // Tipizziamo correttamente la risposta come AuthorRead
+
     this.authorService.createAuthor(formData).subscribe(
       (response: AuthorRead) => {
         console.log('Autore creato con successo:', response);
-        this.router.navigate(['/allAuthors']); // Reindirizza alla lista degli autori
+        this.router.navigate(['/allAuthors']);
       },
       (error) => {
         console.error('Errore nella creazione dell\'autore:', error);

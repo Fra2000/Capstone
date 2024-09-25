@@ -1,10 +1,9 @@
 import { CartService } from './../../../services/cart.service';
-import { AuthService } from './../../../services/Account/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookService } from '../../../services/Book/book.service';
+import { BookService } from '../../../services/book.service';
 import { Book } from '../../../interfaces/Book';
-import { UpdateCartItem } from '../../../interfaces/updateCartItem';
 
 @Component({
   selector: 'detail',
@@ -29,7 +28,7 @@ export class DetailComponent implements OnInit {
         next: (book) => {
           this.book = book;
 
-          // Calcola il fullName dell'autore
+
           if (this.book?.author?.firstName && this.book?.author.lastName) {
             this.book.author.fullName = `${book.author?.firstName} ${book.author?.lastName}`;
           }
@@ -56,7 +55,7 @@ export class DetailComponent implements OnInit {
       this.bookService.updateBook(this.book.bookId, this.book).subscribe({
         next: (updatedBook) => {
           console.log('Book updated successfully', updatedBook);
-          // Opzionale: Reindirizza o mostra un messaggio di successo
+
         },
         error: (error) => console.error('Error updating book:', error)
       });
@@ -70,7 +69,7 @@ export class DetailComponent implements OnInit {
         next: () => {
           console.log('Book deleted successfully');
           this.router.navigate(['/']);
-          // Opzionale: Reindirizza o aggiorna la vista
+
         },
         error: (error) => console.error('Error deleting book:', error)
       });
@@ -80,7 +79,7 @@ export class DetailComponent implements OnInit {
   addToCart(bookId: number): void {
     const cartItem = { bookId, quantity: 1 };
     this.cartService.addToCart(cartItem).subscribe(() => {
-      // Reindirizza alla home page dopo l'aggiunta al carrello
+
       this.router.navigate(['/']);
     }, error => {
       console.error('Errore durante l\'aggiunta al carrello:', error);

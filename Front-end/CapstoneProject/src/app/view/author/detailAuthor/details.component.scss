@@ -1,13 +1,13 @@
 
-$navbar-bg: #f5deb3; // Colore di sfondo delle vecchie pagine
-$text-color: #8b4513; // Marrone scuro per il testo
-$hover-color: #a0522d; // Colore per l'effetto hover
+$navbar-bg: #f5deb3;
+$text-color: #8b4513;
+$hover-color: #a0522d;
 
 .container {
   .card {
-    border: 2px solid $text-color; // Bordi marroni scuri
+    border: 2px solid $text-color;
     border-radius: 10px;
-    background-color: $navbar-bg; // Sfondo simile alle vecchie pagine
+    background-color: $navbar-bg;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -43,27 +43,27 @@ $hover-color: #a0522d; // Colore per l'effetto hover
 
     .card-body {
       padding: 15px;
-      background-color: $navbar-bg; // Sfondo giallo simile alle vecchie pagine
+      background-color: $navbar-bg;
 
       .book-info {
         .card-title {
           font-weight: bold;
           margin-bottom: 10px;
           font-size: 1.2rem;
-          color: $text-color; // Testo marrone scuro
+          color: $text-color;
         }
 
         .card-text {
           font-size: 0.9rem;
-          color: $text-color; // Testo marrone scuro
+          color: $text-color;
 
           &.text-muted {
-            color: darken($navbar-bg, 20%); // Testo leggermente più scuro
+            color: darken($navbar-bg, 20%);
           }
 
           .text-success {
             font-weight: bold;
-            color: #228B22; // Verde scuro per il prezzo
+            color: #228B22;
           }
         }
       }
@@ -76,11 +76,11 @@ $hover-color: #a0522d; // Colore per l'effetto hover
         padding: 8px 12px;
         border: 1px solid $text-color;
         border-radius: 5px;
-        background-color: lighten($navbar-bg, 10%); // Un tocco più chiaro del giallo caldo
+        background-color: lighten($navbar-bg, 10%);
 
         &:hover {
-          background-color: darken($navbar-bg, 10%); // Sfondo più scuro al passaggio del mouse
-          color: #fff; // Testo bianco al passaggio del mouse
+          background-color: darken($navbar-bg, 10%);
+          color: #fff;
         }
 
         svg {
@@ -104,14 +104,14 @@ $hover-color: #a0522d; // Colore per l'effetto hover
 .badge {
   font-size: 0.9rem;
   margin-right: 5px;
-  background-color: $text-color; // Badge con lo stesso colore marrone scuro
+  background-color: $text-color;
 }
 
 .text {
   color: $text-color;
 }
 
-/* Applica solo alle card dei libri dell'autore */
+
 .book-section .card {
   border: 2px solid $text-color;
   border-radius: 10px;

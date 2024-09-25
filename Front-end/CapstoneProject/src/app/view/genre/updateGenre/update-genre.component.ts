@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GenreService } from '../../../services/Genre/genre.service';
+import { GenreService } from '../../../services/genre.service';
 import { Genre } from '../../../interfaces/Genre';
 
 @Component({
@@ -19,7 +19,7 @@ export class UpdateGenreComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.genreId = Number(this.route.snapshot.paramMap.get('id')); // Ottieni l'ID dal percorso
+    this.genreId = Number(this.route.snapshot.paramMap.get('id'));
     this.loadGenre();
   }
 
@@ -39,7 +39,7 @@ export class UpdateGenreComponent implements OnInit {
     this.genreService.updateGenre(this.genreId, genreData).subscribe(
       (response) => {
         console.log('Genere aggiornato con successo:', response);
-        this.router.navigate(['/allGenre']);  // Reindirizzamento alla lista dei generi
+        this.router.navigate(['/allGenre']);
       },
       (error) => {
         console.error('Errore nell\'aggiornamento del genere:', error);

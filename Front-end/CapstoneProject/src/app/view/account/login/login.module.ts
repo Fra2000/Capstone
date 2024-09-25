@@ -6,13 +6,13 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    LoginComponent // Dichiara il componente di login
+    LoginComponent
   ],
   imports: [
-    CommonModule, // Modulo per le direttive comuni di Angular
-    ReactiveFormsModule, // Modulo per la gestione dei form reattivi
+    CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
-      { path: '', component: LoginComponent } // Rotta per il login
+      { path: '', component: LoginComponent }
     ])
   ]
 })

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GenreService } from '../../../services/Genre/genre.service';
+import { GenreService } from '../../../services/genre.service';
 import { Router } from '@angular/router';
 
 @Component({

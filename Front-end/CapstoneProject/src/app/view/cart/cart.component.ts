@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { BookService } from '../../services/Book/book.service';
+import { BookService } from '../../services/book.service';
 import { Cart } from '../../interfaces/cart';
 import { Router } from '@angular/router';
 
@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
     this.cartService.getCart().subscribe(
       (cart: Cart) => {
         this.cart = cart;
-        this.calculateCartTotal(); // Calcola il totale del carrello inizialmente
+        this.calculateCartTotal();
       },
       (error) => {
         console.error('Errore nel caricamento del carrello:', error);
@@ -30,23 +30,23 @@ export class CartComponent implements OnInit {
     );
   }
 
-  // Funzione per ottenere l'URL dell'immagine
+
   getCoverImagePath(relativePath: string): string {
     return this.bookService.getCoverImagePath(relativePath);
   }
 
-  // Gestione errore immagine
+
   handleImageError(event: any): void {
     event.target.src = this.bookService.getCoverImagePath('images/Book/default.jpg');
   }
 
-  // Aggiorna il totale per un singolo articolo e ricalcola il totale del carrello
+
   updateTotal(item: any): void {
     item.totalPrice = item.quantity * item.pricePerUnit;
     this.calculateCartTotal();
   }
 
-  // Ricalcola il totale del carrello
+
   calculateCartTotal(): void {
     if (this.cart) {
       this.cart.cartTotal = this.cart.cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
@@ -55,10 +55,10 @@ export class CartComponent implements OnInit {
 
   deleteFromCart(item: any): void {
     this.cartService.removeCartItem(item.userBookId, 1).subscribe(() => {
-      // Rimuovi completamente l'articolo dal carrello
+
       this.cart!.cartItems = this.cart!.cartItems.filter(cartItem => cartItem.userBookId !== item.userBookId);
 
-      // Ricalcola il totale del carrello
+
       this.calculateCartTotal();
     }, error => {
       console.error('Errore durante l\'eliminazione dal carrello:', error);
@@ -68,7 +68,7 @@ export class CartComponent implements OnInit {
   purchase() {
     this.cartService.purchase().subscribe(
       () => {
-        this.router.navigate(['/userBook']); // Reindirizza direttamente alla pagina di gestione dei libri acquistati
+        this.router.navigate(['/userBook']);
       },
       (error) => {
         console.error('Errore durante l\'acquisto:', error);

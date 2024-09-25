@@ -36,7 +36,7 @@ export class AuthService {
       tap(response => {
         if (response && response.token) {
           localStorage.setItem('jwtToken', response.token);
-          this.isAuthenticatedSubject.next(true); // Aggiorna lo stato di autenticazione a true
+          this.isAuthenticatedSubject.next(true);
           const decodedToken = jwtDecode<any>(response.token);
           this.userRoles.next(decodedToken.role || []);
         }
@@ -48,7 +48,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('jwtToken');
     this.isAuthenticatedSubject.next(false);
-    this.userRoles.next([]); // Pulisci i ruoli al logout
+    this.userRoles.next([]);
   }
 
   // Metodo per ottenere il token JWT dal localStorage
@@ -60,14 +60,14 @@ export class AuthService {
   register(user: any, imageFile: File | null): Observable<any> {
     const formData: FormData = new FormData();
 
-    // Aggiungi i dati dell'utente al FormData
+
     formData.append('firstName', user.firstName);
     formData.append('lastName', user.lastName);
     formData.append('username', user.username);
     formData.append('email', user.email);
     formData.append('password', user.password);
 
-    // Aggiungi l'immagine solo se presente
+
     if (imageFile) {
       formData.append('imageFile', imageFile);
     }
@@ -76,7 +76,7 @@ export class AuthService {
   }
 
   hasRole(requiredRoles: string[]): boolean {
-    // Se i ruoli sono vuoti, prova a recuperarli dal token
+
     if (this.userRoles.value.length === 0) {
       const token = this.getToken();
       if (token) {
@@ -89,18 +89,18 @@ export class AuthService {
     return requiredRoles.some(role => currentUserRoles.includes(role));
   }
 
-  // Metodo di registrazione per gli admin
+
   registerAdmin(admin: any, imageFile: File | null): Observable<any> {
     const formData: FormData = new FormData();
 
-    // Aggiungi i dati dell'admin al FormData
+
     formData.append('firstName', admin.firstName);
     formData.append('lastName', admin.lastName);
     formData.append('username', admin.username);
     formData.append('email', admin.email);
     formData.append('password', admin.password);
 
-    // Aggiungi l'immagine solo se presente
+
     if (imageFile) {
       formData.append('imageFile', imageFile);
     }

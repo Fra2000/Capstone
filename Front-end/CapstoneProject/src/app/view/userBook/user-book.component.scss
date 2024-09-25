@@ -114,8 +114,8 @@ $hover-color: #a0522d;
   align-items: center;
   font-size: 0.9rem;
   .page-input-container {
-    margin: 0;  /* Assicurati che non ci siano margini */
-    padding: 0; /* Assicurati che non ci siano padding */
+    margin: 0;
+    padding: 0;
   }
 
 }
@@ -130,86 +130,85 @@ $hover-color: #a0522d;
 .page-input {
   width: 60px;
   text-align: center;
-  border: 1px solid #8b4513; /* Bordi marrone scuro */
+  border: 1px solid #8b4513;
   border-radius: 4px;
   transition: border-color 0.2s;
 }
 
 .page-input:focus {
   outline: none;
-  border-color: #a0522d; /* Colore marrone scuro per l'input quando è attivo */
-  box-shadow: 0 0 5px rgba(160, 82, 45, 0.5); /* Effetto ombra */
+  border-color: #a0522d;
+  box-shadow: 0 0 5px rgba(160, 82, 45, 0.5);
 }
 
 .input-group-text {
-  background-color: #f5deb3; /* Colore di sfondo simile alle altre sezioni */
-  border: 1px solid #8b4513; /* Bordi marrone scuro */
+  background-color: #f5deb3;
+  border: 1px solid #8b4513;
   border-radius: 4px;
-  color: #8b4513; /* Colore del testo */
+  color: #8b4513;
   padding: 5px 8px;
 }
 
 .page-input-container {
   .input-group {
-    background-color: #f5deb3; /* Colore di sfondo personalizzato per l'intera area dell'input */
+    background-color: #f5deb3;
 
     .form-control {
-      background-color: #f5deb3; /* Colore di sfondo per l'input */
-      color: #8b4513; /* Colore del testo */
-      border: 1px solid #8b4513; /* Colore del bordo */
+      background-color: #f5deb3;
+      color: #8b4513;
+      border: 1px solid #8b4513;
       &:focus {
-        background-color: #ffe4b5; /* Colore dello sfondo durante il focus */
-        color: #8b4513; /* Colore del testo durante il focus */
-        border-color: #a0522d; /* Colore del bordo durante il focus */
-        box-shadow: none; /* Rimuove l'ombra predefinita */
+        background-color: #ffe4b5;
+        color: #8b4513;
+        border-color: #a0522d;
+        box-shadow: none;
       }
     }
 
     .input-group-text {
-      background-color: #f5deb3; /* Colore di sfondo per il testo dell'input group */
-      color: #8b4513; /* Colore del testo */
-      border: 1px solid #8b4513; /* Colore del bordo */
+      background-color: #f5deb3;
+      color: #8b4513;
+      border: 1px solid #8b4513;
     }
   }
 }
 
-/* Rende l'input simile al testo */
+
 .styled-input {
-  border: none; /* Rimuove il bordo */
-  background-color: transparent; /* Sfondo trasparente */
-  text-align: center; /* Allinea il testo al centro */
-  box-shadow: none; /* Rimuove l'ombra */
-  width: 50px; /* Imposta la larghezza per farlo sembrare un numero */
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  box-shadow: none;
+  width: 50px;
 
   &:focus {
-    outline: none; /* Rimuove il contorno al focus */
+    outline: none;
   }
 }
 
 .styled-text {
-  background-color: #e9ecef; /* Imposta lo stesso sfondo dell'input */
-  border: none; /* Rimuove il bordo */
+  background-color: #e9ecef;
+  border: none;
 }
 
-/* Rimuove le freccette in Google Chrome, Safari, Edge e Opera */
-/* Rimuove le freccette in Google Chrome, Safari, Edge e Opera */
+
 .styled-input::-webkit-outer-spin-button,
 .styled-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  appearance: none; /* Aggiunta la proprietà standard */
+  appearance: none;
   margin: 0;
 }
 
-/* Rimuove le freccette in Firefox */
+
 .styled-input[type='number'] {
   -moz-appearance: textfield;
-  appearance: textfield; /* Aggiunta la proprietà standard */
+  appearance: textfield;
 }
 
 .button-custom {
-  background-color: #f5deb3; // Sostituisci con il colore di sfondo della tua pagina
-  color: #8b4513; // Colore del testo per abbinarlo al resto della pagina
-  border: 2px solid #8b4513; // Bordo in marrone scuro
+  background-color: #f5deb3;
+  color: #8b4513;
+  border: 2px solid #8b4513;
   border-radius: 5px;
   padding: 10px 15px;
   font-weight: bold;
@@ -217,13 +216,13 @@ $hover-color: #a0522d;
   transition: background-color 0.3s, color 0.3s, transform 0.3s;
 
   &:hover {
-    background-color: #a0522d; // Colore di hover per abbinarsi al resto della pagina
-    color: #fff; // Colore del testo in bianco quando si passa sopra
-    transform: translateY(-2px); // Leggera animazione di sollevamento
+    background-color: #a0522d;
+    color: #fff;
+    transform: translateY(-2px);
   }
 
   &:focus {
-    outline: none; // Rimuove il contorno di focus
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); // Aggiunge un'ombra per l'effetto focus
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   }
 }

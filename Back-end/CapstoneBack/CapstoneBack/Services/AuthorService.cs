@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using CapstoneBack.Models;
-using Microsoft.AspNetCore.Http;
 using CapstoneBack.Services.Interfaces;
-using System.IO;
 using CapstoneBack.Models.DTO.AuthorDTO;
 using CapstoneBack.Models.DTO.BookDTO;
 using CapstoneBack.Models.DTO.GenreDTO;
@@ -55,7 +50,7 @@ namespace CapstoneBack.Services
                 return null;
             }
 
-            // Mappatura manuale a AuthorReadDto
+            
             return new AuthorReadDto
             {
                 AuthorId = author.AuthorId,
@@ -89,8 +84,8 @@ namespace CapstoneBack.Services
 
         public async Task<Author> CreateAuthorAsync(Author author, IFormFile? imageFile)
         {
-            // Gestisci l'immagine di default o carica l'immagine se fornita
-            string imagePath = "images/Author/default.jpg"; // Percorso dell'immagine di default
+            
+            string imagePath = "images/Author/default.jpg"; 
             if (imageFile != null && imageFile.Length > 0)
             {
                 var imagesPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Author");
@@ -123,7 +118,7 @@ namespace CapstoneBack.Services
                 return null;
             }
 
-            // Gestisci l'immagine di default o carica l'immagine se fornita
+            
             if (imageFile != null && imageFile.Length > 0)
             {
                 if (!string.IsNullOrEmpty(existingAuthor.ImagePath) && !existingAuthor.ImagePath.EndsWith("default.jpg"))
@@ -150,7 +145,7 @@ namespace CapstoneBack.Services
                 existingAuthor.ImagePath = Path.Combine("images", "Author", fileName);
             }
 
-            // Aggiorna le altre proprietà dell'autore
+            
             existingAuthor.FirstName = author.FirstName;
             existingAuthor.LastName = author.LastName;
             existingAuthor.DateOfBirth = author.DateOfBirth;
@@ -168,11 +163,11 @@ namespace CapstoneBack.Services
                 return false;
             }
 
-            // Gestisci la cancellazione del file immagine, evitando di eliminare l'immagine di default
+            
             if (!string.IsNullOrEmpty(author.ImagePath) && !author.ImagePath.EndsWith("default.jpg"))
             {
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", author.ImagePath);
-                Console.WriteLine($"File Path: {filePath}"); // Debug del percorso
+                Console.WriteLine($"File Path: {filePath}"); 
 
                 if (System.IO.File.Exists(filePath))
                 {

@@ -7,13 +7,13 @@ $hover-color: #a0522d;
     border: 2px solid $text-color;
     border-radius: 10px;
     background-color: $navbar-bg;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Ripristina lo shadow corretto
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
     &:hover {
       transform: translateY(-10px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); // Ripristina lo shadow per hover
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
 
     .form-group {
@@ -27,16 +27,16 @@ $hover-color: #a0522d;
       .form-control {
         border: 1px solid $text-color;
         border-radius: 5px;
-        color: $text-color; // Colore del testo inserito dall'utente
+        color: $text-color;
 
         &::placeholder {
-          color: $text-color; // Colore del placeholder
-          opacity: 1; // Rende il placeholder pienamente visibile
+          color: $text-color;
+          opacity: 1;
         }
 
         &:focus {
-          border-color: $text-color; // Colore del bordo quando l'input è attivo
-          box-shadow: 0 0 0 0.2rem rgba($text-color, 0.25); // Personalizza l'ombra sul focus
+          border-color: $text-color;
+          box-shadow: 0 0 0 0.2rem rgba($text-color, 0.25);
         }
       }
     }

@@ -1,16 +1,16 @@
-$navbar-bg: #f5deb3; // Colore di sfondo delle vecchie pagine
-$text-color: #8b4513; // Marrone scuro per il testo
-$hover-color: #a0522d; // Colore per l'effetto hover
+$navbar-bg: #f5deb3;
+$text-color: #8b4513;
+$hover-color: #a0522d;
 
 .book-card {
   max-width: 100%;
   margin: auto;
-  border: 2px solid $text-color; // Bordi marroni scuri
+  border: 2px solid $text-color;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: $navbar-bg; // Sfondo giallo
+  background-color: $navbar-bg;
 
   &:hover {
     transform: scale(1.03);
@@ -26,22 +26,22 @@ $hover-color: #a0522d; // Colore per l'effetto hover
 
   .card-body {
     padding: 20px;
-    background-color: $navbar-bg; // Sfondo giallo simile alle vecchie pagine
+    background-color: $navbar-bg;
 
     .card-title {
       font-size: 1.5rem;
       font-weight: bold;
       margin-bottom: 1rem;
-      color: $text-color; // Testo marrone scuro
+      color: $text-color;
     }
 
     .card-text {
       font-size: 1rem;
       line-height: 1.5;
-      color: $text-color; // Testo marrone scuro
+      color: $text-color;
 
       &.text-muted {
-        color: darken($navbar-bg, 20%); // Testo leggermente più scuro
+        color: darken($navbar-bg, 20%);
       }
     }
 
@@ -55,7 +55,7 @@ $hover-color: #a0522d; // Colore per l'effetto hover
     .badge {
       font-size: 0.9rem;
       margin-right: 5px;
-      background-color: $text-color; // Badge con lo stesso colore marrone scuro
+      background-color: $text-color;
     }
 
     .btn {

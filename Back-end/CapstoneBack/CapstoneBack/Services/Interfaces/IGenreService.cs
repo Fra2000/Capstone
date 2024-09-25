@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using CapstoneBack.Models;
+﻿using CapstoneBack.Models;
 
 namespace CapstoneBack.Services.Interfaces
 {

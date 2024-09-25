@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthorService } from '../../../services/Author/author.service';
+import { AuthorService } from '../../../services/author.service';
 import { AuthorRead } from '../../../interfaces/Author';
 
 @Component({
@@ -19,7 +19,7 @@ export class UpdateAuthorComponent implements OnInit {
     books: []
   };
 
-  // Variabile separata per gestire il formato dell'input di tipo 'date'
+
   formattedDateOfBirth: string = '';
 
   selectedFile: File | null = null;
@@ -36,12 +36,12 @@ export class UpdateAuthorComponent implements OnInit {
       (response: AuthorRead) => {
         this.author = response;
 
-        // Converti la data di nascita in formato yyyy-MM-dd senza spostamenti di fuso orario
+
         if (this.author.dateOfBirth) {
           const date = new Date(this.author.dateOfBirth);
-          const userTimezoneOffset = date.getTimezoneOffset() * 60000; // Ottieni l'offset del fuso orario in millisecondi
-          const correctedDate = new Date(date.getTime() - userTimezoneOffset); // Correggi l'offset
-          this.formattedDateOfBirth = correctedDate.toISOString().split('T')[0]; // yyyy-MM-dd
+          const userTimezoneOffset = date.getTimezoneOffset() * 60000;
+          const correctedDate = new Date(date.getTime() - userTimezoneOffset);
+          this.formattedDateOfBirth = correctedDate.toISOString().split('T')[0];
         }
       },
       (error) => {
@@ -51,14 +51,14 @@ export class UpdateAuthorComponent implements OnInit {
   }
 
 
-  // Metodo per selezionare il file immagine
+
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
 
-  // Metodo per aggiornare i dati dell'autore
+
   updateAuthor(): void {
-    // Convertire la stringa della data di nascita in un oggetto Date
+
     if (this.formattedDateOfBirth) {
       this.author.dateOfBirth = new Date(this.formattedDateOfBirth);
     }
@@ -66,11 +66,11 @@ export class UpdateAuthorComponent implements OnInit {
     const formData = new FormData();
     formData.append('firstName', this.author.firstName);
     formData.append('lastName', this.author.lastName);
-    formData.append('dateOfBirth', this.formattedDateOfBirth); // Usa la data formattata per l'invio
+    formData.append('dateOfBirth', this.formattedDateOfBirth);
     formData.append('bio', this.author.bio);
 
     if (this.selectedFile) {
-      formData.append('imageFile', this.selectedFile); // Aggiungi il file immagine se presente
+      formData.append('imageFile', this.selectedFile);
     }
 
     this.authorService.updateAuthor(this.author.authorId, formData).subscribe(

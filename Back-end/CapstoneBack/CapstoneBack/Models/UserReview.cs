@@ -17,11 +17,11 @@ namespace CapstoneBack.Models
         public Book Book { get; set; }
 
         [Range(1, 5)]
-        public int Rating { get; set; }  // Valutazione da 1 a 5 stelle
+        public int Rating { get; set; }  
 
-        public string ReviewText { get; set; }  // Testo della recensione
+        public string ReviewText { get; set; }  
 
-        public DateTime ReviewDate { get; set; }  // Data della recensione
+        public DateTime ReviewDate { get; set; }  
     }
 
 }

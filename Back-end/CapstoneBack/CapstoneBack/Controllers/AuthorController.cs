@@ -120,7 +120,7 @@ namespace CapstoneBack.Controllers
                 DateOfBirth = createdAuthor.DateOfBirth,
                 Bio = createdAuthor.Bio,
                 ImagePath = createdAuthor.ImagePath,
-                Books = new List<BookSummaryDto>() // Inizialmente vuoto, poiché l'autore è appena stato creato
+                Books = new List<BookSummaryDto>() 
             };
 
             return CreatedAtAction(nameof(GetAuthorById), new { id = createdAuthor.AuthorId }, authorReadDto);

@@ -33,7 +33,7 @@ $placeholder-color: #a9a9a9;
       .form-control {
         border: 1px solid $text-color;
         border-radius: 5px;
-        color: $text-color; // Colore del testo inserito dall'utente
+        color: $text-color;
 
         &::placeholder {
           color: $text-color;
@@ -41,8 +41,8 @@ $placeholder-color: #a9a9a9;
         }
 
         &:focus {
-          border-color: $text-color; // Colore del bordo durante il focus
-          box-shadow: 0 0 0 0.2rem rgba($text-color, 0.25); // Ombra personalizzata
+          border-color: $text-color;
+          box-shadow: 0 0 0 0.2rem rgba($text-color, 0.25);
         }
       }
 
@@ -58,7 +58,7 @@ $placeholder-color: #a9a9a9;
 
     input,
     textarea {
-      color: $text-color; // Colore del testo negli input e textarea
+      color: $text-color;
     }
 
   }

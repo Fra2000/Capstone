@@ -1,42 +1,42 @@
 .pointer {
   cursor: pointer;
 }
-/* Stile personalizzato per la navbar */
+
 .navbar-custom {
-  background-color: #f5deb3; /* Giallo caldo che ricorda le vecchie pagine */
-  border-bottom: 2px solid #d2b48c; /* Effetto vintage con una tonalità più scura */
+  background-color: #f5deb3;
+  border-bottom: 2px solid #d2b48c;
 
   .navbar-brand {
-    font-family: 'Georgia', serif; /* Un font che ricorda i vecchi libri */
-    color: #8b4513; /* Marrone scuro */
+    font-family: 'Georgia', serif;
+    color: #8b4513;
     font-weight: bold;
     &:hover {
-      color: #a0522d; /* Effetto hover più scuro */
+      color: #a0522d;
     }
   }
 
   .navbar-toggler {
-    border-color: #8b4513; /* Marrone scuro */
+    border-color: #8b4513;
 
   }
 
   .nav-link {
-    color: #8b4513; /* Marrone scuro per i link */
-    margin-right: 8px; /* Spaziatura tra i link */
+    color: #8b4513;
+    margin-right: 8px;
     padding: 10px;
     font-size: 1.1rem;
     text-transform: uppercase;
     transition: color 0.3s ease, background-color 0.3s ease;
     &:hover {
-      color: #fff; /* Bianco al passaggio del mouse */
-      background-color: #a0522d; /* Marrone più scuro al passaggio del mouse */
+      color: #fff;
+      background-color: #a0522d;
       border-radius: 5px;
     }
   }
 
   .nav-item .active {
     font-weight: bold;
-    border-bottom: 2px solid #d2b48c; /* Indica la pagina attiva */
+    border-bottom: 2px solid #d2b48c;
   }
 }
 .bord{

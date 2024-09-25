@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GenreService } from '../../../services/Genre/genre.service';
+import { GenreService } from '../../../services/genre.service';
 
 @Component({
   selector: 'app-delete-genre',
@@ -18,7 +18,7 @@ export class DeleteGenreComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.genreId = Number(this.route.snapshot.paramMap.get('id')); // Ottieni l'ID dal percorso
+    this.genreId = Number(this.route.snapshot.paramMap.get('id'));
     this.loadGenre();
   }
 
@@ -37,7 +37,7 @@ export class DeleteGenreComponent implements OnInit {
     this.genreService.deleteGenre(this.genreId).subscribe(
       () => {
         console.log('Genere eliminato con successo');
-        this.router.navigate(['/allGenre']);  // Reindirizzamento alla lista dei generi
+        this.router.navigate(['/allGenre']);
       },
       (error) => {
         console.error('Errore nell\'eliminazione del genere:', error);

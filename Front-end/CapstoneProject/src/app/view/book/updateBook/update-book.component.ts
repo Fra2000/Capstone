@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookService } from '../../../services/Book/book.service';
-import { GenreService } from '../../../services/Genre/genre.service';
-import { AuthorService } from '../../../services/Author/author.service';
+import { BookService } from '../../../services/book.service';
+import { GenreService } from '../../../services/genre.service';
+import { AuthorService } from '../../../services/author.service';
 import { Book } from '../../../interfaces/Book';
 import { Genre } from '../../../interfaces/Genre';
 import { AuthorRead } from '../../../interfaces/Author';
@@ -41,9 +41,9 @@ export class UpdateBookComponent implements OnInit {
         this.selectedGenres = this.book.genres?.map(g => g.genreId) || [];
         if (this.book.publicationDate) {
           const date = new Date(this.book.publicationDate);
-          const userTimezoneOffset = date.getTimezoneOffset() * 60000; // Ottieni l'offset del fuso orario in millisecondi
-          const correctedDate = new Date(date.getTime() - userTimezoneOffset); // Correggi l'offset
-          this.formattedPublicationDate = correctedDate.toISOString().split('T')[0]; // yyyy-MM-dd
+          const userTimezoneOffset = date.getTimezoneOffset() * 60000;
+          const correctedDate = new Date(date.getTime() - userTimezoneOffset);
+          this.formattedPublicationDate = correctedDate.toISOString().split('T')[0];
         }
       },
       error: (error) => console.error('Error fetching book:', error)

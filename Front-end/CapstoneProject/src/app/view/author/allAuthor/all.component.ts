@@ -1,6 +1,6 @@
-// all-authors.component.ts
+
 import { Component, OnInit } from '@angular/core';
-import { AuthorService } from '../../../services/Author/author.service';
+import { AuthorService } from '../../../services/author.service';
 import { AuthorRead } from '../../../interfaces/Author'
 
 
@@ -21,7 +21,7 @@ export class AllAuthorsComponent implements OnInit {
           console.log(author.imagePath);
           return {
             ...author,
-            dateOfBirth: new Date(author.dateOfBirth) // Assicurati che dateOfBirth sia un oggetto Date
+            dateOfBirth: new Date(author.dateOfBirth)
           };
         });
       },

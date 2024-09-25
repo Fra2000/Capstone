@@ -1,10 +1,9 @@
-// detail-author.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthorService } from '../../../services/Author/author.service';
+import { AuthorService } from '../../../services/author.service';
 import { AuthorRead } from '../../../interfaces/Author';
 import { Book } from '../../../interfaces/Book'
-import { BookService } from '../../../services/Book/book.service';
+import { BookService } from '../../../services/book.service';
 
 @Component({
   selector: 'app-detail-author',
@@ -38,7 +37,7 @@ export class DetailAuthorComponent implements OnInit {
   }
 
   loadBooksForAuthor(authorId: number) {
-    // Aggiungi un metodo nel tuo BookService se non esiste già per caricare libri per autore
+
     this.bookService.getBooksByAuthorId(authorId).subscribe({
       next: (books) => this.books = books,
       error: (error) => console.error(`Error fetching books for author ${authorId}:`, error)
@@ -51,7 +50,7 @@ export class DetailAuthorComponent implements OnInit {
 
   getCoverImagePath(relativePath: string): string {
     if (!relativePath) {
-      return 'https://localhost:7097/images/Book/default.png'; // immagine di default se non presente
+      return 'https://localhost:7097/images/Book/default.png';
     }
     return `https://localhost:7097/${relativePath}`;
   }

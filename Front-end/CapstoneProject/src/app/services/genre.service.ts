@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Genre } from '../../interfaces/Genre';
-import { Book } from '../../interfaces/Book';
+import { Genre } from '../interfaces/Genre';
+import { Book } from '../interfaces/Book';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class GenreService {
   }
 
   getBooksByGenreId(genreId: number): Observable<Book[]> {
-    console.log('Fetching books for genre ID:', genreId); // Log dell'ID del genere usato nella richiesta
+    console.log('Fetching books for genre ID:', genreId);
     return this.http.get<Book[]>(`${this.apiUrl}/${genreId}`);
   }
 

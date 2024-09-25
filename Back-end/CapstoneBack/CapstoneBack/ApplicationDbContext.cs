@@ -30,7 +30,7 @@ namespace CapstoneBack
         {
             base.OnModelCreating(modelBuilder);
 
-            // Relazione molti-a-molti tra Book e Genre
+            
             modelBuilder.Entity<BookGenre>()
                 .HasKey(bg => new { bg.BookId, bg.GenreId });
 
@@ -44,7 +44,7 @@ namespace CapstoneBack
                 .WithMany(g => g.BookGenres)
                 .HasForeignKey(bg => bg.GenreId);
 
-            // Configurazione delle relazioni per UserBook
+           
             modelBuilder.Entity<UserBook>()
                 .HasKey(ub => ub.UserBookId);
 
@@ -58,7 +58,7 @@ namespace CapstoneBack
                 .WithMany(b => b.UserBooks)
                 .HasForeignKey(ub => ub.BookId);
 
-            // Relazione per UserBookStatus
+            
             modelBuilder.Entity<UserBookStatus>()
                 .HasOne(ubs => ubs.User)
                 .WithMany(u => u.UserBookStatuses)
@@ -74,7 +74,7 @@ namespace CapstoneBack
                 .WithMany(s => s.UserBookStatuses)
                 .HasForeignKey(ubs => ubs.StatusId);
 
-            // Configurazione per UserLoyaltyCard
+          
             modelBuilder.Entity<UserLoyaltyCard>()
                 .HasOne(ulc => ulc.User)
                 .WithMany(u => u.UserLoyaltyCards)
@@ -85,7 +85,7 @@ namespace CapstoneBack
                 .WithMany(lct => lct.UserLoyaltyCards)
                 .HasForeignKey(ulc => ulc.LoyaltyCardTypeId);
 
-            // Configurazione per Author e Book
+            
             modelBuilder.Entity<Book>()
                 .HasOne(b => b.Author)
                 .WithMany(a => a.Books)
@@ -103,7 +103,7 @@ namespace CapstoneBack
               new Status { StatusId = 3, StatusName = "Terminati" }
                 );
 
-            // Creazione dell'utente SuperAdmin
+            
             var superAdminUser = new User
             {
                 UserId = 1,
@@ -112,7 +112,7 @@ namespace CapstoneBack
                 UserName = "SuperAdmin",
                 Email = "admin@admin.com",
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin"),
-                RoleId = 3, // Associa il ruolo SuperAdmin
+                RoleId = 3, 
                 ImagePath = "images/Account/default.jpg"
             };
 

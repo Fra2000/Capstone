@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using CapstoneBack.Models;
-using CapstoneBack.Services.Interfaces;
 using CapstoneBack.Models.DTO.CartDTO;
 
 namespace CapstoneBack.Services
@@ -16,7 +13,7 @@ namespace CapstoneBack.Services
             _context = context;
         }
 
-        // Recupera il carrello di un utente
+        
         public async Task<CartReadDto> GetCartByUserIdAsync(int userId)
         {
             var cartItems = await _context.UserBooks
@@ -38,7 +35,7 @@ namespace CapstoneBack.Services
             };
         }
 
-        // Aggiunge o aggiorna un libro nel carrello
+        
         public async Task<UserBookDto> AddOrUpdateCartItemAsync(int userId, UpdateDto cartItemDto)
         {
             var existingUserBook = await _context.UserBooks
@@ -76,23 +73,23 @@ namespace CapstoneBack.Services
             };
         }
 
-        // Rimuove un libro dal carrello
+        
         public async Task<bool> RemoveCartItemAsync(int userBookId, int quantity)
         {
             var userBook = await _context.UserBooks.FindAsync(userBookId);
             if (userBook == null || quantity <= 0)
             {
-                return false;  // Elemento non trovato o quantità non valida
+                return false;  
             }
 
-            // Se la quantità da rimuovere è maggiore o uguale alla quantità attuale, rimuovi l'elemento
+            
             if (quantity >= userBook.Quantity)
             {
                 _context.UserBooks.Remove(userBook);
             }
             else
             {
-                // Riduci la quantità
+                
                 userBook.Quantity -= quantity;
             }
 
@@ -101,35 +98,35 @@ namespace CapstoneBack.Services
         }
 
 
-        // Completa l'acquisto e restituisce i libri acquistati dall'utente
+       
         public async Task<List<UserBookDto>> CompletePurchaseAsync(int userId)
         {
-            // Recupera i libri nel carrello dell'utente
+            
             var userBooks = await _context.UserBooks
                 .Where(ub => ub.UserId == userId)
                 .Include(ub => ub.Book)
-                .ThenInclude(b => b.Author)  // Includi l'autore del libro
+                .ThenInclude(b => b.Author)  
                 .ToListAsync();
 
             var userBookDtos = new List<UserBookDto>();
 
-            // Aggiungi i libri allo stato "Da Iniziare"
+            
             foreach (var userBook in userBooks)
             {
                 var userBookStatus = new UserBookStatus
                 {
                     UserId = userId,
                     BookId = userBook.BookId,
-                    StatusId = 1,  // Assumendo che "Da Iniziare" sia lo status con ID 1
-                    CurrentPage = 0,  // Inizialmente a pagina 0
-                    TotalPages = userBook.Book.NumberOfPages,  // Imposta il numero di pagine totale dal libro
+                    StatusId = 1,  
+                    CurrentPage = 0,  
+                    TotalPages = userBook.Book.NumberOfPages,  
                     PurchaseDate = DateTime.UtcNow,
                     DateUpdated = DateTime.UtcNow
                 };
 
                 _context.UserBookStatuses.Add(userBookStatus);
 
-                // Prepara il DTO per restituire i dati all'utente
+                
                 userBookDtos.Add(new UserBookDto
                 {
                     BookId = userBook.BookId,
@@ -139,10 +136,10 @@ namespace CapstoneBack.Services
                 });
             }
 
-            // Rimuovi i libri dal carrello dopo l'acquisto
+            
             _context.UserBooks.RemoveRange(userBooks);
 
-            // Salva i cambiamenti nel database
+            
             await _context.SaveChangesAsync();
 
             return userBookDtos;

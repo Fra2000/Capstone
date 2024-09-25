@@ -1,5 +1,4 @@
 using CapstoneBack;
-using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
 using CapstoneBack.Services;
 using Microsoft.EntityFrameworkCore;
@@ -84,9 +83,9 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = "localhost",  // Cambia con il dominio del tuo progetto
+        ValidIssuer = "localhost",  
         ValidAudience = "localhost",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aS3cUrEP@ssw0rD!Str1ngWith32Ch@racters"))  // Usa una chiave segreta forte
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aS3cUrEP@ssw0rD!Str1ngWith32Ch@racters"))  
     };
 });
 
@@ -100,7 +99,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Imposta la cultura predefinita su "en-US" (utilizza il punto come separatore decimale)
+
 var cultureInfo = new CultureInfo("en-US");
 CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GenreService } from '../../../services/Genre/genre.service'; // Aggiorna il percorso corretto
+import { GenreService } from '../../../services/genre.service';
 import { Genre } from '../../../interfaces/Genre';
 
 @Component({

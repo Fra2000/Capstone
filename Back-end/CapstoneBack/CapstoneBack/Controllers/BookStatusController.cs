@@ -1,11 +1,10 @@
-﻿using CapstoneBack.Models;
-using CapstoneBack.Services.Interfaces;
+﻿using CapstoneBack.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
-[Authorize(Roles = "User, Admin, SuperAdmin")] // Permette l'accesso anche a ruoli Admin e SuperAdmin se necessario
+
+[Authorize(Roles = "User")] 
 [ApiController]
 [Route("api/[controller]")]
 public class BookStatusController : ControllerBase
@@ -17,9 +16,7 @@ public class BookStatusController : ControllerBase
         _bookStatusService = bookStatusService;
     }
 
-    /// <summary>
-    /// Recupera gli stati dei libri dell'utente autenticato.
-    /// </summary>
+    
     [HttpGet("user-statuses")]
     public async Task<IActionResult> GetUserBookStatuses()
     {
@@ -42,9 +39,7 @@ public class BookStatusController : ControllerBase
         }
     }
 
-    /// <summary>
-    /// Aggiorna lo stato del libro o il numero di pagine per l'utente autenticato.
-    /// </summary>
+    
     [HttpPut("update-status")]
     public async Task<IActionResult> UpdateBookStatus(int bookId, string? newStatus = null, int? currentPage = null)
     {
@@ -52,7 +47,7 @@ public class BookStatusController : ControllerBase
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-            // Verifica che almeno uno dei parametri `newStatus` o `currentPage` sia fornito
+           
             if (string.IsNullOrEmpty(newStatus) && currentPage == null)
             {
                 return BadRequest(new { message = "At least one of 'newStatus' or 'currentPage' must be provided." });

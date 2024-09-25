@@ -32,16 +32,16 @@ $text-color: #8b4513;
       .form-control {
         border: 1px solid $text-color;
         border-radius: 5px;
-        color: $text-color; // Colore del testo inserito dall'utente
+        color: $text-color;
 
         &::placeholder {
-          color: $text-color; // Colore del placeholder
+          color: $text-color;
           opacity: 1;
         }
 
         &:focus {
-          border-color: $text-color; // Colore del bordo durante il focus
-          box-shadow: 0 0 0 0.2rem rgba($text-color, 0.25); // Ombra personalizzata
+          border-color: $text-color;
+          box-shadow: 0 0 0 0.2rem rgba($text-color, 0.25);
         }
       }
     }

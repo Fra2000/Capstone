@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <h1 class="text-center mb-4 text">Elenco Generi</h1>
 
-  <!-- Pulsante per creare un nuovo genere -->
+
   <div class="d-flex justify-content-center mb-4">
     <button type="button" [routerLink]="['/createGenre']" class="buttonAdd">
       <span class="button__text">Aggiungi genere</span>
@@ -14,7 +14,7 @@
     </button>
   </div>
 
-  <!-- Contenitore per il controllo del contenuto se esistono generi -->
+
   <ng-container *ngIf="genres.length > 0; else noGenres">
     <div class="row justify-content-center">
       <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let genre of genres">
@@ -45,7 +45,7 @@
     </div>
   </ng-container>
 
-  <!-- Messaggio se non ci sono generi -->
+
   <ng-template #noGenres>
     <p class="text-center">Nessun genere disponibile al momento.</p>
   </ng-template>

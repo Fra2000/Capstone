@@ -7,9 +7,9 @@
   font-size: 1.1rem;
 }
 
-$navbar-bg: #f5deb3; // Colore di sfondo delle vecchie pagine
-$text-color: #8b4513; // Marrone scuro per il testo
-$hover-color: #a0522d; // Colore per l'effetto hover
+$navbar-bg: #f5deb3;
+$text-color: #8b4513;
+$hover-color: #a0522d;
 
 
 
@@ -102,20 +102,20 @@ body {
   align-items: center;
   border: 1px solid $text-color;
   background-color: $navbar-bg;
-  overflow: hidden; /* Evita che il contenuto fuoriesca */
+  overflow: hidden;
 }
 
 .buttonAdd, .button__icon, .button__text {
-  transition: all 0.3s ease-in-out; /* Smooth transitions */
+  transition: all 0.3s ease-in-out;
 }
 
 .buttonAdd .button__text {
-  transform: translateX(0); /* Partenza del testo senza offset */
+  transform: translateX(0);
   color: $text-color;
   font-weight: 600;
   line-height: 1;
-  flex-grow: 1; /* Assicura che il testo occupi tutto lo spazio disponibile */
-  text-align: center; /* Centra il testo */
+  flex-grow: 1;
+  text-align: center;
   padding: 0 10px;
 }
 
@@ -140,11 +140,11 @@ body {
 }
 
 .buttonAdd:hover .button__text {
-  color: transparent; /* Nascondi il testo al passaggio del mouse */
+  color: transparent;
 }
 
 .buttonAdd:hover .button__icon {
-  width: 100%; /* L'icona si espande fino a coprire tutto il pulsante */
+  width: 100%;
   right: 0;
 }
 
@@ -154,15 +154,15 @@ body {
 }
 
 .btn-select {
-  background-color: #f5deb3; /* Colore di sfondo personalizzato */
-  color: #8b4513; /* Colore del testo personalizzato */
+  background-color: #f5deb3;
+  color: #8b4513;
 
   &:hover {
-    background-color: #a0522d; /* Colore di sfondo al passaggio del mouse */
+    background-color: #a0522d;
     color: white;
   }
 }
 
 .dropdown-menu li:hover {
-  background-color: #a0522d; /* Colore di sfondo al passaggio del mouse sulle opzioni */
+  background-color: #a0522d;
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../services/Account/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../interfaces/user';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent {
   registrationForm: FormGroup;
-  selectedFile: File | null = null; // Variabile per l'immagine selezionata
+  selectedFile: File | null = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registrationForm = this.fb.group({
@@ -23,7 +23,7 @@ export class RegistrationComponent {
     });
   }
 
-  // Gestisce la selezione dell'immagine
+
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
@@ -32,11 +32,11 @@ export class RegistrationComponent {
     if (this.registrationForm.valid) {
       const newUser: User = this.registrationForm.value;
 
-      // Invia l'utente e il file selezionato al servizio
+
       this.authService.register(newUser, this.selectedFile).subscribe({
         next: (user) => {
           console.log('Registration successful', user);
-          // Puoi aggiungere una logica di navigazione o un messaggio di successo
+
           this.router.navigate(['/login']);
         },
         error: (error) => {

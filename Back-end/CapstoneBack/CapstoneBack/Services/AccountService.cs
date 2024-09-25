@@ -1,12 +1,10 @@
-﻿using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Configuration;
 using CapstoneBack.Models.DTO;
 
 namespace CapstoneBack.Services
@@ -33,7 +31,7 @@ namespace CapstoneBack.Services
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);  // Chiave segreta dal file di configurazione
+            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);  
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -41,10 +39,10 @@ namespace CapstoneBack.Services
                 {
                    new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                    new Claim(ClaimTypes.Email, user.Email),
-                   new Claim(ClaimTypes.Role, user.Role.RoleName)  // Assegna il ruolo dell'utente
+                   new Claim(ClaimTypes.Role, user.Role.RoleName)  
                 }),
-                Expires = DateTime.UtcNow.AddHours(2), // Imposta la durata del token
-                Audience = "localhost",  // Aggiungi l'audience
+                Expires = DateTime.UtcNow.AddHours(2), 
+                Audience = "localhost",  
                 Issuer = "localhost",
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
@@ -52,7 +50,7 @@ namespace CapstoneBack.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            // Restituisce il DTO con il token e le informazioni dell'utente
+            
             return new AuthResponseDto
             {
                 Token = tokenString,
@@ -64,14 +62,14 @@ namespace CapstoneBack.Services
         {
             var hashedPassword = HashPassword(password);
 
-            // Trova il ruolo "User"
+            
             var userRole = await _context.Roles.SingleOrDefaultAsync(r => r.RoleName == "User");
             if (userRole == null)
             {
                 throw new Exception("User role not found.");
             }
 
-            // Gestisci l'immagine di default o carica l'immagine se fornita
+            
             string imagePath = "images/Account/default.jpg";
             if (imageFile != null && imageFile.Length > 0)
             {
@@ -98,7 +96,7 @@ namespace CapstoneBack.Services
                 Email = email,
                 PasswordHash = hashedPassword,
                 RoleId = userRole.RoleId,
-                ImagePath = imagePath // Assegna l'immagine
+                ImagePath = imagePath 
             };
 
             _context.Users.Add(user);
@@ -116,14 +114,14 @@ namespace CapstoneBack.Services
         {
             var hashedPassword = HashPassword(password);
 
-            // Trova il ruolo "Admin"
+            
             var adminRole = await _context.Roles.SingleOrDefaultAsync(r => r.RoleName == "Admin");
             if (adminRole == null)
             {
                 throw new Exception("Admin role not found.");
             }
 
-            // Gestisci l'immagine di default o carica l'immagine se fornita
+            
             string imagePath = "images/Account/default.jpg";
             if (imageFile != null && imageFile.Length > 0)
             {
@@ -150,7 +148,7 @@ namespace CapstoneBack.Services
                 Email = email,
                 PasswordHash = hashedPassword,
                 RoleId = adminRole.RoleId,
-                ImagePath = imagePath // Assegna l'immagine
+                ImagePath = imagePath 
             };
 
             _context.Users.Add(admin);

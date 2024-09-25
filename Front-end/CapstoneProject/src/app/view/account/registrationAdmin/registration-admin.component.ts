@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../services/Account/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../interfaces/user';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegistrationAdminComponent {
   registrationForm: FormGroup;
-  selectedFile: File | null = null; // Variabile per l'immagine selezionata
+  selectedFile: File | null = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registrationForm = this.fb.group({
@@ -23,7 +23,7 @@ export class RegistrationAdminComponent {
     });
   }
 
-  // Gestisce la selezione dell'immagine
+
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
@@ -32,7 +32,7 @@ export class RegistrationAdminComponent {
     if (this.registrationForm.valid) {
       const newAdmin: User = this.registrationForm.value;
 
-      // Invia l'admin e il file selezionato al servizio
+
       this.authService.registerAdmin(newAdmin, this.selectedFile).subscribe({
         next: (admin) => {
           console.log('Admin registration successful', admin);

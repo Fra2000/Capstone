@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using CapstoneBack.Models;
 using CapstoneBack.Services.Interfaces;
-using CapstoneBack.Models.DTO;
 using CapstoneBack.Models.DTO.ReviewDTO;
 
 namespace CapstoneBack.Services
@@ -20,7 +16,7 @@ namespace CapstoneBack.Services
 
         public async Task<ReviewReadDto> AddReviewAsync(int userId, ReviewCreateDto reviewDto)
         {
-            // Verifica se l'utente ha già lasciato una recensione per questo libro.
+            
             var existingReview = await _context.UserReviews
                 .FirstOrDefaultAsync(ur => ur.UserId == userId && ur.BookId == reviewDto.BookId);
 
@@ -29,7 +25,7 @@ namespace CapstoneBack.Services
                 throw new InvalidOperationException("Review already exists. Each user can only create one review per book.");
             }
 
-            // Verifica se l'utente ha effettivamente "acquistato" il libro.
+            
             var userBookStatus = await _context.UserBookStatuses
                 .FirstOrDefaultAsync(ubs => ubs.UserId == userId && ubs.BookId == reviewDto.BookId);
 
@@ -126,10 +122,10 @@ namespace CapstoneBack.Services
                 throw new InvalidOperationException("Review not found. Cannot update a non-existing review.");
             }
 
-            // Aggiornamento dei campi della recensione
+           
             review.Rating = reviewDto.Rating;
             review.ReviewText = reviewDto.ReviewText;
-            review.ReviewDate = DateTime.UtcNow;  // Aggiorna la data alla modifica attuale
+            review.ReviewDate = DateTime.UtcNow;  
 
             _context.UserReviews.Update(review);
             await _context.SaveChangesAsync();

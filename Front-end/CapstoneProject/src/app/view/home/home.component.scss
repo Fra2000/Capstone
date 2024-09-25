@@ -1,21 +1,21 @@
 $primary: #007bff;
-$navbar-bg: #f5deb3; // Colore di sfondo delle vecchie pagine
-$text-color: #8b4513; // Marrone scuro per il testo
-$hover-color: #a0522d; // Colore per l'effetto hover
+$navbar-bg: #f5deb3;
+$text-color: #8b4513;
+$hover-color: #a0522d;
 
 .container {
   .card {
-    border: 2px solid $text-color; // Bordi marroni scuri
+    border: 2px solid $text-color;
     border-radius: 10px;
-    background-color: $navbar-bg; // Sfondo simile alle vecchie pagine
+    background-color: $navbar-bg;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    display: flex; // Cambiato a flex per assicurare un layout coerente
-    flex-direction: column; // Disporre i contenuti verticalmente
+    display: flex;
+    flex-direction: column;
     max-width: 100%;
     max-height: 720px;
-    width: calc(110% - 20px); // Ho lasciato questo perché l'hai impostato tu
+    width: calc(110% - 20px);
     margin: 0 auto;
 
     &:hover {
@@ -33,30 +33,30 @@ $hover-color: #a0522d; // Colore per l'effetto hover
         display: block;
         height: auto;
         object-fit: contain;
-        min-height: 250px; // Imposta un'altezza minima per mantenere consistenza
+        min-height: 250px;
         width: 100%;
       }
     }
 
     .card-body {
       padding: 15px;
-      background-color: $navbar-bg; // Sfondo giallo simile alle vecchie pagine
-      flex: 1; // Permette al card-body di occupare lo spazio rimanente
+      background-color: $navbar-bg;
+      flex: 1;
       display: flex;
-      flex-direction: column; // Dispone gli elementi verticalmente
+      flex-direction: column;
 
       .book-info {
-        flex-grow: 1; // Permette alla parte superiore della card di occupare lo spazio rimanente
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end; // Assicura che il testo sia allineato verso il basso
+        justify-content: flex-end;
 
         .card-title {
           font-weight: bold;
           margin-bottom: 10px;
           font-size: 1.2rem;
           color: $text-color;
-          min-height: 40px; // Assegna altezza fissa per garantire uniformità
+          min-height: 40px;
 
           display: -webkit-box;
           display: box;
@@ -84,7 +84,7 @@ $hover-color: #a0522d; // Colore per l'effetto hover
       }
 
       .mt-3 {
-        margin-top: auto; // Fa sì che il pulsante "Dettagli" sia sempre allineato verso il fondo
+        margin-top: auto;
       }
 
       a.btn, .ButtonDetails {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using CapstoneBack.Models;
+﻿using CapstoneBack.Models;
 using CapstoneBack.Models.DTO.BookDTO;
 
 namespace CapstoneBack.Services.Interfaces

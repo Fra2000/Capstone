@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthorRead } from '../../interfaces/Author'; // Assicurati di creare questa interfaccia
-import { Book } from '../../interfaces/Book';
+import { AuthorRead } from '../interfaces/Author';
+import { Book } from '../interfaces/Book';
 
 @Injectable({
   providedIn: 'root'
@@ -42,11 +42,11 @@ export class AuthorService {
   }
 
   handleImageError(event: any) {
-    event.target.src = 'https://localhost:7097/images/Author/default.jpg'; // Immagine di fallback
+    event.target.src = 'https://localhost:7097/images/Author/default.jpg';
   }
 
   getBooksByAuthorId(authorId: number): Observable<Book[]> {
-    // Assicurati che l'endpoint sia corretto per ottenere i libri di un autore
+
     return this.http.get<Book[]>(`${this.apiUrl}/${authorId}/books`);
   }
 }

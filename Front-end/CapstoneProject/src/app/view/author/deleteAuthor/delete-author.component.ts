@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthorRead } from '../../../interfaces/Author'; // Assicurati che AuthorRead sia importato correttamente
-import { AuthorService } from '../../../services/Author/author.service';
+import { AuthorRead } from '../../../interfaces/Author';
+import { AuthorService } from '../../../services/author.service';
 
 @Component({
   selector: 'app-delete-author',
@@ -19,13 +19,13 @@ export class DeleteAuthorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Ottieni l'ID dell'autore dalla route
+
     this.authorId = Number(this.route.snapshot.paramMap.get('id'));
 
-    // Carica i dettagli dell'autore tramite l'ID
+
     this.authorService.getAuthorById(this.authorId).subscribe(
       (data: AuthorRead) => {
-        this.author = data; // Assegna i dettagli dell'autore all'oggetto author
+        this.author = data;
       },
       (error) => {
         console.error('Errore nel recupero dell\'autore:', error);
@@ -33,12 +33,12 @@ export class DeleteAuthorComponent implements OnInit {
     );
   }
 
-  // Metodo per confermare l'eliminazione
+
   confirmDelete(): void {
     this.authorService.deleteAuthor(this.authorId).subscribe(
       () => {
         console.log('Autore eliminato con successo');
-        this.router.navigate(['/allAuthors']); // Reindirizza alla lista degli autori
+        this.router.navigate(['/allAuthors']);
       },
       (error) => {
         console.error('Errore nell\'eliminazione dell\'autore:', error);
@@ -46,7 +46,7 @@ export class DeleteAuthorComponent implements OnInit {
     );
   }
 
-  // Metodo per annullare l'operazione e tornare indietro
+
   cancel(): void {
     this.router.navigate(['/allAuthors']);
   }
