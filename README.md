@@ -1,6 +1,6 @@
 📚 Presentazione del Progetto
 
-Il progetto è un e-commerce dedicato alla vendita e gestione di libri. Gli utenti possono registrarsi, esplorare un ampio catalogo di libri, autori e generi, gestire il proprio carrello e completare gli acquisti. La piattaforma permette inoltre l'aggiunta e la gestione di nuovi autori, generi e libri, garantendo un'esperienza completa sia per gli utenti che per gli amministratori.
+Il progetto è un e-commerce dedicato alla vendita e gestione di libri. Gli utenti possono registrarsi, esplorare un ampio catalogo di libri, autori e generi, gestire il proprio carrello, completare gli acquisti, e personalizzare la propria collezione. La piattaforma permette inoltre l'aggiunta e la gestione di nuovi autori, generi e libri, garantendo un'esperienza completa sia per gli utenti che per gli amministratori.
 
 
 🎯 Obiettivo del Progetto
@@ -33,7 +33,7 @@ Entity Framework Core: Per la gestione dell'accesso ai dati e l'interazione con 
 
 JWT (JSON Web Token): Per l'autenticazione e la protezione delle rotte.
 
-Swagger: Per la documentazione e il testing delle API.
+Swagger e Postman: Per la documentazione e il testing delle API.
 
 
 🗄️ Database
